@@ -52,3 +52,4 @@ offset_bottom = 576.0
 color = Color(0.0431373, 0.0431373, 0.0431373, 0.929412)
 
 [connection signal="body_entered" from="PlayableArea" to="." method="_on_playable_area_entered"]
+[connection signal="body_exited" from="PlayableArea" to="." method="_on_playable_area_exited"]

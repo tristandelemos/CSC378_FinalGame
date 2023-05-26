@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://buen3qdevlnxf" path="res://sprites/light.png" id="4_lu65e"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wyhyg"]
-radius = 16.0
+radius = 15.0
 
 [node name="Player" type="CharacterBody2D"]
 z_index = 1
@@ -21,11 +21,11 @@ shape = SubResource("CircleShape2D_wyhyg")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="HUD" parent="." instance=ExtResource("3_1s1tl")]
-
 [node name="PointLight2D" type="PointLight2D" parent="."]
 energy = 0.7
 shadow_enabled = true
 shadow_filter_smooth = 1.0
 texture = ExtResource("4_lu65e")
 texture_scale = 2.5
+
+[node name="HUD" parent="." instance=ExtResource("3_1s1tl")]

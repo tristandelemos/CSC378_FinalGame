@@ -1,8 +1,26 @@
-[gd_scene format=3 uid="uid://gbp8n355q25b"]
+[gd_scene load_steps=3 format=3 uid="uid://gbp8n355q25b"]
+
+[ext_resource type="PackedScene" uid="uid://fe3dgrfgsn7t" path="res://instances/mini_room.tscn" id="1_7qgxg"]
+[ext_resource type="Script" path="res://scripts/hud.gd" id="1_y0bpq"]
 
 [node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_y0bpq")
 
-[node name="Minimap" type="ColorRect" parent="."]
-offset_right = 256.0
-offset_bottom = 192.0
-color = Color(0, 0, 0, 0.733333)
+[node name="Minimap" type="CanvasLayer" parent="."]
+
+[node name="Connections" type="Node2D" parent="Minimap"]
+
+[node name="MiniRooms" type="ColorRect" parent="Minimap"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.835294, 0.156863, 0.0470588, 0.294118)
+
+[node name="SafeMiniRoom" parent="Minimap/MiniRooms" instance=ExtResource("1_7qgxg")]
+layout_mode = 1
+offset_left = 640.32
+offset_top = 383.76
+offset_right = 639.68
+offset_bottom = 384.24
