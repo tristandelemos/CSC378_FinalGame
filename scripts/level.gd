@@ -85,8 +85,8 @@ func get_farthest_room() -> Room:
 	var farthest_room: Room = start_room
 	var farthest_distance = 0
 	var curr_dist
-	var rooms: Array = $Rooms.get_children()
-	for room in rooms:
+	var curr_rooms: Array = $Rooms.get_children()
+	for room in curr_rooms:
 		curr_dist = start_room.global_position.distance_to(room.global_position)
 		if curr_dist > farthest_distance:
 			farthest_room = room
@@ -170,8 +170,8 @@ func update_unused_connections(direction, prev_room, target):
 				target.unused_connections.pop_at(target_index)
 
 func close_empty_room_connections() -> void:
-	var rooms: Array = $Rooms.get_children()
-	for room in rooms:
+	var curr_rooms: Array = $Rooms.get_children()
+	for room in curr_rooms:
 		room.close_unused_connections()
 
 func position_occupied(direction, prev_room_pos, prev_room):
@@ -188,8 +188,8 @@ func position_occupied(direction, prev_room_pos, prev_room):
 	return occupied
 
 func position_occupied_helper(pos: Vector2) -> Array:
-	var rooms: Array = $Rooms.get_children()
-	for room in rooms:
+	var curr_rooms: Array = $Rooms.get_children()
+	for room in curr_rooms:
 		if room.global_position == pos:
 			return [room]
 	return []

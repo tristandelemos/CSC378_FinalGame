@@ -21,6 +21,12 @@ GameData="*res://scripts/GameData.gd"
 SignalBus="*res://scripts/SignalBus.gd"
 RngUtils="*res://addons/rng_utils/rng_utils.gd"
 
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
+window/stretch/mode="canvas_items"
+
 [editor]
 
 version_control/plugin_name="GitPlugin"
@@ -72,6 +78,7 @@ play={
 2d_physics/layer_1="Player"
 2d_physics/layer_2="World"
 2d_physics/layer_3="Enemy"
+2d_physics/layer_4="RoomDetectors"
 
 [physics]
 
