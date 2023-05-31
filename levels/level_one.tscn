@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://cistswfrroha1"]
+[gd_scene load_steps=6 format=3 uid="uid://cistswfrroha1"]
 
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_h6w0a"]
 [ext_resource type="PackedScene" uid="uid://7sdv6fbfhxgg" path="res://instances/rooms/start_room.tscn" id="2_la0t7"]
 [ext_resource type="Script" path="res://scripts/room.gd" id="3_emq4c"]
 [ext_resource type="PackedScene" uid="uid://ba2y6exjmtk6h" path="res://instances/player.tscn" id="3_rlo56"]
+[ext_resource type="PackedScene" uid="uid://pc81s5hy6b1g" path="res://player/telonio.tscn" id="5_lqin7"]
 
 [node name="LevelOne" type="Node2D"]
 script = ExtResource("1_h6w0a")
@@ -23,3 +24,6 @@ color = Color(0.239216, 0.239216, 0.239216, 1)
 [node name="Player" parent="." instance=ExtResource("3_rlo56")]
 position = Vector2(0, -8)
 collision_mask = 6
+
+[node name="Telonio" parent="." instance=ExtResource("5_lqin7")]
+visible = false

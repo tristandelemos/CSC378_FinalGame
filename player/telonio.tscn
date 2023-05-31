@@ -1,26 +1,26 @@
-[gd_scene load_steps=32 format=3 uid="uid://ba2y6exjmtk6h"]
+[gd_scene load_steps=32 format=3 uid="uid://pc81s5hy6b1g"]
 
-[ext_resource type="Texture2D" uid="uid://cfemdqp11qpxk" path="res://sprites/character.png" id="1_16b5e"]
-[ext_resource type="Script" path="res://scripts/player.gd" id="1_fk4hn"]
-[ext_resource type="PackedScene" uid="uid://gbp8n355q25b" path="res://instances/hud.tscn" id="3_1s1tl"]
-[ext_resource type="Texture2D" uid="uid://buen3qdevlnxf" path="res://sprites/light.png" id="4_lu65e"]
-[ext_resource type="Texture2D" uid="uid://dnnuag2hkerjg" path="res://sprites/sample_left_attack.png" id="5_my12d"]
-[ext_resource type="Texture2D" uid="uid://b7uscq1buyvf" path="res://sprites/sample_side_attack.png" id="6_rldck"]
-[ext_resource type="Texture2D" uid="uid://dwgnmkot0gnia" path="res://sprites/sample_up_down_attack.png" id="7_bs3p2"]
-[ext_resource type="Texture2D" uid="uid://dxs4x60srwwak" path="res://sprites/character_down-sheet.png" id="8_xclkf"]
-[ext_resource type="Texture2D" uid="uid://rwaj4nb34wy8" path="res://sprites/character_left.png" id="9_amkbp"]
-[ext_resource type="Texture2D" uid="uid://bsvtatntd86je" path="res://sprites/character_updown.png" id="10_j7vpy"]
+[ext_resource type="Script" path="res://player/player.gd" id="1_8i0eb"]
+[ext_resource type="Texture2D" uid="uid://cfemdqp11qpxk" path="res://sprites/character.png" id="2_4eght"]
+[ext_resource type="PackedScene" uid="uid://gbp8n355q25b" path="res://instances/hud.tscn" id="3_fudkr"]
+[ext_resource type="Texture2D" uid="uid://buen3qdevlnxf" path="res://sprites/light.png" id="4_ayy34"]
+[ext_resource type="Texture2D" uid="uid://dwgnmkot0gnia" path="res://sprites/sample_up_down_attack.png" id="5_8pfat"]
+[ext_resource type="Texture2D" uid="uid://b7uscq1buyvf" path="res://sprites/sample_side_attack.png" id="6_t7mmf"]
+[ext_resource type="Texture2D" uid="uid://bsvtatntd86je" path="res://sprites/character_updown.png" id="7_d2kjy"]
+[ext_resource type="Texture2D" uid="uid://rwaj4nb34wy8" path="res://sprites/character_left.png" id="8_klaf4"]
+[ext_resource type="Texture2D" uid="uid://dnnuag2hkerjg" path="res://sprites/sample_left_attack.png" id="8_li4lt"]
+[ext_resource type="Texture2D" uid="uid://dxs4x60srwwak" path="res://sprites/character_down-sheet.png" id="9_jxt4g"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_53yha"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tt02i"]
 radius = 18.0
 height = 60.0
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_60ma8"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1fmks"]
 radius = 20.0
 height = 74.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wyhyg"]
-radius = 15.0
+radius = 16.0
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3ii56"]
 animation = &"sideways"
@@ -47,14 +47,14 @@ blend_point_3/pos = Vector2(0, -1.1)
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_yljft"]
 advance_mode = 2
 
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_73pvn"]
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_18lmm"]
 states/End/position = Vector2(767, 77.5)
 states/Move/node = SubResource("AnimationNodeBlendSpace2D_51dt5")
 states/Move/position = Vector2(321.197, 57.5)
 transitions = ["Start", "Move", SubResource("AnimationNodeStateMachineTransition_yljft")]
 graph_offset = Vector2(84.6972, 0)
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_bfohp"]
+[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_isphm"]
 
 [sub_resource type="Animation" id="Animation_fw1gd"]
 length = 0.001
@@ -111,7 +111,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("5_my12d")]
+"values": [ExtResource("8_li4lt")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -151,7 +151,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("6_rldck")]
+"values": [ExtResource("6_t7mmf")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -203,7 +203,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("7_bs3p2")]
+"values": [ExtResource("5_8pfat")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -254,7 +254,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("8_xclkf")]
+"values": [ExtResource("9_jxt4g")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -293,7 +293,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("9_amkbp")]
+"values": [ExtResource("8_klaf4")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -332,7 +332,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("1_16b5e")]
+"values": [ExtResource("2_4eght")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -371,7 +371,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("10_j7vpy")]
+"values": [ExtResource("7_d2kjy")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -414,43 +414,45 @@ _data = {
 [node name="Player" type="CharacterBody2D"]
 z_index = 1
 collision_mask = 14
-script = ExtResource("1_fk4hn")
+script = ExtResource("1_8i0eb")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_16b5e")
+texture = ExtResource("5_8pfat")
+hframes = 6
 
 [node name="Sword" type="Area2D" parent="Sprite2D"]
 monitoring = false
 
 [node name="Horizontal" type="CollisionShape2D" parent="Sprite2D/Sword"]
 position = Vector2(10, -2)
-shape = SubResource("CapsuleShape2D_53yha")
+shape = SubResource("CapsuleShape2D_tt02i")
 disabled = true
 
 [node name="Vertical" type="CollisionShape2D" parent="Sprite2D/Sword"]
 position = Vector2(1, -13)
 rotation = 1.5708
-shape = SubResource("CapsuleShape2D_60ma8")
+shape = SubResource("CapsuleShape2D_1fmks")
 disabled = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_wyhyg")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(1.5, 1.5)
+
+[node name="HUD" parent="." instance=ExtResource("3_fudkr")]
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 energy = 0.7
 shadow_enabled = true
 shadow_filter_smooth = 1.0
-texture = ExtResource("4_lu65e")
+texture = ExtResource("4_ayy34")
 texture_scale = 2.5
 
-[node name="HUD" parent="." instance=ExtResource("3_1s1tl")]
-
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource("AnimationNodeStateMachine_73pvn")
+tree_root = SubResource("AnimationNodeStateMachine_18lmm")
 anim_player = NodePath("../AnimationPlayer")
-parameters/playback = SubResource("AnimationNodeStateMachinePlayback_bfohp")
+parameters/playback = SubResource("AnimationNodeStateMachinePlayback_isphm")
 parameters/Move/blend_position = Vector2(0, 0)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
