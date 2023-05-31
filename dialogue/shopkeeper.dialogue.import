@@ -1,0 +1,14 @@
+[remap]
+
+importer="dialogue_manager_compiler_8"
+type="Resource"
+uid="uid://8mbx38hm8iiq"
+path="res://.godot/imported/shopkeeper.dialogue-fa83b69ba52f7d68cd1275f2067364b7.tres"
+
+[deps]
+
+source_file="res://dialogue/shopkeeper.dialogue"
+dest_files=["res://.godot/imported/shopkeeper.dialogue-fa83b69ba52f7d68cd1275f2067364b7.tres"]
+
+[params]
+
