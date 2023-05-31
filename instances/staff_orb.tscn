@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://cci8tfewyajlk"]
+
+[ext_resource type="Texture2D" uid="uid://b2ojeaipi0xgc" path="res://sprites/staff_orb.png" id="1_boi7h"]
+[ext_resource type="Script" path="res://scripts/staff_orb.gd" id="1_op4a8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_t67nu"]
+radius = 13.0
+
+[node name="StaffOrb" type="Area2D"]
+collision_layer = 16
+collision_mask = 6
+script = ExtResource("1_op4a8")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_boi7h")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_t67nu")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

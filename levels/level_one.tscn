@@ -8,10 +8,8 @@
 [node name="LevelOne" type="Node2D"]
 script = ExtResource("1_h6w0a")
 
-[node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(0.1, 0.1)
-
-[node name="Rooms" type="Node" parent="."]
+[node name="Rooms" type="Node2D" parent="."]
+z_index = -1
 
 [node name="StartRoom" parent="Rooms" instance=ExtResource("2_la0t7")]
 script = ExtResource("3_emq4c")

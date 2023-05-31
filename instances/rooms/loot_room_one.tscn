@@ -1,0 +1,14 @@
+[gd_scene load_steps=5 format=3 uid="uid://dqa3cidqp0jf1"]
+
+[ext_resource type="PackedScene" uid="uid://7sdv6fbfhxgg" path="res://instances/rooms/start_room.tscn" id="1_l1f83"]
+[ext_resource type="Script" path="res://scripts/loot_room.gd" id="2_27lmq"]
+[ext_resource type="Texture2D" uid="uid://bal2jiyhrnqrq" path="res://sprites/pedestal.png" id="2_tg612"]
+[ext_resource type="PackedScene" uid="uid://dgwj4wlf2tsi5" path="res://instances/loot.tscn" id="3_ovmtj"]
+
+[node name="LootRoomOne" instance=ExtResource("1_l1f83")]
+script = ExtResource("2_27lmq")
+
+[node name="Pedestal" type="Sprite2D" parent="." index="7"]
+texture = ExtResource("2_tg612")
+
+[node name="Loot" parent="." index="8" instance=ExtResource("3_ovmtj")]

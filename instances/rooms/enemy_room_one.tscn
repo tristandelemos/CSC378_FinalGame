@@ -7,10 +7,11 @@
 size = Vector2(1216, 1216)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_by6hc"]
-size = Vector2(1152, 1152)
+size = Vector2(1088, 1104)
 
 [node name="EnemyRoomOne" type="Node2D"]
 script = ExtResource("1_8vbwk")
+min_enemies = 3
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("1_0xkwd")
@@ -36,6 +37,53 @@ position = Vector2(-608, 0)
 
 [node name="EastExit" type="Node2D" parent="."]
 position = Vector2(608, 0)
+
+[node name="SpawnPoints" type="Node2D" parent="."]
+
+[node name="SpawnPoint" type="Node2D" parent="SpawnPoints"]
+position = Vector2(-229, 85)
+
+[node name="SpawnPoint2" type="Node2D" parent="SpawnPoints"]
+position = Vector2(-314, -75)
+
+[node name="SpawnPoint3" type="Node2D" parent="SpawnPoints"]
+position = Vector2(-139, -346)
+
+[node name="SpawnPoint4" type="Node2D" parent="SpawnPoints"]
+position = Vector2(285, -112)
+
+[node name="SpawnPoint5" type="Node2D" parent="SpawnPoints"]
+position = Vector2(-55, 333)
+
+[node name="SpawnPoint6" type="Node2D" parent="SpawnPoints"]
+position = Vector2(291, 78)
+
+[node name="SpawnPoint7" type="Node2D" parent="SpawnPoints"]
+position = Vector2(-7, -160)
+
+[node name="SpawnPoint8" type="Node2D" parent="SpawnPoints"]
+position = Vector2(143, -404)
+
+[node name="SpawnPoint9" type="Node2D" parent="SpawnPoints"]
+position = Vector2(-483, 153)
+
+[node name="SpawnPoint10" type="Node2D" parent="SpawnPoints"]
+position = Vector2(-490, 483)
+
+[node name="SpawnPoint11" type="Node2D" parent="SpawnPoints"]
+position = Vector2(-497, -482)
+
+[node name="SpawnPoint12" type="Node2D" parent="SpawnPoints"]
+position = Vector2(114, 375)
+
+[node name="SpawnPoint13" type="Node2D" parent="SpawnPoints"]
+position = Vector2(92, 122)
+
+[node name="SpawnPoint14" type="Node2D" parent="SpawnPoints"]
+position = Vector2(446, -118)
+
+[node name="SpawnPoint15" type="Node2D" parent="SpawnPoints"]
+position = Vector2(465, 86)
 
 [node name="PlayableArea" type="Area2D" parent="."]
 collision_layer = 8

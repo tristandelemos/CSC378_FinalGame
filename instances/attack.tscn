@@ -1,0 +1,242 @@
+[gd_scene load_steps=14 format=3 uid="uid://b4fx0wgytglml"]
+
+[ext_resource type="Script" path="res://scripts/attack.gd" id="1_7a2c6"]
+[ext_resource type="Texture2D" uid="uid://brbkihnfui7j1" path="res://sprites/swipe1.png" id="1_wuf7s"]
+[ext_resource type="Texture2D" uid="uid://c8plb83i1x4bv" path="res://sprites/swipe2.png" id="2_r4j5v"]
+[ext_resource type="Texture2D" uid="uid://bmn6q26daeuoy" path="res://sprites/swipe3.png" id="3_3ugjg"]
+[ext_resource type="Texture2D" uid="uid://b2shdy12vy4hs" path="res://sprites/swipe4.png" id="4_yr7gp"]
+[ext_resource type="Texture2D" uid="uid://dywylsc2v8t5m" path="res://sprites/swipe5.png" id="5_decvr"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jc7qp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_wuf7s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_r4j5v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_3ugjg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_yr7gp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_decvr")
+}],
+"loop": false,
+"name": &"default",
+"speed": 15.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n0kc2"]
+size = Vector2(44, 57)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h6ree"]
+size = Vector2(67, 114)
+
+[sub_resource type="Animation" id="Animation_kl3rj"]
+resource_name = "swipe"
+length = 0.3
+step = 0.075
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Swipe/SwipeAnimation:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.075, 0.15, 0.225, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Swipe/Hitbox/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.225),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [true],
+"method": &"set_lock_swipe_rotation"
+}, {
+"args": [false],
+"method": &"set_lock_swipe_rotation"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_untbb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Swipe/SwipeAnimation:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Swipe/Hitbox/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BigSwipe/BigSwipeAnimation:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("BigSwipe/BigHitbox/CollisionShape2D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_tqg1h"]
+resource_name = "big_swipe"
+length = 0.3
+step = 0.075
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [true],
+"method": &"set_lock_swipe_rotation"
+}, {
+"args": [false],
+"method": &"set_lock_swipe_rotation"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BigSwipe/BigSwipeAnimation:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.075, 0.15, 0.225, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BigSwipe/BigHitbox/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.225),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fjk0x"]
+_data = {
+"RESET": SubResource("Animation_untbb"),
+"big_swipe": SubResource("Animation_tqg1h"),
+"swipe": SubResource("Animation_kl3rj")
+}
+
+[node name="Attack" type="Node2D"]
+script = ExtResource("1_7a2c6")
+
+[node name="Swipe" type="Node2D" parent="."]
+
+[node name="SwipeAnimation" type="AnimatedSprite2D" parent="Swipe"]
+position = Vector2(16, 0)
+rotation = 1.5708
+sprite_frames = SubResource("SpriteFrames_jc7qp")
+
+[node name="Hitbox" type="Area2D" parent="Swipe"]
+collision_layer = 16
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Swipe/Hitbox"]
+position = Vector2(22, -0.5)
+shape = SubResource("RectangleShape2D_n0kc2")
+disabled = true
+
+[node name="BigSwipe" type="Node2D" parent="."]
+
+[node name="BigSwipeAnimation" type="AnimatedSprite2D" parent="BigSwipe"]
+position = Vector2(16, 0)
+rotation = 1.5708
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_jc7qp")
+
+[node name="BigHitbox" type="Area2D" parent="BigSwipe"]
+collision_layer = 16
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BigSwipe/BigHitbox"]
+position = Vector2(33.5, -1)
+shape = SubResource("RectangleShape2D_h6ree")
+disabled = true
+
+[node name="SwipeCooldown" type="Timer" parent="BigSwipe"]
+
+[node name="Staff" type="Node2D" parent="."]
+
+[node name="StaffCooldown" type="Timer" parent="Staff"]
+wait_time = 0.7
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_fjk0x")
+}
+
+[connection signal="animation_finished" from="Swipe/SwipeAnimation" to="." method="_on_swipe_animation_animation_finished"]
+[connection signal="body_entered" from="Swipe/Hitbox" to="." method="_on_hitbox_body_entered"]
+[connection signal="animation_finished" from="BigSwipe/BigSwipeAnimation" to="." method="_on_big_swipe_animation_animation_finished"]
+[connection signal="body_entered" from="BigSwipe/BigHitbox" to="." method="_on_big_hitbox_body_entered"]
+[connection signal="timeout" from="Staff/StaffCooldown" to="." method="_on_staff_cooldown_timeout"]

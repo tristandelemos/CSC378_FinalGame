@@ -4,9 +4,11 @@ class_name Room
 @onready var tilemap: TileMap = $TileMap
 @onready var area: Area2D = $RoomArea
 
+var exits: Array[String] = []
 var unused_connections: Array[String]= ["north", "east", "south", "west"]
 
 const wall_tile_coords := Vector2i(0, 0)
+const floor_tile_coords := Vector2i(1, 0)
 
 func _ready():
     $ColorRect.visible = true
@@ -28,14 +30,30 @@ func close_unused_connections():
     for connection in unused_connections:
         match(connection):
             "north":
-                tilemap.set_cell(0, tilemap.local_to_map($NorthExit.position), 0, wall_tile_coords)
-                tilemap.set_cell(0, tilemap.local_to_map($NorthExit.position) + Vector2i(-1, 0), 0, wall_tile_coords)
+                set_exit_tile(
+                    $NorthExit.position,
+                    Vector2i(0, 0),
+                    Vector2i(-1, 0),
+                    wall_tile_coords)
             "south":
-                tilemap.set_cell(0, tilemap.local_to_map($SouthExit.position) + Vector2i(0, -1), 0, wall_tile_coords)
-                tilemap.set_cell(0, tilemap.local_to_map($SouthExit.position) + Vector2i(-1, -1), 0, wall_tile_coords)
+                set_exit_tile(
+                    $SouthExit.position,
+                    Vector2i(0, -1),
+                    Vector2i(-1, -1),
+                    wall_tile_coords)
             "east":
-                tilemap.set_cell(0, tilemap.local_to_map($EastExit.position) + Vector2i(-1, -1), 0, wall_tile_coords)
-                tilemap.set_cell(0, tilemap.local_to_map($EastExit.position) + Vector2i(-1, 0), 0, wall_tile_coords)
+                set_exit_tile(
+                    $EastExit.position,
+                    Vector2i(-1, -1),
+                    Vector2i(-1, 0),
+                    wall_tile_coords)
             "west":
-                tilemap.set_cell(0, tilemap.local_to_map($WestExit.position) + Vector2i(0, -1), 0, wall_tile_coords)
-                tilemap.set_cell(0, tilemap.local_to_map($WestExit.position), 0, wall_tile_coords)
+                set_exit_tile(
+                    $WestExit.position,
+                    Vector2i(0, -1),
+                    Vector2i(0, 0),
+                    wall_tile_coords)
+
+func set_exit_tile(tile_pos: Vector2, offset1: Vector2i, offset2: Vector2i, tile_coords):
+    tilemap.set_cell(0, tilemap.local_to_map(tile_pos) + offset1, 0, tile_coords)
+    tilemap.set_cell(0, tilemap.local_to_map(tile_pos) + offset2, 0, tile_coords)

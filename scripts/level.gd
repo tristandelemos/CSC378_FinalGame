@@ -1,9 +1,22 @@
 extends Node2D
 
-@onready var rooms: Array[Resource] = [
-    preload("res://instances/rooms/enemy_room_one.tscn"),
-    preload("res://instances/rooms/enemy_room_two.tscn"),
-    preload("res://instances/rooms/enemy_room_three.tscn")]
+@onready var rooms: Array[Dictionary] = [
+    {
+        "type": "enemy",
+        "resource": preload("res://instances/rooms/enemy_room_one.tscn")
+    },
+    {
+        "type": "enemy",
+        "resource": preload("res://instances/rooms/enemy_room_two.tscn")
+    },
+    {
+        "type": "enemy",
+        "resource": preload("res://instances/rooms/enemy_room_three.tscn")
+    },
+    {
+        "type": "loot",
+        "resource": preload("res://instances/rooms/loot_room_one.tscn")
+    }]
 #@onready var exit_room = preload("res://room_exit.tscn")
 #@onready var slot := preload("res://room_slot.tscn")
 @onready var mini_room := preload("res://instances/mini_room.tscn")
@@ -21,9 +34,6 @@ var curr_num_rooms = 0
 func _input(event: InputEvent) -> void:
     if event.is_action_pressed("generate"):
         get_tree().reload_current_scene()
-    if event.is_action_pressed("play"):
-        $Camera2D.enabled = false
-        $Player/Camera2D.enabled = true
 
 func _ready() -> void:
     generate()
@@ -103,22 +113,33 @@ func get_farthest_room() -> Room:
     return farthest_room
 
 func add_new_room(direction, prev_room, prev_room_pos):
-    var room_instance: Room = RngUtils.array(rooms)[0].instantiate()
+    var chosen_room = RngUtils.array(rooms)[0]
+    if chosen_room["type"] == "loot":
+        rooms.pop_at(rooms.find(chosen_room))
+    var room_instance: Room = chosen_room["resource"].instantiate()
     match(direction):
         "N":
             room_instance.global_position = Vector2(prev_room_pos.x, prev_room_pos.y - prev_room.get_size().y)
+            prev_room.exits.append("north")
+            room_instance.exits.append("south")
             prev_room.unused_connections.pop_at(prev_room.unused_connections.find("north"))
             room_instance.unused_connections.pop_at(room_instance.unused_connections.find("south"))
         "S":
             room_instance.global_position = Vector2(prev_room_pos.x, prev_room_pos.y + prev_room.get_size().y)
+            prev_room.exits.append("south")
+            room_instance.exits.append("north")
             prev_room.unused_connections.pop_at(prev_room.unused_connections.find("south"))
             room_instance.unused_connections.pop_at(room_instance.unused_connections.find("north"))
         "E":
             room_instance.global_position = Vector2(prev_room_pos.x + prev_room.get_size().x, prev_room_pos.y)
+            prev_room.exits.append("east")
+            room_instance.exits.append("west")
             prev_room.unused_connections.pop_at(prev_room.unused_connections.find("east"))
             room_instance.unused_connections.pop_at(room_instance.unused_connections.find("west"))
         "W":
             room_instance.global_position = Vector2(prev_room_pos.x - prev_room.get_size().x, prev_room_pos.y)
+            prev_room.exits.append("west")
+            room_instance.exits.append("east")
             prev_room.unused_connections.pop_at(prev_room.unused_connections.find("west"))
             room_instance.unused_connections.pop_at(room_instance.unused_connections.find("east"))
     $Rooms.add_child(room_instance)

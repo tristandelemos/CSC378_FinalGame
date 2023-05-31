@@ -1,27 +1,36 @@
-[gd_scene load_steps=6 format=3 uid="uid://ba2y6exjmtk6h"]
+[gd_scene load_steps=8 format=3 uid="uid://ba2y6exjmtk6h"]
 
 [ext_resource type="Texture2D" uid="uid://cfemdqp11qpxk" path="res://sprites/character.png" id="1_16b5e"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_fk4hn"]
 [ext_resource type="PackedScene" uid="uid://gbp8n355q25b" path="res://instances/hud.tscn" id="3_1s1tl"]
+[ext_resource type="PackedScene" uid="uid://b4fx0wgytglml" path="res://instances/attack.tscn" id="3_66g4t"]
 [ext_resource type="Texture2D" uid="uid://buen3qdevlnxf" path="res://sprites/light.png" id="4_lu65e"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wyhyg"]
 radius = 15.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_m8n3y"]
+radius = 14.0
+
 [node name="Player" type="CharacterBody2D"]
 z_index = 1
-collision_mask = 14
+collision_mask = 2
 script = ExtResource("1_fk4hn")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_16b5e")
 
+[node name="Attack" parent="." instance=ExtResource("3_66g4t")]
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("CircleShape2D_wyhyg")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(1.7, 1.7)
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
+visible = false
 energy = 0.7
 shadow_enabled = true
 shadow_filter_smooth = 1.0
@@ -29,3 +38,10 @@ texture = ExtResource("4_lu65e")
 texture_scale = 2.5
 
 [node name="HUD" parent="." instance=ExtResource("3_1s1tl")]
+
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("CircleShape2D_m8n3y")
