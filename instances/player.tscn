@@ -27,10 +27,15 @@ visible = false
 shape = SubResource("CircleShape2D_wyhyg")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(1.7, 1.7)
+zoom = Vector2(1.1, 1.1)
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+drag_left_margin = 0.1
+drag_top_margin = 0.1
+drag_right_margin = 0.1
+drag_bottom_margin = 0.1
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
-visible = false
 energy = 0.7
 shadow_enabled = true
 shadow_filter_smooth = 1.0
