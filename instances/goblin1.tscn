@@ -1,8 +1,53 @@
-[gd_scene load_steps=24 format=3 uid="uid://10c00ucbu5fl"]
+[gd_scene load_steps=36 format=3 uid="uid://10c00ucbu5fl"]
 
 [ext_resource type="Texture2D" uid="uid://cylos20ui3e8" path="res://sprites/enemies/goblin1back.png" id="1_67xqw"]
+[ext_resource type="Script" path="res://instances/goblin1.gd" id="1_ci8y3"]
+[ext_resource type="Texture2D" uid="uid://oyygt5ica1wf" path="res://sprites/enemies/enemy1_attack.png" id="2_402xc"]
 [ext_resource type="Texture2D" uid="uid://doi70khonlyak" path="res://sprites/enemies/goblin1.png" id="2_t25pr"]
 [ext_resource type="Texture2D" uid="uid://bullwm74qbdkv" path="res://sprites/enemies/goblin1side.png" id="3_b1d73"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ywxr7"]
+size = Vector2(17, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_85l2q"]
+atlas = ExtResource("2_402xc")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ftkkc"]
+atlas = ExtResource("2_402xc")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p48eb"]
+atlas = ExtResource("2_402xc")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ojlpj"]
+atlas = ExtResource("2_402xc")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1sl5s"]
+atlas = ExtResource("2_402xc")
+region = Rect2(192, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0cca7"]
+atlas = ExtResource("2_402xc")
+region = Rect2(240, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_350u3"]
+atlas = ExtResource("2_402xc")
+region = Rect2(288, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lynj2"]
+atlas = ExtResource("2_402xc")
+region = Rect2(336, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lkpli"]
+atlas = ExtResource("2_402xc")
+region = Rect2(384, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j6u45"]
+atlas = ExtResource("2_402xc")
+region = Rect2(528, 0, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mgg5y"]
 atlas = ExtResource("1_67xqw")
@@ -80,6 +125,46 @@ region = Rect2(160, 0, 32, 32)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_85l2q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ftkkc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p48eb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ojlpj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1sl5s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0cca7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_350u3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lynj2")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 3.0,
+"texture": SubResource("AtlasTexture_lkpli")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_j6u45")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_mgg5y")
 }, {
 "duration": 1.0,
@@ -148,8 +233,13 @@ animations = [{
 "speed": 8.0
 }]
 
+<<<<<<< HEAD
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_70cnx"]
 radius = 6.0
+=======
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_ci8y3")
+>>>>>>> 32ce1d6c76ec560f528695eb8e7346fdc88ac36d
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
 collision_layer = 4
@@ -157,8 +247,14 @@ collision_mask = 4
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_547w3")
+<<<<<<< HEAD
 animation = &"walk_side"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1, 1)
 shape = SubResource("CapsuleShape2D_70cnx")
+=======
+animation = &"idle"
+autoplay = "walk_forward"
+frame_progress = 0.645525
+>>>>>>> 32ce1d6c76ec560f528695eb8e7346fdc88ac36d

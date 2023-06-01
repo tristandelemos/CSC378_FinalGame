@@ -1,0 +1,25 @@
+~ start
+# add other variables -> gold requested, weapon/item to buy
+# add conditional for first time vs. next time
+Shopkeeper: Greetings young traveller, welcome to my shop.
+
+# add damage/ character (slowness) stats to weapons to see 
+~ selection 
+Shopkeeper: What would you like to purchase today?
+- Sword
+	Shopkeeper: A fine blade that will do quick work on the minions ahead.
+- Club
+	Shopkeeper: A heavy battering club, not as good as the sword but should get the job done.
+- Nunchucks
+	Shopkeeper: Wait where did I get those??
+- End the conversation => END
+
+# Implement gold system -> insuffienct gold convo & sufficient gold convo
+Shopkeeper: That will be X gold.
+- Purchase?
+- Go back to Selection => selection
+Shopkeeper: Great purchase.
+- Purchase more? => selection
+- End conversation => END
+
+=> END
