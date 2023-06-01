@@ -4,6 +4,8 @@ class_name Player
 @onready var player_sprite: Sprite2D = $Sprite2D
 @onready var hud = $HUD
 @onready var loot = preload("res://instances/loot.tscn")
+@onready var walk_right = $Walking_Right
+@onready var walk_left = $Walking_Left
 
 @export var speed := 300
 @export var health := 100
@@ -19,8 +21,9 @@ func _ready() -> void:
 
 func _physics_process(delta) -> void:
 	handle_movement()
-	flip_sprite()
+	#flip_sprite()
 	move_and_slide()
+	walking()
 
 func _on_drop_current_weapon():
 	var dropped_weapon: Loot = loot.instantiate()
@@ -44,11 +47,29 @@ func handle_movement() -> void:
 	else:
 		velocity.x = 0
 
-func flip_sprite() -> void:
-	if velocity.x < 0:
-		player_sprite.flip_h = true
-	elif velocity.x > 0:
-		player_sprite.flip_h = false
+func walking():
+	if velocity.x > 0:
+		walk_left.visible = false
+		player_sprite.visible = false
+		walk_right.visible = true
+		walk_right.play("walking_right")
+	elif velocity.x < 0:
+		walk_right.visible = false
+		player_sprite.visible = false
+		walk_left.visible = true
+		walk_left.play("walking_left")
+	else:
+		walk_left.visible = false
+		walk_right.visible = false
+		player_sprite.visible = true
+		
+		
+
+#func flip_sprite() -> void:
+#	if velocity.x < 0:
+#		player_sprite.flip_h = true
+#	elif velocity.x > 0:
+#		player_sprite.flip_h = false
 
 func _on_hitbox_body_entered(body: Node2D) -> void:
 	body.take_damage(damage, 200)
