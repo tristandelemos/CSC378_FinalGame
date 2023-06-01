@@ -17,8 +17,7 @@ extends Node2D
 		"type": "loot",
 		"resource": preload("res://instances/rooms/loot_room_one.tscn")
 	}]
-#@onready var exit_room = preload("res://room_exit.tscn")
-#@onready var slot := preload("res://room_slot.tscn")
+@onready var exit_room = preload("res://instances/rooms/exit_room.tscn")
 @onready var mini_room := preload("res://instances/mini_room.tscn")
 @onready var start_room := $Rooms/StartRoom
 @onready var hud: HUD = get_tree().current_scene.get_node("Player/HUD")
@@ -47,7 +46,7 @@ func walk() -> Array:
 func generate() -> void:
 	var path: Array = walk()
 	place_rooms(path)
-	# add_exit_room()
+	add_exit_room()
 	close_empty_room_connections()
 
 func place_rooms(path) -> void:
@@ -73,33 +72,34 @@ func place_rooms(path) -> void:
 			add_minimap_connection(prev_mini_room.position, new_miniroom.position)
 			prev_mini_room = new_miniroom
 
-#func add_exit_room():
-#	var farthest_room = get_farthest_room()
-#	var exit_room_instance: Room = exit_room.instantiate()
-#	var exit_direction = RngUtils.array(farthest_room.unused_connections)[0]
-#	var mini_room_instance
-#	match(exit_direction):
-#		"north":
-#			exit_room_instance.global_position = \
-#				Vector2(farthest_room.global_position.x, farthest_room.global_position.y - farthest_room.get_size().y)
-#			farthest_room.unused_connections.pop_at(farthest_room.unused_connections.find("north"))
-#			exit_room_instance.unused_connections.pop_at(exit_room_instance.unused_connections.find("south"))
-#		"south":
-#			exit_room_instance.global_position = \
-#				Vector2(farthest_room.global_position.x, farthest_room.global_position.y + farthest_room.get_size().y)
-#			farthest_room.unused_connections.pop_at(farthest_room.unused_connections.find("south"))
-#			exit_room_instance.unused_connections.pop_at(exit_room_instance.unused_connections.find("north"))
-#		"east":
-#			exit_room_instance.global_position = \
-#				Vector2(farthest_room.global_position.x + farthest_room.get_size().x, farthest_room.global_position.y)
-#			farthest_room.unused_connections.pop_at(farthest_room.unused_connections.find("east"))
-#			exit_room_instance.unused_connections.pop_at(exit_room_instance.unused_connections.find("west"))
-#		"west":
-#			exit_room_instance.global_position = \
-#				Vector2(farthest_room.global_position.x - farthest_room.get_size().x, farthest_room.global_position.y)
-#			farthest_room.unused_connections.pop_at(farthest_room.unused_connections.find("west"))
-#			exit_room_instance.unused_connections.pop_at(exit_room_instance.unused_connections.find("east"))
-#	$Rooms.add_child(exit_room_instance)
+func add_exit_room():
+	var farthest_room = get_farthest_room()
+	var exit_room_instance: Room = exit_room.instantiate()
+	var exit_direction = RngUtils.array(farthest_room.unused_connections)[0]
+	var mini_room_instance
+	match(exit_direction):
+		"north":
+			exit_room_instance.global_position = \
+				Vector2(farthest_room.global_position.x, farthest_room.global_position.y - farthest_room.get_size().y)
+			farthest_room.unused_connections.pop_at(farthest_room.unused_connections.find("north"))
+			exit_room_instance.unused_connections.pop_at(exit_room_instance.unused_connections.find("south"))
+		"south":
+			exit_room_instance.global_position = \
+				Vector2(farthest_room.global_position.x, farthest_room.global_position.y + farthest_room.get_size().y)
+			farthest_room.unused_connections.pop_at(farthest_room.unused_connections.find("south"))
+			exit_room_instance.unused_connections.pop_at(exit_room_instance.unused_connections.find("north"))
+		"east":
+			exit_room_instance.global_position = \
+				Vector2(farthest_room.global_position.x + farthest_room.get_size().x, farthest_room.global_position.y)
+			farthest_room.unused_connections.pop_at(farthest_room.unused_connections.find("east"))
+			exit_room_instance.unused_connections.pop_at(exit_room_instance.unused_connections.find("west"))
+		"west":
+			exit_room_instance.global_position = \
+				Vector2(farthest_room.global_position.x - farthest_room.get_size().x, farthest_room.global_position.y)
+			farthest_room.unused_connections.pop_at(farthest_room.unused_connections.find("west"))
+			exit_room_instance.unused_connections.pop_at(exit_room_instance.unused_connections.find("east"))
+	$Rooms.add_child(exit_room_instance)
+	update_minimap(exit_direction, hud.find_miniroom(farthest_room.get_instance_id()), exit_room_instance.get_instance_id())
 
 func get_farthest_room() -> Room:
 	var farthest_room: Room = start_room
@@ -151,13 +151,13 @@ func update_minimap(direction, prev_mini_room, room):
 	mini_room_instance.room = room
 	minirooms.add_child(mini_room_instance)
 	match(direction):
-		"N":
+		"N", "north":
 			mini_room_instance.position = prev_mini_room.position + Vector2(0, -64)
-		"S":
+		"S", "south":
 			mini_room_instance.position = prev_mini_room.position + Vector2(0, 64)
-		"E":
+		"E", "east":
 			mini_room_instance.position = prev_mini_room.position + Vector2(64, 0)
-		"W":
+		"W", "west":
 			mini_room_instance.position = prev_mini_room.position + Vector2(-64, 0)
 	add_minimap_connection(prev_mini_room.position, mini_room_instance.position)
 	return mini_room_instance

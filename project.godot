@@ -91,11 +91,7 @@ interact={
 
 [internationalization]
 
-locale/translations_pot_files=PackedStringArray("res://dialogue/intro_cutscene.dialogue")
-
-[internationalization]
-
-locale/translations_pot_files=PackedStringArray("res://dialogue/shopkeeper.dialogue")
+locale/translations_pot_files=PackedStringArray("res://dialogue/shopkeeper.dialogue", "res://dialogue/intro_cutscene.dialogue")
 
 [layer_names]
 

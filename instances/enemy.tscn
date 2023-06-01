@@ -1,9 +1,38 @@
-[gd_scene load_steps=26 format=3 uid="uid://ccctjwcpdjjx6"]
+[gd_scene load_steps=34 format=3 uid="uid://ccctjwcpdjjx6"]
 
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_6mo3u"]
 [ext_resource type="Texture2D" uid="uid://cylos20ui3e8" path="res://sprites/enemies/goblin1back.png" id="2_5mejs"]
+[ext_resource type="Texture2D" uid="uid://oyygt5ica1wf" path="res://sprites/enemies/enemy1_attack.png" id="2_xtfgg"]
 [ext_resource type="Texture2D" uid="uid://doi70khonlyak" path="res://sprites/enemies/goblin1.png" id="3_v4uy2"]
 [ext_resource type="Texture2D" uid="uid://bullwm74qbdkv" path="res://sprites/enemies/goblin1side.png" id="4_3xhv5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0dk2r"]
+atlas = ExtResource("2_xtfgg")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k36tb"]
+atlas = ExtResource("2_xtfgg")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3teko"]
+atlas = ExtResource("2_xtfgg")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gbogs"]
+atlas = ExtResource("2_xtfgg")
+region = Rect2(192, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g0g82"]
+atlas = ExtResource("2_xtfgg")
+region = Rect2(288, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_moujq"]
+atlas = ExtResource("2_xtfgg")
+region = Rect2(336, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g3amt"]
+atlas = ExtResource("2_xtfgg")
+region = Rect2(384, 0, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l4x7a"]
 atlas = ExtResource("2_5mejs")
@@ -79,6 +108,32 @@ region = Rect2(160, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_n6j7x"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0dk2r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k36tb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3teko")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gbogs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g0g82")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_moujq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g3amt")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 20.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_l4x7a")
@@ -165,7 +220,9 @@ base_speed = 50.0
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(1.3, 1.3)
 sprite_frames = SubResource("SpriteFrames_n6j7x")
-animation = &"walk_forward"
+animation = &"attack"
+frame = 1
+frame_progress = 0.019707
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_l118f")

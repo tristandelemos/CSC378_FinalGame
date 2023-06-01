@@ -3,8 +3,8 @@ extends Room
 @onready var enemy = preload("res://instances/enemy.tscn")
 @onready var spawn_points = $SpawnPoints.get_children()
 
-@export var min_enemies: int = 5
-@export var max_enemies: int = 10
+var min_enemies: int = 1
+var max_enemies: int = 1
 
 var unexplored := true
 var num_enemies := 0
@@ -84,6 +84,7 @@ func unlock_room():
 func spawn_enemies():
 	var num_to_spawn = RngUtils.int_range(min_enemies, max_enemies)
 	num_enemies = num_to_spawn
+	print(num_enemies)
 	var chosen_spawn_points = RngUtils.array(spawn_points, num_to_spawn)
 	for point in chosen_spawn_points:
 		var enemy_instance = enemy.instantiate()
