@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://camic5ys7bwp3"]
+[gd_scene load_steps=55 format=3 uid="uid://camic5ys7bwp3"]
 
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_6mo3u"]
 [ext_resource type="Texture2D" uid="uid://cylos20ui3e8" path="res://sprites/enemies/goblin1back.png" id="2_5mejs"]
@@ -99,6 +99,22 @@ region = Rect2(96, 0, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_uwlaa"]
 atlas = ExtResource("3_i1wco")
 region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nm1xw"]
+atlas = ExtResource("2_xtfgg")
+region = Rect2(384, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8724d"]
+atlas = ExtResource("2_xtfgg")
+region = Rect2(432, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3coy5"]
+atlas = ExtResource("2_xtfgg")
+region = Rect2(480, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s20lk"]
+atlas = ExtResource("2_xtfgg")
+region = Rect2(528, 0, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l4x7a"]
 atlas = ExtResource("2_5mejs")
@@ -257,6 +273,23 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_nm1xw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8724d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3coy5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s20lk")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_l4x7a")
 }, {
 "duration": 1.0,
@@ -340,7 +373,8 @@ shape = SubResource("CapsuleShape2D_l118f")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(1.3, 1.3)
 sprite_frames = SubResource("SpriteFrames_n6j7x")
-animation = &"attack_back"
+animation = &"idle"
+frame_progress = 0.995087
 
 [node name="Hitbox" type="Area2D" parent="."]
 visible = false
