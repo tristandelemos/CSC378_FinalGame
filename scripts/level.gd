@@ -1,22 +1,5 @@
 extends Node2D
 
-@onready var rooms: Array[Dictionary] = [
-	{
-		"type": "enemy",
-		"resource": preload("res://instances/rooms/enemy_room_one.tscn")
-	},
-	{
-		"type": "enemy",
-		"resource": preload("res://instances/rooms/enemy_room_two.tscn")
-	},
-	{
-		"type": "enemy",
-		"resource": preload("res://instances/rooms/enemy_room_three.tscn")
-	},
-	{
-		"type": "loot",
-		"resource": preload("res://instances/rooms/loot_room_one.tscn")
-	}]
 @onready var exit_room = preload("res://instances/rooms/exit_room.tscn")
 @onready var mini_room := preload("res://instances/mini_room.tscn")
 @onready var start_room := $Rooms/StartRoom
@@ -29,10 +12,6 @@ extends Node2D
 @export var max_rooms := 10
 
 var curr_num_rooms = 0
-
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("generate"):
-		get_tree().reload_current_scene()
 
 func _ready() -> void:
 	
@@ -114,9 +93,9 @@ func get_farthest_room() -> Room:
 	return farthest_room
 
 func add_new_room(direction, prev_room, prev_room_pos):
-	var chosen_room = RngUtils.array(rooms)[0]
-	if chosen_room["type"] == "loot":
-		rooms.pop_at(rooms.find(chosen_room))
+	var chosen_room = RngUtils.array(GameData.rooms)[0]
+	if chosen_room["type"] != "enemy":
+		GameData.rooms.pop_at(GameData.rooms.find(chosen_room))
 	var room_instance: Room = chosen_room["resource"].instantiate()
 	match(direction):
 		"N":

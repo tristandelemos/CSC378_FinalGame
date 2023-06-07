@@ -6,6 +6,7 @@ class_name Room
 
 var exits: Array[String] = []
 var unused_connections: Array[String]= ["north", "east", "south", "west"]
+var is_active := false
 
 const wall_tile_coords := Vector2i(0, 0)
 const floor_tile_coords := Vector2i(1, 0)
@@ -22,9 +23,11 @@ func get_size():
 func _on_playable_area_entered(body):
 	$ColorRect.visible = false
 	SignalBus.player_enter.emit(get_instance_id())
+	is_active = true
 
 func _on_playable_area_exited(body):
 	SignalBus.player_exit.emit(get_instance_id())
+	is_active = false
 
 func close_unused_connections():
 	for connection in unused_connections:

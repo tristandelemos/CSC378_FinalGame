@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://ba2y6exjmtk6h"]
+[gd_scene load_steps=12 format=3 uid="uid://ba2y6exjmtk6h"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_fk4hn"]
 [ext_resource type="Texture2D" uid="uid://xuano2frrkle" path="res://sprites/main character/t_walking_right1.png" id="2_0x55g"]
@@ -10,73 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://w23wixf8bxfi" path="res://sprites/main character/t_walking_right2.png" id="3_kf1ul"]
 [ext_resource type="Texture2D" uid="uid://drkjeb4pkwi71" path="res://sprites/main character/t_walking_right3.png" id="4_12s4o"]
 [ext_resource type="Texture2D" uid="uid://buen3qdevlnxf" path="res://sprites/light.png" id="4_lu65e"]
-[ext_resource type="Texture2D" uid="uid://c6s8f66uny2ic" path="res://sprites/main character/t_walking_left3.png" id="4_wot6h"]
-[ext_resource type="Texture2D" uid="uid://b2bchrr2cdsij" path="res://sprites/main character/t_walking_left4.png" id="5_25eg5"]
-[ext_resource type="Texture2D" uid="uid://b4oaqpv46630g" path="res://sprites/main character/t_walking_right4.png" id="5_blhtu"]
-[ext_resource type="Texture2D" uid="uid://2hl3g54j1pi2" path="res://sprites/main character/t_walking_right5.png" id="6_ctvy3"]
-[ext_resource type="Texture2D" uid="uid://tvvuk7hggrci" path="res://sprites/main character/t_walking_left5.png" id="6_q3cyh"]
-[ext_resource type="Texture2D" uid="uid://dgtgigarlsxtm" path="res://sprites/main character/t_walking_right6.png" id="7_gtisp"]
-[ext_resource type="Texture2D" uid="uid://61awklo2m6xc" path="res://sprites/main character/t_walking_left6.png" id="7_x50ve"]
-[ext_resource type="Texture2D" uid="uid://da6tpwrhr6h11" path="res://sprites/main character/t_walking_right7.png" id="8_5jij6"]
-[ext_resource type="Texture2D" uid="uid://dnxftx8huxd8r" path="res://sprites/main character/t_walking_left7.png" id="8_kbqub"]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_7r117"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_n4ies")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_b8e5u")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_wot6h")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_25eg5")
-}, {
-"duration": 1.0,
-"texture": ExtResource("6_q3cyh")
-}, {
-"duration": 1.0,
-"texture": ExtResource("7_x50ve")
-}, {
-"duration": 1.0,
-"texture": ExtResource("8_kbqub")
-}],
-"loop": true,
-"name": &"walking_left",
-"speed": 5.0
-}]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_meitu"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_0x55g")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_kf1ul")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_12s4o")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_blhtu")
-}, {
-"duration": 1.0,
-"texture": ExtResource("6_ctvy3")
-}, {
-"duration": 1.0,
-"texture": ExtResource("7_gtisp")
-}, {
-"duration": 1.0,
-"texture": ExtResource("8_5jij6")
-}],
-"loop": true,
-"name": &"walking_right",
-"speed": 5.0
-}]
+[ext_resource type="Theme" uid="uid://c6kvh2v5r71lh" path="res://default_theme.tres" id="6_yipyj"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wyhyg"]
 radius = 15.0
@@ -84,7 +18,68 @@ radius = 15.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_m8n3y"]
 radius = 14.0
 
-[node name="Player" type="CharacterBody2D"]
+[sub_resource type="Animation" id="Animation_p5wvh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hurtbox/CollisionShape2D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_4matg"]
+resource_name = "damaged"
+step = 0.02
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hurtbox/CollisionShape2D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.02, 0.04, 0.06, 0.08, 0.1, 0.12, 0.14, 0.16, 0.18, 0.2, 0.22, 0.24, 0.26, 0.28, 0.3, 0.32, 0.34, 0.36, 0.38, 0.4, 0.42, 0.44, 0.46, 0.478006, 0.498006, 0.518005, 0.538006, 0.56, 0.58, 0.6, 0.62, 0.64, 0.66, 0.68, 0.7, 0.72, 0.74, 0.76, 0.78, 0.8, 0.82, 0.84, 0.86, 0.88, 0.9, 0.92, 0.94, 0.96, 0.98, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6k3mn"]
+_data = {
+"RESET": SubResource("Animation_p5wvh"),
+"damaged": SubResource("Animation_4matg")
+}
+
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
 z_index = 1
 collision_mask = 2
 script = ExtResource("1_fk4hn")
@@ -105,7 +100,6 @@ texture = ExtResource("2_4i61n")
 [node name="Attack" parent="." instance=ExtResource("3_66g4t")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 shape = SubResource("CircleShape2D_wyhyg")
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -132,3 +126,25 @@ collision_mask = 64
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 shape = SubResource("CircleShape2D_m8n3y")
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+offset_left = -16.0
+offset_top = -22.0
+offset_right = 16.0
+offset_bottom = -18.0
+theme = ExtResource("6_yipyj")
+max_value = 10.0
+value = 5.0
+show_percentage = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_6k3mn")
+}
+
+[node name="KnockbackTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]
+[connection signal="timeout" from="KnockbackTimer" to="." method="_on_knockback_timer_timeout"]

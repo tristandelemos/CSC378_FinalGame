@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://b4fx0wgytglml"]
+[gd_scene load_steps=17 format=3 uid="uid://b4fx0wgytglml"]
 
 [ext_resource type="Script" path="res://scripts/attack.gd" id="1_7a2c6"]
 [ext_resource type="Texture2D" uid="uid://brbkihnfui7j1" path="res://sprites/swipe1.png" id="1_wuf7s"]
@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://bmn6q26daeuoy" path="res://sprites/swipe3.png" id="3_3ugjg"]
 [ext_resource type="Texture2D" uid="uid://b2shdy12vy4hs" path="res://sprites/swipe4.png" id="4_yr7gp"]
 [ext_resource type="Texture2D" uid="uid://dywylsc2v8t5m" path="res://sprites/swipe5.png" id="5_decvr"]
+[ext_resource type="AudioStream" uid="uid://kjcljqe5le5a" path="res://sounds/30243__streety__skewer2.mp3" id="7_tyxq7"]
+[ext_resource type="AudioStream" uid="uid://cbu8dliet5av5" path="res://sounds/398713__inspectorj__water-swirl-small-9.mp3" id="8_bclul"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_jc7qp"]
 animations = [{
@@ -131,6 +133,40 @@ tracks/2/keys = {
 "update": 1,
 "values": [true, false, true]
 }
+tracks/3/type = "audio"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AudioStreamPlayer")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("7_tyxq7")
+}],
+"times": PackedFloat32Array(0.1)
+}
+tracks/3/use_blend = true
+
+[sub_resource type="Animation" id="Animation_3g1hj"]
+resource_name = "staff"
+length = 0.5
+tracks/0/type = "audio"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AudioStreamPlayer")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("8_bclul")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/0/use_blend = true
 
 [sub_resource type="Animation" id="Animation_kl3rj"]
 resource_name = "swipe"
@@ -177,11 +213,27 @@ tracks/2/keys = {
 "method": &"set_lock_swipe_rotation"
 }]
 }
+tracks/3/type = "audio"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AudioStreamPlayer")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("7_tyxq7")
+}],
+"times": PackedFloat32Array(0.075)
+}
+tracks/3/use_blend = true
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fjk0x"]
 _data = {
 "RESET": SubResource("Animation_untbb"),
 "big_swipe": SubResource("Animation_tqg1h"),
+"staff": SubResource("Animation_3g1hj"),
 "swipe": SubResource("Animation_kl3rj")
 }
 
@@ -226,13 +278,14 @@ disabled = true
 [node name="Staff" type="Node2D" parent="."]
 
 [node name="StaffCooldown" type="Timer" parent="Staff"]
-wait_time = 0.7
 one_shot = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_fjk0x")
 }
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 
 [connection signal="animation_finished" from="Swipe/SwipeAnimation" to="." method="_on_swipe_animation_animation_finished"]
 [connection signal="body_entered" from="Swipe/Hitbox" to="." method="_on_hitbox_body_entered"]

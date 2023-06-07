@@ -1,63 +1,13 @@
-[gd_scene load_steps=94 format=3 uid="uid://camic5ys7bwp3"]
+[gd_scene load_steps=35 format=3 uid="uid://ccctjwcpdjjx6"]
 
-[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_6mo3u"]
+[ext_resource type="Script" path="res://scripts/goblin.gd" id="1_hflty"]
 [ext_resource type="Texture2D" uid="uid://cylos20ui3e8" path="res://sprites/enemies/goblin1back.png" id="2_5mejs"]
 [ext_resource type="Texture2D" uid="uid://dlcxsom6bxlx5" path="res://sprites/enemies/goblin1back_attack.png" id="2_xfnfv"]
 [ext_resource type="Texture2D" uid="uid://oyygt5ica1wf" path="res://sprites/enemies/enemy1_attack.png" id="2_xtfgg"]
 [ext_resource type="Texture2D" uid="uid://dykvcvupcisub" path="res://sprites/enemies/goblin1side_attack.png" id="3_i1wco"]
 [ext_resource type="Texture2D" uid="uid://doi70khonlyak" path="res://sprites/enemies/goblin1.png" id="3_v4uy2"]
 [ext_resource type="Texture2D" uid="uid://bullwm74qbdkv" path="res://sprites/enemies/goblin1side.png" id="4_3xhv5"]
-[ext_resource type="Texture2D" uid="uid://3bu4rygu3hy4" path="res://sprites/enemies/enemy1back_damaged.png" id="5_hcc5e"]
-[ext_resource type="Texture2D" uid="uid://dquumk1oe7ys3" path="res://sprites/enemies/enemy1damaged.png" id="5_q2tr7"]
-[ext_resource type="Texture2D" uid="uid://bpedpx8gk1dd1" path="res://sprites/enemies/enemy1side_damaged.png" id="6_x2fri"]
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_l118f"]
-radius = 12.0
-height = 42.0
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_eq4vq"]
-atlas = ExtResource("2_xfnfv")
-region = Rect2(0, 0, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_8ekc4"]
-atlas = ExtResource("2_xfnfv")
-region = Rect2(48, 0, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_3wkps"]
-atlas = ExtResource("2_xfnfv")
-region = Rect2(96, 0, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_j2x5a"]
-atlas = ExtResource("2_xfnfv")
-region = Rect2(144, 0, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ohhhu"]
-atlas = ExtResource("2_xfnfv")
-region = Rect2(192, 0, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_8gu23"]
-atlas = ExtResource("2_xfnfv")
-region = Rect2(240, 0, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_k0akg"]
-atlas = ExtResource("2_xfnfv")
-region = Rect2(288, 0, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6lcmt"]
-atlas = ExtResource("2_xfnfv")
-region = Rect2(336, 0, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_xoomg"]
-atlas = ExtResource("2_xfnfv")
-region = Rect2(384, 0, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_3buq6"]
-atlas = ExtResource("2_xfnfv")
-region = Rect2(432, 0, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_avui0"]
-atlas = ExtResource("2_xfnfv")
-region = Rect2(480, 0, 48, 48)
+[ext_resource type="Theme" uid="uid://c6kvh2v5r71lh" path="res://default_theme.tres" id="6_dwxuf"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0dk2r"]
 atlas = ExtResource("2_xtfgg")
@@ -629,13 +579,13 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_njhut"]
-size = Vector2(24, 36)
+size = Vector2(25.5, 38)
 
 [node name="Enemy" type="CharacterBody2D" groups=["Enemy"]]
-collision_layer = 4
-collision_mask = 18
-script = ExtResource("1_6mo3u")
-base_speed = 50.0
+z_index = 2
+collision_layer = 68
+collision_mask = 34
+script = ExtResource("1_hflty")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_l118f")
@@ -647,16 +597,24 @@ animation = &"damaged_back"
 frame_progress = 0.585929
 
 [node name="Hitbox" type="Area2D" parent="."]
-visible = false
 collision_layer = 64
 collision_mask = 32
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-position = Vector2(1, 2)
+position = Vector2(0.5, 2)
 shape = SubResource("RectangleShape2D_njhut")
 
 [node name="KnockbackTimer" type="Timer" parent="."]
 wait_time = 0.1
 one_shot = true
+
+[node name="Healthbar" type="ProgressBar" parent="."]
+offset_left = -13.0
+offset_top = -25.0
+offset_right = 14.0
+offset_bottom = -21.0
+theme = ExtResource("6_dwxuf")
+max_value = 15.0
+show_percentage = false
 
 [connection signal="timeout" from="KnockbackTimer" to="." method="_on_knockback_timer_timeout"]

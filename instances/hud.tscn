@@ -1,10 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://gbp8n355q25b"]
+[gd_scene load_steps=8 format=3 uid="uid://gbp8n355q25b"]
 
 [ext_resource type="PackedScene" uid="uid://fe3dgrfgsn7t" path="res://instances/mini_room.tscn" id="1_7qgxg"]
 [ext_resource type="Script" path="res://scripts/hud.gd" id="1_y0bpq"]
 [ext_resource type="Texture2D" uid="uid://bo81saco0k57p" path="res://sprites/dagger.png" id="2_s5v88"]
+[ext_resource type="Texture2D" uid="uid://dsj523dvgt53s" path="res://sprites/coin.png" id="4_0e77w"]
+[ext_resource type="Theme" uid="uid://c6kvh2v5r71lh" path="res://default_theme.tres" id="5_htgiv"]
+[ext_resource type="Texture2D" uid="uid://cu53dqgxg65n6" path="res://sprites/souls.png" id="6_lh7rm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nyfev"]
+bg_color = Color(0.858824, 0.164706, 0, 1)
 
 [node name="HUD" type="CanvasLayer"]
+process_mode = 3
 script = ExtResource("1_y0bpq")
 
 [node name="WeaponSlot" type="Node2D" parent="."]
@@ -44,3 +51,66 @@ offset_left = 640.32
 offset_top = 383.76
 offset_right = 639.68
 offset_bottom = 384.24
+
+[node name="Coin" type="Node2D" parent="."]
+
+[node name="Sprite" type="Sprite2D" parent="Coin"]
+position = Vector2(1248, 24)
+scale = Vector2(3, 3)
+texture = ExtResource("4_0e77w")
+
+[node name="Count" type="Label" parent="Coin"]
+offset_left = 1098.0
+offset_top = -5.0
+offset_right = 1218.0
+offset_bottom = 51.0
+theme = ExtResource("5_htgiv")
+theme_override_font_sizes/font_size = 64
+text = "00000"
+
+[node name="Souls" type="Node2D" parent="."]
+
+[node name="Sprite" type="Sprite2D" parent="Souls"]
+position = Vector2(1256, 688)
+scale = Vector2(3, 3)
+texture = ExtResource("6_lh7rm")
+
+[node name="Count" type="Label" parent="Souls"]
+offset_left = 1112.0
+offset_top = 664.0
+offset_right = 1232.0
+offset_bottom = 720.0
+theme = ExtResource("5_htgiv")
+theme_override_font_sizes/font_size = 64
+text = "00000"
+
+[node name="DeathScreen" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.219608, 0.219608, 0.219608, 0.796078)
+
+[node name="Label" type="Label" parent="DeathScreen"]
+layout_mode = 0
+offset_left = 552.0
+offset_top = 224.0
+offset_right = 744.0
+offset_bottom = 329.0
+theme = ExtResource("5_htgiv")
+theme_override_font_sizes/font_size = 128
+text = "DEAD"
+
+[node name="Button" type="Button" parent="DeathScreen"]
+layout_mode = 0
+offset_left = 576.0
+offset_top = 344.0
+offset_right = 704.0
+offset_bottom = 378.0
+theme = ExtResource("5_htgiv")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_nyfev")
+text = "Respawn"
+
+[connection signal="pressed" from="DeathScreen/Button" to="." method="_on_button_pressed"]

@@ -1,11 +1,57 @@
-[gd_scene load_steps=5 format=3 uid="uid://dp8c2dcm50e3h"]
+[gd_scene load_steps=15 format=3 uid="uid://dp8c2dcm50e3h"]
 
 [ext_resource type="TileSet" uid="uid://4wilkcph121u" path="res://resources/main_tileset.tres" id="1_uwuy8"]
 [ext_resource type="PackedScene" uid="uid://ba2y6exjmtk6h" path="res://instances/player.tscn" id="2_e5pwf"]
 [ext_resource type="PackedScene" uid="uid://xm6nelm810m1" path="res://instances/exit.tscn" id="3_rcf6c"]
+[ext_resource type="Texture2D" uid="uid://bi8yog4fnc0bn" path="res://sprites/lady_luck.png" id="4_t8rk2"]
+[ext_resource type="Script" path="res://scripts/LadyLuck.gd" id="5_falrw"]
+[ext_resource type="Theme" uid="uid://c6kvh2v5r71lh" path="res://default_theme.tres" id="5_lp083"]
+[ext_resource type="Resource" uid="uid://dnv3r0putf0i5" path="res://dialogue/intro_lady_luck.dialogue" id="6_8a1gi"]
+[ext_resource type="Script" path="res://scripts/LadyLuckShop.gd" id="8_c0vml"]
+[ext_resource type="Texture2D" uid="uid://cu53dqgxg65n6" path="res://sprites/souls.png" id="9_jjt1p"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n1rt3"]
 size = Vector2(64, 72)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xetax"]
+radius = 49.6236
+
+[sub_resource type="Animation" id="Animation_uxtmx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-98, -216)]
+}
+
+[sub_resource type="Animation" id="Animation_vhvvp"]
+resource_name = "float"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-98, -216), Vector2(-98, -200)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_x5wql"]
+_data = {
+"RESET": SubResource("Animation_uxtmx"),
+"float": SubResource("Animation_vhvvp")
+}
 
 [node name="Overworld" type="Node2D"]
 
@@ -26,3 +72,176 @@ shape = SubResource("RectangleShape2D_n1rt3")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.384314, 0.384314, 0.384314, 1)
+
+[node name="LadyLuck" type="Sprite2D" parent="."]
+position = Vector2(-98, -216)
+scale = Vector2(2, 2)
+texture = ExtResource("4_t8rk2")
+script = ExtResource("5_falrw")
+dialogue = ExtResource("6_8a1gi")
+
+[node name="Label" type="Label" parent="LadyLuck"]
+offset_left = -5.0
+offset_top = -39.5
+offset_right = 7.0
+offset_bottom = -10.5
+theme = ExtResource("5_lp083")
+theme_override_font_sizes/font_size = 32
+text = "E"
+
+[node name="PlayerDetector" type="Area2D" parent="LadyLuck"]
+visible = false
+collision_layer = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LadyLuck/PlayerDetector"]
+shape = SubResource("CircleShape2D_xetax")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="LadyLuck"]
+autoplay = "float"
+libraries = {
+"": SubResource("AnimationLibrary_x5wql")
+}
+
+[node name="LadyLuckShop" type="CanvasLayer" parent="LadyLuck"]
+script = ExtResource("8_c0vml")
+
+[node name="ColorRect" type="ColorRect" parent="LadyLuck/LadyLuckShop"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0980392, 0.0980392, 0.0980392, 0.811765)
+
+[node name="UnlockWeaponLootRoomButton" type="Button" parent="LadyLuck/LadyLuckShop/ColorRect"]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 256.0
+offset_right = 448.0
+offset_bottom = 320.0
+theme = ExtResource("5_lp083")
+text = "Unlock Weapon Loot Room"
+
+[node name="Cost" type="Node2D" parent="LadyLuck/LadyLuckShop/ColorRect/UnlockWeaponLootRoomButton"]
+
+[node name="Label" type="Label" parent="LadyLuck/LadyLuckShop/ColorRect/UnlockWeaponLootRoomButton/Cost"]
+offset_left = 136.0
+offset_top = 64.0
+offset_right = 176.0
+offset_bottom = 93.0
+theme = ExtResource("5_lp083")
+text = "100"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="LadyLuck/LadyLuckShop/ColorRect/UnlockWeaponLootRoomButton/Cost"]
+position = Vector2(184, 80)
+texture = ExtResource("9_jjt1p")
+
+[node name="UnlockShopkeeperRoomButton" type="Button" parent="LadyLuck/LadyLuckShop/ColorRect"]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 384.0
+offset_right = 448.0
+offset_bottom = 448.0
+theme = ExtResource("5_lp083")
+text = "Unlock Shopkeeper Room"
+
+[node name="Cost" type="Node2D" parent="LadyLuck/LadyLuckShop/ColorRect/UnlockShopkeeperRoomButton"]
+
+[node name="Label" type="Label" parent="LadyLuck/LadyLuckShop/ColorRect/UnlockShopkeeperRoomButton/Cost"]
+offset_left = 136.0
+offset_top = 64.0
+offset_right = 176.0
+offset_bottom = 93.0
+theme = ExtResource("5_lp083")
+text = "150"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="LadyLuck/LadyLuckShop/ColorRect/UnlockShopkeeperRoomButton/Cost"]
+position = Vector2(184, 80)
+texture = ExtResource("9_jjt1p")
+
+[node name="IncreaseStartingCoinsButton" type="Button" parent="LadyLuck/LadyLuckShop/ColorRect"]
+layout_mode = 0
+offset_left = 896.0
+offset_top = 256.0
+offset_right = 1152.0
+offset_bottom = 320.0
+theme = ExtResource("5_lp083")
+text = "+100 starting coins"
+
+[node name="Cost" type="Node2D" parent="LadyLuck/LadyLuckShop/ColorRect/IncreaseStartingCoinsButton"]
+
+[node name="Label" type="Label" parent="LadyLuck/LadyLuckShop/ColorRect/IncreaseStartingCoinsButton/Cost"]
+offset_left = 96.0
+offset_top = 64.0
+offset_right = 136.0
+offset_bottom = 93.0
+theme = ExtResource("5_lp083")
+text = "10"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="LadyLuck/LadyLuckShop/ColorRect/IncreaseStartingCoinsButton/Cost"]
+position = Vector2(144, 80)
+texture = ExtResource("9_jjt1p")
+
+[node name="InceaseSoulDropButton" type="Button" parent="LadyLuck/LadyLuckShop/ColorRect"]
+layout_mode = 0
+offset_left = 896.0
+offset_top = 384.0
+offset_right = 1152.0
+offset_bottom = 448.0
+theme = ExtResource("5_lp083")
+text = "+5% to drop soul"
+
+[node name="Cost" type="Node2D" parent="LadyLuck/LadyLuckShop/ColorRect/InceaseSoulDropButton"]
+
+[node name="Label" type="Label" parent="LadyLuck/LadyLuckShop/ColorRect/InceaseSoulDropButton/Cost"]
+offset_left = 96.0
+offset_top = 64.0
+offset_right = 136.0
+offset_bottom = 93.0
+theme = ExtResource("5_lp083")
+text = "15"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="LadyLuck/LadyLuckShop/ColorRect/InceaseSoulDropButton/Cost"]
+position = Vector2(144, 80)
+texture = ExtResource("9_jjt1p")
+
+[node name="IncreaseStartingHealthButton" type="Button" parent="LadyLuck/LadyLuckShop/ColorRect"]
+layout_mode = 0
+offset_left = 896.0
+offset_top = 512.0
+offset_right = 1152.0
+offset_bottom = 576.0
+theme = ExtResource("5_lp083")
+text = "+1 to starting health"
+
+[node name="Cost" type="Node2D" parent="LadyLuck/LadyLuckShop/ColorRect/IncreaseStartingHealthButton"]
+
+[node name="Label" type="Label" parent="LadyLuck/LadyLuckShop/ColorRect/IncreaseStartingHealthButton/Cost"]
+offset_left = 96.0
+offset_top = 64.0
+offset_right = 136.0
+offset_bottom = 93.0
+theme = ExtResource("5_lp083")
+text = "20"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="LadyLuck/LadyLuckShop/ColorRect/IncreaseStartingHealthButton/Cost"]
+position = Vector2(144, 80)
+texture = ExtResource("9_jjt1p")
+
+[connection signal="body_entered" from="LadyLuck/PlayerDetector" to="LadyLuck" method="_on_player_detector_body_entered"]
+[connection signal="body_exited" from="LadyLuck/PlayerDetector" to="LadyLuck" method="_on_player_detector_body_exited"]
+[connection signal="pressed" from="LadyLuck/LadyLuckShop/ColorRect/UnlockWeaponLootRoomButton" to="LadyLuck/LadyLuckShop" method="_on_unlock_weapon_loot_room_button_pressed"]
+[connection signal="pressed" from="LadyLuck/LadyLuckShop/ColorRect/UnlockShopkeeperRoomButton" to="LadyLuck/LadyLuckShop" method="_on_unlock_shopkeeper_room_button_pressed"]
+[connection signal="pressed" from="LadyLuck/LadyLuckShop/ColorRect/IncreaseStartingCoinsButton" to="LadyLuck/LadyLuckShop" method="_on_increase_starting_coins_button_pressed"]
+[connection signal="pressed" from="LadyLuck/LadyLuckShop/ColorRect/InceaseSoulDropButton" to="LadyLuck/LadyLuckShop" method="_on_incease_soul_drop_button_pressed"]
+[connection signal="pressed" from="LadyLuck/LadyLuckShop/ColorRect/IncreaseStartingHealthButton" to="LadyLuck/LadyLuckShop" method="_on_increase_starting_health_button_pressed"]
