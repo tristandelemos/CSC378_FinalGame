@@ -7,13 +7,14 @@ var can_fire := true
 var lock_swipe_rotation := false
 
 func _process(delta: float) -> void:
-	if not lock_swipe_rotation:
-		look_at(get_global_mouse_position())
-	if Input.is_action_pressed("attack"):
-		ranged_attack()
+	if not GameData.freeze_player:
+		if not lock_swipe_rotation:
+			look_at(get_global_mouse_position())
+		if Input.is_action_pressed("attack"):
+			ranged_attack()
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("attack"):
+	if event.is_action_pressed("attack") and not GameData.freeze_player:
 		melee_attack()
 
 func melee_attack():
@@ -29,12 +30,14 @@ func ranged_attack():
 	match(GameData.curr_player_weapon):
 		GameData.Weapon.STAFF:
 			if can_fire:
+				anim_player.play("staff")
 				fire_orb()
 			
 func fire_orb():
 	can_fire = false
 	var orb_instance = orb.instantiate()
-	get_parent().call_deferred("add_child", orb_instance)
+	orb_instance.global_position = get_parent().global_position
+	get_tree().current_scene.call_deferred("add_child", orb_instance)
 	$Staff/StaffCooldown.start()
 
 func set_lock_swipe_rotation(val: bool):
@@ -42,7 +45,6 @@ func set_lock_swipe_rotation(val: bool):
 
 func _on_hitbox_body_entered(body: Node2D) -> void:
 	body.take_damage(5, 8)
-
 
 func _on_big_hitbox_body_entered(body: Node2D) -> void:
 	body.take_damage(10, 15)

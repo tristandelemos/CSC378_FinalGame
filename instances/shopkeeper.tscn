@@ -1,0 +1,75 @@
+[gd_scene load_steps=8 format=3 uid="uid://beeafbx1grunu"]
+
+[ext_resource type="Script" path="res://scripts/shopkeeper.gd" id="1_2cutu"]
+[ext_resource type="Texture2D" uid="uid://k36rog1tty8b" path="res://sprites/shopkeeper/shopkeeper_outlines.png" id="1_c606a"]
+[ext_resource type="Theme" uid="uid://c6kvh2v5r71lh" path="res://default_theme.tres" id="2_mxdr4"]
+[ext_resource type="Texture2D" uid="uid://bcc7lxsin1vn3" path="res://sprites/cleaver.png" id="4_hpmta"]
+[ext_resource type="Texture2D" uid="uid://dsj523dvgt53s" path="res://sprites/coin.png" id="5_oymya"]
+[ext_resource type="Script" path="res://scripts/SlotOne.gd" id="5_qu672"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_slnng"]
+radius = 64.0
+
+[node name="Shopkeeper" type="Sprite2D"]
+texture = ExtResource("1_c606a")
+hframes = 8
+frame = 1
+script = ExtResource("1_2cutu")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -6.0
+offset_top = -45.0
+offset_right = 6.0
+offset_bottom = -16.0
+theme = ExtResource("2_mxdr4")
+theme_override_font_sizes/font_size = 32
+text = "E"
+
+[node name="PlayerDetector" type="Area2D" parent="."]
+collision_layer = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
+shape = SubResource("CircleShape2D_slnng")
+
+[node name="ShopUI" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="ShopUI"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.482353)
+
+[node name="Slots" type="Node2D" parent="ShopUI"]
+
+[node name="SlotOne" type="TextureButton" parent="ShopUI/Slots"]
+offset_left = 256.0
+offset_top = 256.0
+offset_right = 384.0
+offset_bottom = 384.0
+texture_normal = ExtResource("4_hpmta")
+texture_pressed = ExtResource("4_hpmta")
+texture_hover = ExtResource("4_hpmta")
+texture_disabled = ExtResource("4_hpmta")
+texture_focused = ExtResource("4_hpmta")
+script = ExtResource("5_qu672")
+
+[node name="Label" type="Label" parent="ShopUI/Slots/SlotOne"]
+layout_mode = 0
+offset_top = 112.0
+offset_right = 64.0
+offset_bottom = 141.0
+theme = ExtResource("2_mxdr4")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "100"
+horizontal_alignment = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="ShopUI/Slots/SlotOne"]
+position = Vector2(80, 128)
+texture = ExtResource("5_oymya")
+
+[connection signal="body_entered" from="PlayerDetector" to="." method="_on_player_detector_body_entered"]
+[connection signal="body_exited" from="PlayerDetector" to="." method="_on_player_detector_body_exited"]
+[connection signal="pressed" from="ShopUI/Slots/SlotOne" to="ShopUI/Slots/SlotOne" method="_on_pressed"]

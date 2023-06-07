@@ -1,6 +1,23 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://c6kvh2v5r71lh"]
+[gd_resource type="Theme" load_steps=5 format=3 uid="uid://c6kvh2v5r71lh"]
 
 [ext_resource type="FontFile" uid="uid://clovpivoa3oox" path="res://sprites/m5x7.ttf" id="1_hiyig"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vbq8m"]
+bg_color = Color(0.698039, 0.596078, 0.0862745, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fbltp"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5nid2"]
+bg_color = Color(0.847059, 0, 0.117647, 1)
+
 [resource]
 default_font = ExtResource("1_hiyig")
+default_font_size = 32
+Button/styles/normal = SubResource("StyleBoxFlat_vbq8m")
+Label/font_sizes/font_size = 32
+ProgressBar/styles/background = SubResource("StyleBoxFlat_fbltp")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_5nid2")

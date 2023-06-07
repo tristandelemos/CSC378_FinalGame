@@ -1,16 +1,78 @@
-[gd_scene load_steps=8 format=3 uid="uid://ba2y6exjmtk6h"]
+[gd_scene load_steps=12 format=3 uid="uid://ba2y6exjmtk6h"]
 
 [ext_resource type="Texture2D" uid="uid://cfemdqp11qpxk" path="res://sprites/character.png" id="1_16b5e"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_fk4hn"]
 [ext_resource type="PackedScene" uid="uid://gbp8n355q25b" path="res://instances/hud.tscn" id="3_1s1tl"]
 [ext_resource type="PackedScene" uid="uid://b4fx0wgytglml" path="res://instances/attack.tscn" id="3_66g4t"]
 [ext_resource type="Texture2D" uid="uid://buen3qdevlnxf" path="res://sprites/light.png" id="4_lu65e"]
+[ext_resource type="Theme" uid="uid://c6kvh2v5r71lh" path="res://default_theme.tres" id="6_yipyj"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wyhyg"]
 radius = 15.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_m8n3y"]
 radius = 14.0
+
+[sub_resource type="Animation" id="Animation_p5wvh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hurtbox/CollisionShape2D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_4matg"]
+resource_name = "damaged"
+step = 0.02
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hurtbox/CollisionShape2D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.02, 0.04, 0.06, 0.08, 0.1, 0.12, 0.14, 0.16, 0.18, 0.2, 0.22, 0.24, 0.26, 0.28, 0.3, 0.32, 0.34, 0.36, 0.38, 0.4, 0.42, 0.44, 0.46, 0.478006, 0.498006, 0.518005, 0.538006, 0.56, 0.58, 0.6, 0.62, 0.64, 0.66, 0.68, 0.7, 0.72, 0.74, 0.76, 0.78, 0.8, 0.82, 0.84, 0.86, 0.88, 0.9, 0.92, 0.94, 0.96, 0.98, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6k3mn"]
+_data = {
+"RESET": SubResource("Animation_p5wvh"),
+"damaged": SubResource("Animation_4matg")
+}
 
 [node name="Player" type="CharacterBody2D"]
 z_index = 1
@@ -23,7 +85,6 @@ texture = ExtResource("1_16b5e")
 [node name="Attack" parent="." instance=ExtResource("3_66g4t")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 shape = SubResource("CircleShape2D_wyhyg")
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -50,3 +111,25 @@ collision_mask = 64
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 shape = SubResource("CircleShape2D_m8n3y")
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+offset_left = -16.0
+offset_top = -22.0
+offset_right = 16.0
+offset_bottom = -18.0
+theme = ExtResource("6_yipyj")
+max_value = 10.0
+value = 5.0
+show_percentage = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_6k3mn")
+}
+
+[node name="KnockbackTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]
+[connection signal="timeout" from="KnockbackTimer" to="." method="_on_knockback_timer_timeout"]
