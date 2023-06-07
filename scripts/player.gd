@@ -15,6 +15,7 @@ var knockback: bool = false
 var knockback_dir: Vector2
 
 func _ready() -> void:
+	healthbar.max_value = GameData.base_player_health
 	healthbar.value = GameData.curr_player_health
 	SignalBus.drop_current_weapon.connect(_on_drop_current_weapon)
 	$PointLight2D.visible = true

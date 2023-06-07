@@ -1,6 +1,17 @@
 extends Room
 
-@onready var enemy = preload("res://instances/enemy.tscn")
+@onready var enemies: Array[Dictionary] = [
+	{
+		"value": preload("res://instances/enemy.tscn"),
+		"type": "goblin",
+		"weight": 10.0
+	},
+	{
+		"value": preload("res://instances/goblin_wizard.tscn"),
+		"type": "goblin_wizard",
+		"weight": 90.0
+	},
+]
 @onready var spawn_points = $SpawnPoints.get_children()
 
 var unexplored := true
@@ -85,6 +96,9 @@ func spawn_enemies():
 	num_enemies = num_to_spawn
 	var chosen_spawn_points = RngUtils.array(spawn_points, num_to_spawn)
 	for point in chosen_spawn_points:
-		var enemy_instance = enemy.instantiate()
+		var roll = RngUtils.array_with_weighted(enemies, 1)[0]
+		var enemy_instance = roll["value"].instantiate()
+		if roll["type"] == "goblin_wizard":
+			enemy_instance.spawn_points = spawn_points
 		enemy_instance.global_position = point.global_position
 		get_tree().current_scene.call_deferred("add_child", enemy_instance)

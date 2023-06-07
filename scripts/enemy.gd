@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name Enemy
 
 @onready var player: Player = get_tree().current_scene.get_node("Player")
 @onready var curr_scene = get_tree().current_scene
@@ -8,49 +9,22 @@ extends CharacterBody2D
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var healthbar = $Healthbar
 
-var base_speed
-var damage
 var health
 @export var min_coin := 1
 @export var max_coin := 5
 
-var curr_speed = base_speed
+var damage
 var is_knocked_back = false
 var knockback_multiplier = 15
 var direction: Vector2
 
 func _ready() -> void:
-	base_speed = GameData.curr_enemy_speed
-	damage = GameData.curr_enemy_damage
 	health = GameData.curr_enemy_health
-	healthbar.value = health
+	healthbar.max_value = GameData.base_enemy_health
+	healthbar.value = GameData.curr_enemy_health
+	damage = GameData.curr_enemy_damage
 
-func _physics_process(delta: float) -> void:
-	direction = global_position.direction_to(player.global_position)
-	if is_knocked_back:
-		direction *= -1
-		if curr_speed == base_speed:
-			curr_speed *= knockback_multiplier
-	else:
-		curr_speed = base_speed
-		update_sprite(direction)
-	velocity = direction * curr_speed
-	move_and_slide()
-
-func update_sprite(direction: Vector2):
-	if direction.y > 0 and abs(direction.y) > abs(direction.x):
-		sprite.play("walk_forward")
-	elif direction.y < 0 and abs(direction.y) > abs(direction.x):
-		sprite.play("walk_back")
-	elif direction.x > 0 and abs(direction.y) < abs(direction.x):
-		sprite.play("walk_side")
-		sprite.flip_h = false
-	elif direction.x < 0 and abs(direction.y) < abs(direction.x):
-		sprite.play("walk_side")
-		sprite.flip_h = true 
-
-func take_damage(damage: int, knockback_mult: float = 0.0):
-	knockback_multiplier = knockback_mult
+func take_damage(damage: int):
 	health -= damage
 	healthbar.value = health
 	is_knocked_back = true

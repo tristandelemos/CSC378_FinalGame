@@ -13,7 +13,7 @@ var lady_luck_intro := false
 
 # Player Data
 var freeze_player: bool = false
-var base_player_health: int = 10
+var base_player_health: int = 100
 var base_player_weapon: Weapon = Weapon.DAGGER
 var base_soul_drop_chance: float = 0.0
 var base_coins: int = 0
@@ -32,7 +32,7 @@ var base_min_enemy_spawn = 5
 var base_max_enemy_spawn = 10
 var base_enemy_speed = 50.0
 var base_enemy_health = 15
-var base_enemy_damage = 1
+var base_enemy_damage = 10
 
 #####################################################
 # Current Data
