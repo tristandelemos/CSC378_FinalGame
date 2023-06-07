@@ -48,29 +48,27 @@ func handle_movement() -> void:
 	else:
 		velocity.x = 0
 
-func walking():
-	if velocity.x > 0:
-		walk_left.visible = false
-		player_sprite.visible = false
-		walk_right.visible = true
-		walk_right.play("walking_right")
-	elif velocity.x < 0:
-		walk_right.visible = false
-		player_sprite.visible = false
-		walk_left.visible = true
-		walk_left.play("walking_left")
-	else:
-		walk_left.visible = false
-		walk_right.visible = false
-		player_sprite.visible = true
-		
-		
+#func walking():
+#	if velocity.x > 0:
+#		walk_left.visible = false
+#		player_sprite.visible = false
+#		walk_right.visible = true
+#		walk_right.play("walking_right")
+#	elif velocity.x < 0:
+#		walk_right.visible = false
+#		player_sprite.visible = false
+#		walk_left.visible = true
+#		walk_left.play("walking_left")
+#	else:
+#		walk_left.visible = false
+#		walk_right.visible = false
+#		player_sprite.visible = true
 
-#func flip_sprite() -> void:
-#	if velocity.x < 0:
-#		player_sprite.flip_h = true
-#	elif velocity.x > 0:
-#		player_sprite.flip_h = false
+func flip_sprite() -> void:
+	if velocity.x < 0:
+		player_sprite.flip_h = true
+	elif velocity.x > 0:
+		player_sprite.flip_h = false
 
 func take_damage(damage: int):
 	GameData.curr_player_health -= damage

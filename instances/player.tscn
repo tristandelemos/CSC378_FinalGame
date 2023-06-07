@@ -1,14 +1,9 @@
 [gd_scene load_steps=12 format=3 uid="uid://ba2y6exjmtk6h"]
 
+[ext_resource type="Texture2D" uid="uid://cfemdqp11qpxk" path="res://sprites/character.png" id="1_16b5e"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_fk4hn"]
-[ext_resource type="Texture2D" uid="uid://xuano2frrkle" path="res://sprites/main character/t_walking_right1.png" id="2_0x55g"]
-[ext_resource type="Texture2D" uid="uid://77qsxvxwbo3d" path="res://sprites/main character/t_front_facing.png" id="2_4i61n"]
-[ext_resource type="Texture2D" uid="uid://bfhth7hh8ph2d" path="res://sprites/main character/t_walking_left1.png" id="2_n4ies"]
 [ext_resource type="PackedScene" uid="uid://gbp8n355q25b" path="res://instances/hud.tscn" id="3_1s1tl"]
 [ext_resource type="PackedScene" uid="uid://b4fx0wgytglml" path="res://instances/attack.tscn" id="3_66g4t"]
-[ext_resource type="Texture2D" uid="uid://8av4o4sdmxnc" path="res://sprites/main character/t_walking_left2.png" id="3_b8e5u"]
-[ext_resource type="Texture2D" uid="uid://w23wixf8bxfi" path="res://sprites/main character/t_walking_right2.png" id="3_kf1ul"]
-[ext_resource type="Texture2D" uid="uid://drkjeb4pkwi71" path="res://sprites/main character/t_walking_right3.png" id="4_12s4o"]
 [ext_resource type="Texture2D" uid="uid://buen3qdevlnxf" path="res://sprites/light.png" id="4_lu65e"]
 [ext_resource type="Theme" uid="uid://c6kvh2v5r71lh" path="res://default_theme.tres" id="6_yipyj"]
 
@@ -84,18 +79,8 @@ z_index = 1
 collision_mask = 2
 script = ExtResource("1_fk4hn")
 
-[node name="Walking_Left" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_7r117")
-animation = &"walking_left"
-speed_scale = 3.0
-
-[node name="Walking_Right" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_meitu")
-animation = &"walking_right"
-speed_scale = 3.0
-
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_4i61n")
+texture = ExtResource("1_16b5e")
 
 [node name="Attack" parent="." instance=ExtResource("3_66g4t")]
 
