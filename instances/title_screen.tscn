@@ -1,0 +1,53 @@
+[gd_scene load_steps=3 format=3 uid="uid://d3c17w1w4u3fq"]
+
+[ext_resource type="Texture2D" uid="uid://clax25wgy1a6r" path="res://sprites/dying4.png" id="1_6d30r"]
+[ext_resource type="PackedScene" uid="uid://q6cc5js0fijn" path="res://instances/fade_in.tscn" id="2_fvd1i"]
+
+[node name="TitleScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Menu" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 120.0
+offset_top = 40.0
+offset_right = 1140.0
+offset_bottom = 680.0
+
+[node name="Title" type="Label" parent="Menu"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 128
+text = "Deathwish"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CenterRow" type="HBoxContainer" parent="Menu"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Buttons" type="VBoxContainer" parent="Menu/CenterRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="Start" type="Button" parent="Menu/CenterRow/Buttons"]
+layout_mode = 2
+text = "Start"
+
+[node name="Credits" type="Button" parent="Menu/CenterRow/Buttons"]
+layout_mode = 2
+text = "Credits"
+
+[node name="Logo" type="TextureRect" parent="Menu/CenterRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("1_6d30r")
+
+[node name="FadeIn" parent="." instance=ExtResource("2_fvd1i")]
+layout_mode = 0
+anchors_preset = 0
