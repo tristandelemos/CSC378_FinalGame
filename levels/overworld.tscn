@@ -220,7 +220,7 @@ offset_top = 512.0
 offset_right = 1152.0
 offset_bottom = 576.0
 theme = ExtResource("5_lp083")
-text = "+1 to starting health"
+text = "+10 starting health"
 
 [node name="Cost" type="Node2D" parent="LadyLuck/LadyLuckShop/ColorRect/IncreaseStartingHealthButton"]
 

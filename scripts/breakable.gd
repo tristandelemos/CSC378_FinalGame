@@ -15,4 +15,4 @@ func _on_hurtbox_area_entered(area: Area2D) -> void:
 			var coin_instance = coin.instantiate()
 			coin_instance.global_position = global_position
 			get_tree().current_scene.call_deferred("add_child", coin_instance)
-	queue_free()
+	$AnimationPlayer.play("break")

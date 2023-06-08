@@ -1,13 +1,125 @@
-[gd_scene load_steps=5 format=3 uid="uid://ddd67otir6j04"]
+[gd_scene load_steps=12 format=3 uid="uid://ddd67otir6j04"]
 
 [ext_resource type="Script" path="res://scripts/breakable.gd" id="1_2s2t0"]
 [ext_resource type="Texture2D" uid="uid://dy22kufnr5vlt" path="res://sprites/crate.png" id="1_63tf1"]
+[ext_resource type="AudioStream" uid="uid://dx0wkwqsa44m1" path="res://sounds/66772__kevinkace__barrel-break-4.wav" id="3_0058a"]
+[ext_resource type="AudioStream" uid="uid://b3ouh8qfrq64o" path="res://sounds/66780__kevinkace__crate-break-4.wav" id="4_gbipl"]
+[ext_resource type="AudioStream" uid="uid://wkwislpvy58m" path="res://sounds/563175__gronnie__wooden-box-breaking-sound-effects.wav" id="5_47fdr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mw1do"]
 size = Vector2(28, 28)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q0l6o"]
 size = Vector2(28, 28)
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_d41pq"]
+streams_count = 3
+playback_mode = 1
+stream_0/stream = ExtResource("3_0058a")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("4_gbipl")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("5_47fdr")
+stream_2/weight = 1.0
+
+[sub_resource type="Animation" id="Animation_58iv3"]
+resource_name = "break"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AudioStreamPlayer2D:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hurtbox/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_s3hs7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AudioStreamPlayer2D:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hurtbox/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1wbtq"]
+_data = {
+"RESET": SubResource("Animation_s3hs7"),
+"break": SubResource("Animation_58iv3")
+}
 
 [node name="Crate" type="StaticBody2D"]
 collision_layer = 256
@@ -26,5 +138,13 @@ shape = SubResource("RectangleShape2D_mw1do")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_q0l6o")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_d41pq")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_1wbtq")
+}
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]

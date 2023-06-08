@@ -62,7 +62,7 @@ func _on_incease_soul_drop_button_pressed() -> void:
 
 func _on_increase_starting_health_button_pressed() -> void:
 	if GameData.curr_souls >= GameData.increase_starting_health_cost:
-		GameData.base_player_health += 1
+		GameData.base_player_health += 10
 		GameData.curr_player_health = GameData.base_player_health
 		GameData.curr_souls -= GameData.increase_starting_health_cost
 		GameData.increase_starting_health_cost += 10

@@ -14,7 +14,7 @@ var lady_luck_intro := false
 # Player Data
 var freeze_player: bool = false
 var base_player_health: int = 100
-var base_player_weapon: Weapon = Weapon.STAFF
+var base_player_weapon: Weapon = Weapon.DAGGER
 var base_soul_drop_chance: float = 0.0
 var base_coins: int = 0
 var deaths: int = 0
@@ -41,7 +41,7 @@ var difficulty_multiplier = 0
 var curr_player_health: int = base_player_health
 var curr_player_weapon: Weapon = base_player_weapon
 var curr_coins: int = base_coins
-var curr_souls: int = 999
+var curr_souls: int = 0
 
 # Enemy Data
 var difficulty_increase_multiplier = 2 # Every 2 enemy rooms after the first, increase difficulty

@@ -1,25 +1,65 @@
-[gd_scene load_steps=21 format=3 uid="uid://ba2y6exjmtk6h"]
+[gd_scene load_steps=33 format=3 uid="uid://ba2y6exjmtk6h"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_fk4hn"]
 [ext_resource type="Texture2D" uid="uid://bfhth7hh8ph2d" path="res://sprites/main character/t_walking_left1.png" id="2_0lbdv"]
+[ext_resource type="Texture2D" uid="uid://2iuw52cfjhni" path="res://sprites/main character/walking_up1.png" id="2_d5ecn"]
 [ext_resource type="PackedScene" uid="uid://gbp8n355q25b" path="res://instances/hud.tscn" id="3_1s1tl"]
 [ext_resource type="PackedScene" uid="uid://b4fx0wgytglml" path="res://instances/attack.tscn" id="3_66g4t"]
 [ext_resource type="Texture2D" uid="uid://8av4o4sdmxnc" path="res://sprites/main character/t_walking_left2.png" id="3_twy21"]
+[ext_resource type="Texture2D" uid="uid://hd123wvqcmhy" path="res://sprites/main character/walking_up2.png" id="3_ufcvq"]
 [ext_resource type="Texture2D" uid="uid://buen3qdevlnxf" path="res://sprites/light.png" id="4_lu65e"]
+[ext_resource type="Texture2D" uid="uid://edi0wglsjuoj" path="res://sprites/main character/walking_up3.png" id="4_nrk25"]
 [ext_resource type="Texture2D" uid="uid://c6s8f66uny2ic" path="res://sprites/main character/t_walking_left3.png" id="4_xpobe"]
 [ext_resource type="Texture2D" uid="uid://b2bchrr2cdsij" path="res://sprites/main character/t_walking_left4.png" id="5_cjbjp"]
+[ext_resource type="Texture2D" uid="uid://cgjhet47648sv" path="res://sprites/main character/walking_up4.png" id="5_e2lu6"]
+[ext_resource type="Texture2D" uid="uid://bme6vwmneebe6" path="res://sprites/main character/t_front_facing1.png" id="6_tktp2"]
 [ext_resource type="Theme" uid="uid://c6kvh2v5r71lh" path="res://default_theme.tres" id="6_yipyj"]
+[ext_resource type="Texture2D" uid="uid://casf11t1cuc15" path="res://sprites/main character/t_front_facing2.png" id="7_nvxjn"]
+[ext_resource type="Texture2D" uid="uid://bq80reny3n6np" path="res://sprites/main character/t_front_facing3.png" id="8_13xfg"]
+[ext_resource type="Texture2D" uid="uid://c2y37y3ssh7ys" path="res://sprites/main character/t_front_facing4.png" id="9_28gxr"]
 [ext_resource type="Texture2D" uid="uid://xuano2frrkle" path="res://sprites/main character/t_walking_right1.png" id="9_iyu7j"]
 [ext_resource type="Texture2D" uid="uid://w23wixf8bxfi" path="res://sprites/main character/t_walking_right2.png" id="10_nq6l3"]
 [ext_resource type="Texture2D" uid="uid://drkjeb4pkwi71" path="res://sprites/main character/t_walking_right3.png" id="11_22pkc"]
 [ext_resource type="Texture2D" uid="uid://b4oaqpv46630g" path="res://sprites/main character/t_walking_right4.png" id="12_56j0t"]
+[ext_resource type="AudioStream" uid="uid://dou47rregmq1o" path="res://sounds/416838__tonsil5__grunt2-death-pain.wav" id="22_24ebg"]
+[ext_resource type="AudioStream" uid="uid://6hq5m47jvv7t" path="res://sounds/416839__tonsil5__grunt1-death-pain.wav" id="23_likfl"]
+[ext_resource type="AudioStream" uid="uid://c8scnudtqyd6" path="res://sounds/493743__crimsonimaging__oof.wav" id="24_sxcrj"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ug6sg"]
 animations = [{
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_d5ecn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ufcvq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_nrk25")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_e2lu6")
+}],
+"loop": true,
+"name": &"walk_back",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_tktp2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_nvxjn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_13xfg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_28gxr")
+}],
 "loop": true,
 "name": &"walk_front",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -66,6 +106,15 @@ height = 34.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6mo4g"]
 bg_color = Color(0, 0, 0.980392, 1)
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_cwa24"]
+streams_count = 3
+stream_0/stream = ExtResource("22_24ebg")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("23_likfl")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("24_sxcrj")
+stream_2/weight = 1.0
 
 [sub_resource type="Animation" id="Animation_p5wvh"]
 length = 0.001
@@ -121,6 +170,18 @@ tracks/1/keys = {
 "update": 1,
 "values": [true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AudioStreamPlayer:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6k3mn"]
 _data = {
@@ -137,8 +198,9 @@ speed = 200
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_ug6sg")
-animation = &"walk_right"
-frame_progress = 0.818156
+animation = &"walk_front"
+frame = 3
+frame_progress = 0.115019
 
 [node name="Attack" parent="." instance=ExtResource("3_66g4t")]
 
@@ -185,13 +247,16 @@ show_percentage = false
 
 [node name="StaminaBar" type="ProgressBar" parent="."]
 offset_left = -16.0
-offset_top = 29.0
+offset_top = 26.0
 offset_right = 16.0
-offset_bottom = 33.0
+offset_bottom = 30.0
 theme = ExtResource("6_yipyj")
 theme_override_styles/fill = SubResource("StyleBoxFlat_6mo4g")
 value = 100.0
 show_percentage = false
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_cwa24")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -206,6 +271,10 @@ one_shot = true
 wait_time = 0.1
 one_shot = true
 
+[node name="NudgeTimer" type="Timer" parent="."]
+wait_time = 0.1
+
 [connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]
 [connection signal="timeout" from="KnockbackTimer" to="." method="_on_knockback_timer_timeout"]
 [connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
+[connection signal="timeout" from="NudgeTimer" to="." method="_on_nudge_timer_timeout"]
