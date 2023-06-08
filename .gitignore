@@ -1,7 +1,7 @@
+build.zip
+build/*
 # Godot 4+ specific ignores
 .godot/
 *.translation
 export_presets.cfg
 .mono/
-build.zip
-build/
