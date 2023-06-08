@@ -1,33 +1,44 @@
 extends CharacterBody2D
 class_name Player
 
-@onready var player_sprite: Sprite2D = $Sprite2D
+@onready var player_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var hud = $HUD
 @onready var loot = preload("res://instances/loot.tscn")
 @onready var healthbar = $HealthBar
+@onready var staminabar = $StaminaBar
 @onready var anim_player = $AnimationPlayer
 @onready var knockback_timer = $KnockbackTimer
 
 @export var speed := 300
 
+var curr_stamina := 100
 var lock_swipe_rotation: bool = false
 var knockback: bool = false
 var knockback_dir: Vector2
+var dashing = false
 
 func _ready() -> void:
 	healthbar.max_value = GameData.base_player_health
 	healthbar.value = GameData.curr_player_health
+	SignalBus.health_pickup.connect(_on_health_pickup)
 	SignalBus.drop_current_weapon.connect(_on_drop_current_weapon)
 	$PointLight2D.visible = true
 
 func _physics_process(delta) -> void:
 	if not GameData.freeze_player:
+		if curr_stamina < 100:
+			curr_stamina += 2
+			staminabar.value = curr_stamina
 		if knockback:
 			velocity = knockback_dir * 500
-		else:
+		elif not dashing:
 			handle_movement()
-			flip_sprite()
+			handle_animation()
 		move_and_slide()
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("dash"):
+		dash()
 
 func _on_drop_current_weapon():
 	var dropped_weapon: Loot = loot.instantiate()
@@ -48,27 +59,21 @@ func handle_movement() -> void:
 	else:
 		velocity.x = 0
 
-#func walking():
-#	if velocity.x > 0:
-#		walk_left.visible = false
-#		player_sprite.visible = false
-#		walk_right.visible = true
-#		walk_right.play("walking_right")
-#	elif velocity.x < 0:
-#		walk_right.visible = false
-#		player_sprite.visible = false
-#		walk_left.visible = true
-#		walk_left.play("walking_left")
-#	else:
-#		walk_left.visible = false
-#		walk_right.visible = false
-#		player_sprite.visible = true
+func dash():
+	if curr_stamina >= 100:
+		curr_stamina -= 100
+		staminabar.value = curr_stamina
+		velocity *= 5
+		dashing = true
+		$DashTimer.start()
 
-func flip_sprite() -> void:
+func handle_animation():
+	if velocity.x > 0:
+		player_sprite.play("walk_right")
 	if velocity.x < 0:
-		player_sprite.flip_h = true
-	elif velocity.x > 0:
-		player_sprite.flip_h = false
+		player_sprite.play("walk_left")
+	if velocity == Vector2.ZERO:
+		player_sprite.frame = 0
 
 func take_damage(damage: int):
 	GameData.curr_player_health -= damage
@@ -78,11 +83,18 @@ func take_damage(damage: int):
 		SignalBus.player_dead.emit()
 	anim_player.play("damaged")
 
+func _on_health_pickup():
+	healthbar.value = GameData.curr_player_health
+
 func _on_hurtbox_body_entered(body: Node2D) -> void:
-	take_damage(body.damage)
-	knockback_timer.start()
-	knockback = true
-	knockback_dir = body.direction
+	if not dashing:
+		take_damage(body.damage)
+		knockback_timer.start()
+		knockback = true
+		knockback_dir = body.direction
 
 func _on_knockback_timer_timeout() -> void:
 	knockback = false
+
+func _on_dash_timer_timeout() -> void:
+	dashing = false

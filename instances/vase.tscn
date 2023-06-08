@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://crrb7infkbe3w"]
+
+[ext_resource type="PackedScene" uid="uid://ddd67otir6j04" path="res://instances/crate.tscn" id="1_w7rsi"]
+[ext_resource type="Texture2D" uid="uid://c8prea54t40b6" path="res://sprites/vase.png" id="2_wf7g4"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cr4lp"]
+radius = 9.0
+height = 28.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7aoco"]
+radius = 9.0
+height = 28.0
+
+[node name="Vase" instance=ExtResource("1_w7rsi")]
+collision_layer = 256
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_wf7g4")
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+position = Vector2(0, 2)
+shape = SubResource("CapsuleShape2D_cr4lp")
+
+[node name="CollisionShape2D" parent="." index="2"]
+position = Vector2(0, 2)
+shape = SubResource("CapsuleShape2D_7aoco")

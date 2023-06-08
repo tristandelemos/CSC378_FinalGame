@@ -4,12 +4,12 @@ extends Room
 	{
 		"value": preload("res://instances/enemy.tscn"),
 		"type": "goblin",
-		"weight": 10.0
+		"weight": 80.0
 	},
 	{
 		"value": preload("res://instances/goblin_wizard.tscn"),
 		"type": "goblin_wizard",
-		"weight": 90.0
+		"weight": 20.0
 	},
 ]
 @onready var spawn_points = $SpawnPoints.get_children()
@@ -24,6 +24,7 @@ func _ready():
 func _on_playable_area_entered(body):
 	super._on_playable_area_entered(body)
 	if unexplored:
+		SignalBus.fight_start.emit()
 		spawn_enemies()
 		lock_room()
 		unexplored = false
@@ -32,6 +33,7 @@ func _on_enemy_dead():
 	if is_active:
 		num_enemies -= 1
 		if num_enemies <= 0:
+			SignalBus.fight_end.emit()
 			GameData.increase_difficulty()
 			unlock_room()
 

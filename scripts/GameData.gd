@@ -14,7 +14,7 @@ var lady_luck_intro := false
 # Player Data
 var freeze_player: bool = false
 var base_player_health: int = 100
-var base_player_weapon: Weapon = Weapon.DAGGER
+var base_player_weapon: Weapon = Weapon.STAFF
 var base_soul_drop_chance: float = 0.0
 var base_coins: int = 0
 var deaths: int = 0
@@ -22,7 +22,7 @@ var deaths: int = 0
 var shopkeeper_room_unlocked = false
 var weapon_loot_room_unlocked = false
 var unlock_weapon_loot_room_cost := 50
-var unlock_shopkeeper_room_cost := 75
+var unlock_shopkeeper_room_cost := 20
 var increase_starting_coins_cost := 10
 var increase_soul_drop_cost := 15
 var increase_starting_health_cost := 20

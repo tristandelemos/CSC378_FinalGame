@@ -2,6 +2,9 @@ extends Node
 
 signal player_enter(instance_id)
 signal player_exit(instance_id)
+signal fight_start
+signal fight_end
+signal health_pickup
 signal player_dead
 signal enemy_dead
 signal update_weapon_slot(weapon)

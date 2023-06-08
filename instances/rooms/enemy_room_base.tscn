@@ -47,6 +47,8 @@ shape = SubResource("RectangleShape2D_by6hc")
 
 [node name="Traps" type="Node2D" parent="."]
 
+[node name="Breakables" type="Node2D" parent="."]
+
 [node name="ColorRect" type="ColorRect" parent="."]
 visible = false
 offset_left = -576.0

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://smydvyfcx5f4"
+path="res://.godot/imported/spotifydown.com - Haters Gonna Hate.mp3-b7769890816e06306be3ae0385b0f9d6.mp3str"
+
+[deps]
+
+source_file="res://sounds/spotifydown.com - Haters Gonna Hate.mp3"
+dest_files=["res://.godot/imported/spotifydown.com - Haters Gonna Hate.mp3-b7769890816e06306be3ae0385b0f9d6.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

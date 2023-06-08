@@ -1,17 +1,71 @@
-[gd_scene load_steps=12 format=3 uid="uid://ba2y6exjmtk6h"]
+[gd_scene load_steps=21 format=3 uid="uid://ba2y6exjmtk6h"]
 
-[ext_resource type="Texture2D" uid="uid://cfemdqp11qpxk" path="res://sprites/character.png" id="1_16b5e"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_fk4hn"]
+[ext_resource type="Texture2D" uid="uid://bfhth7hh8ph2d" path="res://sprites/main character/t_walking_left1.png" id="2_0lbdv"]
 [ext_resource type="PackedScene" uid="uid://gbp8n355q25b" path="res://instances/hud.tscn" id="3_1s1tl"]
 [ext_resource type="PackedScene" uid="uid://b4fx0wgytglml" path="res://instances/attack.tscn" id="3_66g4t"]
+[ext_resource type="Texture2D" uid="uid://8av4o4sdmxnc" path="res://sprites/main character/t_walking_left2.png" id="3_twy21"]
 [ext_resource type="Texture2D" uid="uid://buen3qdevlnxf" path="res://sprites/light.png" id="4_lu65e"]
+[ext_resource type="Texture2D" uid="uid://c6s8f66uny2ic" path="res://sprites/main character/t_walking_left3.png" id="4_xpobe"]
+[ext_resource type="Texture2D" uid="uid://b2bchrr2cdsij" path="res://sprites/main character/t_walking_left4.png" id="5_cjbjp"]
 [ext_resource type="Theme" uid="uid://c6kvh2v5r71lh" path="res://default_theme.tres" id="6_yipyj"]
+[ext_resource type="Texture2D" uid="uid://xuano2frrkle" path="res://sprites/main character/t_walking_right1.png" id="9_iyu7j"]
+[ext_resource type="Texture2D" uid="uid://w23wixf8bxfi" path="res://sprites/main character/t_walking_right2.png" id="10_nq6l3"]
+[ext_resource type="Texture2D" uid="uid://drkjeb4pkwi71" path="res://sprites/main character/t_walking_right3.png" id="11_22pkc"]
+[ext_resource type="Texture2D" uid="uid://b4oaqpv46630g" path="res://sprites/main character/t_walking_right4.png" id="12_56j0t"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_wyhyg"]
-radius = 15.0
+[sub_resource type="SpriteFrames" id="SpriteFrames_ug6sg"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"walk_front",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_0lbdv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_twy21")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_xpobe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_cjbjp")
+}],
+"loop": true,
+"name": &"walk_left",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_iyu7j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_nq6l3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_22pkc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_56j0t")
+}],
+"loop": true,
+"name": &"walk_right",
+"speed": 10.0
+}]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_m8n3y"]
-radius = 14.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_al728"]
+radius = 13.0
+height = 44.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_y2swr"]
+radius = 7.0
+height = 34.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6mo4g"]
+bg_color = Color(0, 0, 0.980392, 1)
 
 [sub_resource type="Animation" id="Animation_p5wvh"]
 length = 0.001
@@ -30,7 +84,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:visible")
+tracks/1/path = NodePath("AnimatedSprite2D:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -58,14 +112,14 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:visible")
+tracks/1/path = NodePath("AnimatedSprite2D:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.02, 0.04, 0.06, 0.08, 0.1, 0.12, 0.14, 0.16, 0.18, 0.2, 0.22, 0.24, 0.26, 0.28, 0.3, 0.32, 0.34, 0.36, 0.38, 0.4, 0.42, 0.44, 0.46, 0.478006, 0.498006, 0.518005, 0.538006, 0.56, 0.58, 0.6, 0.62, 0.64, 0.66, 0.68, 0.7, 0.72, 0.74, 0.76, 0.78, 0.8, 0.82, 0.84, 0.86, 0.88, 0.9, 0.92, 0.94, 0.96, 0.98, 1),
+"times": PackedFloat32Array(0, 0.02, 0.04, 0.06, 0.08, 0.1, 0.12, 0.14, 0.16, 0.18, 0.2, 0.22, 0.24, 0.26, 0.28, 0.3, 0.32, 0.34, 0.36, 0.38, 0.4, 0.42, 0.44, 0.46, 0.48, 0.5, 0.52, 0.54, 0.56, 0.58, 0.6, 0.62, 0.64, 0.66, 0.68, 0.7, 0.72, 0.74, 0.76, 0.78, 0.8, 0.82, 0.84, 0.86, 0.88, 0.9, 0.92, 0.94, 0.96, 0.98, 1),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, true]
+"values": [true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6k3mn"]
@@ -78,17 +132,22 @@ _data = {
 z_index = 1
 collision_mask = 2
 script = ExtResource("1_fk4hn")
+speed = 200
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_16b5e")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_ug6sg")
+animation = &"walk_right"
+frame_progress = 0.818156
 
 [node name="Attack" parent="." instance=ExtResource("3_66g4t")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_wyhyg")
+position = Vector2(1, 4)
+shape = SubResource("CapsuleShape2D_al728")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(1.1, 1.1)
+zoom = Vector2(1.3, 1.3)
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
 drag_left_margin = 0.1
@@ -97,6 +156,7 @@ drag_right_margin = 0.1
 drag_bottom_margin = 0.1
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
+visible = false
 energy = 0.7
 shadow_enabled = true
 shadow_filter_smooth = 1.0
@@ -110,16 +170,27 @@ collision_layer = 32
 collision_mask = 64
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
-shape = SubResource("CircleShape2D_m8n3y")
+position = Vector2(1, 5)
+shape = SubResource("CapsuleShape2D_y2swr")
 
 [node name="HealthBar" type="ProgressBar" parent="."]
 offset_left = -16.0
-offset_top = -22.0
+offset_top = -27.0
 offset_right = 16.0
-offset_bottom = -18.0
+offset_bottom = -23.0
 theme = ExtResource("6_yipyj")
 max_value = 10.0
 value = 5.0
+show_percentage = false
+
+[node name="StaminaBar" type="ProgressBar" parent="."]
+offset_left = -16.0
+offset_top = 29.0
+offset_right = 16.0
+offset_bottom = 33.0
+theme = ExtResource("6_yipyj")
+theme_override_styles/fill = SubResource("StyleBoxFlat_6mo4g")
+value = 100.0
 show_percentage = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -131,5 +202,10 @@ libraries = {
 wait_time = 0.1
 one_shot = true
 
+[node name="DashTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
 [connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]
 [connection signal="timeout" from="KnockbackTimer" to="." method="_on_knockback_timer_timeout"]
+[connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]

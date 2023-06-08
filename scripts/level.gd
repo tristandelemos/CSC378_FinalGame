@@ -14,7 +14,8 @@ extends Node2D
 var curr_num_rooms = 0
 
 func _ready() -> void:
-	
+	SignalBus.fight_start.connect(_on_fight_start)
+	SignalBus.fight_end.connect(_on_fight_end)
 	generate()
 
 func walk() -> Array:
@@ -193,3 +194,9 @@ func position_occupied_helper(pos: Vector2) -> Array:
 		if room.global_position == pos:
 			return [room]
 	return []
+
+func _on_fight_start():
+	$AnimationPlayer.play("main_music_fade")
+
+func _on_fight_end():
+	$AnimationPlayer.play("fight_music_fade")

@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://pt0mekhruood"]
+[gd_scene load_steps=5 format=3 uid="uid://pt0mekhruood"]
 
 [ext_resource type="PackedScene" uid="uid://c2o516iy1ajkd" path="res://instances/rooms/enemy_room_base.tscn" id="1_tcafk"]
 [ext_resource type="PackedScene" uid="uid://dmjch8oygb2i4" path="res://instances/spike.tscn" id="2_1v87p"]
+[ext_resource type="PackedScene" uid="uid://crrb7infkbe3w" path="res://instances/vase.tscn" id="3_bx5yq"]
+[ext_resource type="PackedScene" uid="uid://ddd67otir6j04" path="res://instances/crate.tscn" id="4_tipfa"]
 
 [node name="EnemyRoomTwo" instance=ExtResource("1_tcafk")]
 
@@ -124,3 +126,45 @@ position = Vector2(0, 416)
 
 [node name="Spike34" parent="Traps" index="7" instance=ExtResource("2_1v87p")]
 position = Vector2(544, -544)
+
+[node name="Vase" parent="Breakables" index="0" instance=ExtResource("3_bx5yq")]
+position = Vector2(-292, 143)
+
+[node name="Vase2" parent="Breakables" index="1" instance=ExtResource("3_bx5yq")]
+position = Vector2(-488, -152)
+
+[node name="Vase3" parent="Breakables" index="2" instance=ExtResource("3_bx5yq")]
+position = Vector2(-208, -512)
+
+[node name="Vase4" parent="Breakables" index="3" instance=ExtResource("3_bx5yq")]
+position = Vector2(432, -480)
+
+[node name="Vase5" parent="Breakables" index="4" instance=ExtResource("3_bx5yq")]
+position = Vector2(464, -40)
+
+[node name="Vase6" parent="Breakables" index="5" instance=ExtResource("3_bx5yq")]
+position = Vector2(504, 304)
+
+[node name="Vase7" parent="Breakables" index="6" instance=ExtResource("3_bx5yq")]
+position = Vector2(-240, 480)
+
+[node name="Vase8" parent="Breakables" index="7" instance=ExtResource("3_bx5yq")]
+position = Vector2(-504, 320)
+
+[node name="Crate" parent="Breakables" index="8" instance=ExtResource("4_tipfa")]
+position = Vector2(-288, -72)
+
+[node name="Crate2" parent="Breakables" index="9" instance=ExtResource("4_tipfa")]
+position = Vector2(-88, -376)
+
+[node name="Crate3" parent="Breakables" index="10" instance=ExtResource("4_tipfa")]
+position = Vector2(256, -152)
+
+[node name="Crate4" parent="Breakables" index="11" instance=ExtResource("4_tipfa")]
+position = Vector2(272, 176)
+
+[node name="Crate5" parent="Breakables" index="12" instance=ExtResource("4_tipfa")]
+position = Vector2(-88, 472)
+
+[node name="Crate6" parent="Breakables" index="13" instance=ExtResource("4_tipfa")]
+position = Vector2(384, 512)
