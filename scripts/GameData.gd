@@ -64,7 +64,28 @@ var curr_enemy_damage = base_enemy_damage
 	{
 		"type": "enemy",
 		"resource": preload("res://instances/rooms/enemy_room_three.tscn")
-	}]
+	},
+	{
+		"type": "enemy",
+		"resource": preload("res://instances/rooms/enemy_room_four.tscn")
+	},
+	{
+		"type": "enemy",
+		"resource": preload("res://instances/rooms/enemy_room_five.tscn")
+	},
+	{
+		"type": "enemy",
+		"resource": preload("res://instances/rooms/enemy_room_six.tscn")
+	},
+	{
+		"type": "enemy",
+		"resource": preload("res://instances/rooms/enemy_room_seven.tscn")
+	},
+	{
+		"type": "enemy",
+		"resource": preload("res://instances/rooms/enemy_room_eight.tscn")
+	}
+]
 
 func _ready() -> void:
 	DialogueManager.dialogue_ended.connect(_on_dialogue_end)

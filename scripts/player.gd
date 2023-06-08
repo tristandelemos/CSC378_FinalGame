@@ -25,6 +25,8 @@ func _ready() -> void:
 	healthbar.value = GameData.curr_player_health
 	SignalBus.health_pickup.connect(_on_health_pickup)
 	SignalBus.drop_current_weapon.connect(_on_drop_current_weapon)
+	SignalBus.fight_start.connect(_on_fight_start)
+	SignalBus.fight_end.connect(_on_fight_end)
 	$PointLight2D.visible = true
 
 func _physics_process(delta) -> void:
@@ -44,6 +46,12 @@ func _physics_process(delta) -> void:
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("dash"):
 		dash()
+
+func _on_fight_start():
+	anim_player.play("fight_start")
+
+func _on_fight_end():
+	anim_player.play("fight_end")
 
 func _on_drop_current_weapon():
 	var dropped_weapon: Loot = loot.instantiate()

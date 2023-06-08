@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://ba2y6exjmtk6h"]
+[gd_scene load_steps=35 format=3 uid="uid://ba2y6exjmtk6h"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_fk4hn"]
 [ext_resource type="Texture2D" uid="uid://bfhth7hh8ph2d" path="res://sprites/main character/t_walking_left1.png" id="2_0lbdv"]
@@ -101,8 +101,8 @@ radius = 13.0
 height = 44.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_y2swr"]
-radius = 7.0
-height = 34.0
+radius = 8.0
+height = 28.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6mo4g"]
 bg_color = Color(0, 0, 0.980392, 1)
@@ -141,6 +141,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Camera2D:zoom")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1.3, 1.3)]
 }
 
 [sub_resource type="Animation" id="Animation_4matg"]
@@ -183,10 +195,42 @@ tracks/2/keys = {
 "values": [true, false]
 }
 
+[sub_resource type="Animation" id="Animation_npat2"]
+resource_name = "fight_start"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:zoom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1.3, 1.3), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_dymuw"]
+resource_name = "fight_end"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:zoom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.3, 1.3)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6k3mn"]
 _data = {
 "RESET": SubResource("Animation_p5wvh"),
-"damaged": SubResource("Animation_4matg")
+"damaged": SubResource("Animation_4matg"),
+"fight_end": SubResource("Animation_dymuw"),
+"fight_start": SubResource("Animation_npat2")
 }
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
@@ -198,9 +242,9 @@ speed = 200
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_ug6sg")
-animation = &"walk_front"
+animation = &"walk_right"
 frame = 3
-frame_progress = 0.115019
+frame_progress = 0.806416
 
 [node name="Attack" parent="." instance=ExtResource("3_66g4t")]
 
@@ -232,7 +276,6 @@ collision_layer = 32
 collision_mask = 64
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
-position = Vector2(1, 5)
 shape = SubResource("CapsuleShape2D_y2swr")
 
 [node name="HealthBar" type="ProgressBar" parent="."]

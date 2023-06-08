@@ -189,6 +189,7 @@ _data = {
 
 [node name="LevelOne" type="Node2D"]
 script = ExtResource("1_h6w0a")
+max_rooms = 8
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = -99

@@ -127,47 +127,47 @@ position = Vector2(-544, -544)
 [node name="Spike34" parent="Traps" index="7" instance=ExtResource("2_tqmfr")]
 position = Vector2(544, -544)
 
-[node name="Breakables@Crate" parent="." index="10" instance=ExtResource("3_3e6ho")]
+[node name="Breakables@Crate" parent="Breakables" index="0" instance=ExtResource("3_3e6ho")]
 position = Vector2(-368, -560)
 
-[node name="Breakables@Crate2" parent="." index="11" instance=ExtResource("3_3e6ho")]
+[node name="Breakables@Crate2" parent="Breakables" index="1" instance=ExtResource("3_3e6ho")]
 position = Vector2(-192, -488)
 
-[node name="Breakables@Crate3" parent="." index="12" instance=ExtResource("3_3e6ho")]
+[node name="Breakables@Crate3" parent="Breakables" index="2" instance=ExtResource("3_3e6ho")]
 position = Vector2(-80, -280)
 
-[node name="Breakables@Crate5" parent="." index="13" instance=ExtResource("3_3e6ho")]
+[node name="Breakables@Crate5" parent="Breakables" index="3" instance=ExtResource("3_3e6ho")]
 position = Vector2(-432, 88)
 
-[node name="Breakables@Crate6" parent="." index="14" instance=ExtResource("3_3e6ho")]
+[node name="Breakables@Crate6" parent="Breakables" index="4" instance=ExtResource("3_3e6ho")]
 position = Vector2(416, -144)
 
-[node name="Breakables@Crate7" parent="." index="15" instance=ExtResource("3_3e6ho")]
+[node name="Breakables@Crate7" parent="Breakables" index="5" instance=ExtResource("3_3e6ho")]
 position = Vector2(336, 168)
 
-[node name="Breakables@Crate8" parent="." index="16" instance=ExtResource("3_3e6ho")]
+[node name="Breakables@Crate8" parent="Breakables" index="6" instance=ExtResource("3_3e6ho")]
 position = Vector2(-152, 416)
 
-[node name="Breakables@Crate9" parent="." index="17" instance=ExtResource("3_3e6ho")]
+[node name="Breakables@Crate9" parent="Breakables" index="7" instance=ExtResource("3_3e6ho")]
 position = Vector2(168, 512)
 
-[node name="Breakables@Crate4" parent="." index="18" instance=ExtResource("3_3e6ho")]
+[node name="Breakables@Crate4" parent="Breakables" index="8" instance=ExtResource("3_3e6ho")]
 position = Vector2(-368, -208)
 
-[node name="Breakables@Vase" parent="." index="19" instance=ExtResource("4_cphbr")]
+[node name="Breakables@Vase" parent="Breakables" index="9" instance=ExtResource("4_cphbr")]
 position = Vector2(-48, -560)
 
-[node name="Breakables@Vase2" parent="." index="20" instance=ExtResource("4_cphbr")]
+[node name="Breakables@Vase2" parent="Breakables" index="10" instance=ExtResource("4_cphbr")]
 position = Vector2(72, -560)
 
-[node name="Breakables@Vase3" parent="." index="21" instance=ExtResource("4_cphbr")]
+[node name="Breakables@Vase3" parent="Breakables" index="11" instance=ExtResource("4_cphbr")]
 position = Vector2(224, -168)
 
-[node name="Breakables@Vase4" parent="." index="22" instance=ExtResource("4_cphbr")]
+[node name="Breakables@Vase4" parent="Breakables" index="12" instance=ExtResource("4_cphbr")]
 position = Vector2(-128, 248)
 
-[node name="Breakables@Vase5" parent="." index="23" instance=ExtResource("4_cphbr")]
+[node name="Breakables@Vase5" parent="Breakables" index="13" instance=ExtResource("4_cphbr")]
 position = Vector2(-512, 352)
 
-[node name="Breakables@Vase6" parent="." index="24" instance=ExtResource("4_cphbr")]
+[node name="Breakables@Vase6" parent="Breakables" index="14" instance=ExtResource("4_cphbr")]
 position = Vector2(328, 480)

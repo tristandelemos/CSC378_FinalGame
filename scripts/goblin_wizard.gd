@@ -3,7 +3,7 @@ extends Enemy
 @onready var anim_player = $AnimationPlayer
 @onready var orb = preload("res://instances/goblin_wizard_orb.tscn")
 
-var knocback_val = 200
+var knocback_val = 500
 var spawn_points
 
 func _ready() -> void:
