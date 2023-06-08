@@ -16,6 +16,9 @@ var lock_swipe_rotation: bool = false
 var knockback: bool = false
 var knockback_dir: Vector2
 var dashing = false
+var nudging = false
+var nudge_power = 0
+var nudge_direction = Vector2.ZERO
 
 func _ready() -> void:
 	healthbar.max_value = GameData.base_player_health
@@ -31,6 +34,8 @@ func _physics_process(delta) -> void:
 			staminabar.value = curr_stamina
 		if knockback:
 			velocity = knockback_dir * 500
+		elif nudging:
+			velocity += nudge_direction * nudge_power
 		elif not dashing:
 			handle_movement()
 			handle_animation()
@@ -67,11 +72,22 @@ func dash():
 		dashing = true
 		$DashTimer.start()
 
+func nudge(direction: Vector2, power: int):
+	nudge_direction = direction
+	nudge_power = power
+	nudging = true
+	$NudgeTimer.start()
+
 func handle_animation():
-	if velocity.x > 0:
-		player_sprite.play("walk_right")
-	if velocity.x < 0:
-		player_sprite.play("walk_left")
+	if velocity.y < 0:
+		player_sprite.play("walk_back")
+	elif velocity.y > 0:
+		player_sprite.play("walk_front")
+	else:
+		if velocity.x > 0:
+			player_sprite.play("walk_right")
+		if velocity.x < 0:
+			player_sprite.play("walk_left")
 	if velocity == Vector2.ZERO:
 		player_sprite.frame = 0
 
@@ -98,3 +114,7 @@ func _on_knockback_timer_timeout() -> void:
 
 func _on_dash_timer_timeout() -> void:
 	dashing = false
+
+
+func _on_nudge_timer_timeout() -> void:
+	nudging = false

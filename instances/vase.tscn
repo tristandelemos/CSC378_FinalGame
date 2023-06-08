@@ -1,7 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://crrb7infkbe3w"]
+[gd_scene load_steps=10 format=3 uid="uid://crrb7infkbe3w"]
 
 [ext_resource type="PackedScene" uid="uid://ddd67otir6j04" path="res://instances/crate.tscn" id="1_w7rsi"]
 [ext_resource type="Texture2D" uid="uid://c8prea54t40b6" path="res://sprites/vase.png" id="2_wf7g4"]
+[ext_resource type="AudioStream" uid="uid://b1x0bxqr6x51r" path="res://sounds/85168__cmusounddesign__jf-glass-breaking.wav" id="3_w0had"]
+[ext_resource type="AudioStream" uid="uid://i88fmjpghp6b" path="res://sounds/338692__natemarler__glass-break-small.wav" id="4_k86nq"]
+[ext_resource type="AudioStream" uid="uid://c3x7kjqkxymbw" path="res://sounds/465946__alterkartoffelsack__glass-breaking.wav" id="5_non6m"]
+[ext_resource type="AudioStream" uid="uid://d3pixy07x7uag" path="res://sounds/500604__elenzack__breaking-glass_2.wav" id="6_5u83q"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cr4lp"]
 radius = 9.0
@@ -11,8 +15,19 @@ height = 28.0
 radius = 9.0
 height = 28.0
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_53k1d"]
+streams_count = 4
+playback_mode = 1
+stream_0/stream = ExtResource("3_w0had")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("4_k86nq")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("5_non6m")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("6_5u83q")
+stream_3/weight = 1.0
+
 [node name="Vase" instance=ExtResource("1_w7rsi")]
-collision_layer = 256
 
 [node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("2_wf7g4")
@@ -24,3 +39,6 @@ shape = SubResource("CapsuleShape2D_cr4lp")
 [node name="CollisionShape2D" parent="." index="2"]
 position = Vector2(0, 2)
 shape = SubResource("CapsuleShape2D_7aoco")
+
+[node name="AudioStreamPlayer2D" parent="." index="3"]
+stream = SubResource("AudioStreamRandomizer_53k1d")

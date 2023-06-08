@@ -30,6 +30,7 @@ func _on_teleport_timer_timeout() -> void:
 	anim_player.play("appear")
 
 func _on_orb_cooldown_timer_timeout() -> void:
+	$AttackAudio.play()
 	var orb_instance = orb.instantiate()
 	orb_instance.global_position = global_position
 	get_tree().current_scene.call_deferred("add_child", orb_instance)

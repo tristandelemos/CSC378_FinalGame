@@ -2,7 +2,7 @@ extends Node2D
 
 @onready var anim_player = $AnimationPlayer
 @onready var orb = preload("res://instances/staff_orb.tscn")
-
+@onready var player = get_parent()
 var can_fire := true
 var lock_swipe_rotation := false
 
@@ -25,6 +25,9 @@ func melee_attack():
 		GameData.Weapon.CLEAVER:
 			if not anim_player.is_playing():
 				anim_player.play("big_swipe")
+
+func nudge():
+	player.nudge(global_position.direction_to(get_global_mouse_position()), 50)
 
 func ranged_attack():
 	match(GameData.curr_player_weapon):

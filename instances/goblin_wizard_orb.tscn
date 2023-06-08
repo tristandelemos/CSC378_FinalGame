@@ -7,7 +7,6 @@
 
 [node name="GoblinWizardOrb" type="Area2D"]
 collision_layer = 64
-collision_mask = 3
 script = ExtResource("1_iysa1")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
