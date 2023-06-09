@@ -17,6 +17,10 @@ func _ready() -> void:
 	SignalBus.fight_start.connect(_on_fight_start)
 	SignalBus.fight_end.connect(_on_fight_end)
 	generate()
+	for breakable in get_tree().get_nodes_in_group("Breakable"):
+		var roll = RngUtils.int_range(0, 100)
+		if roll > 50:
+			breakable.queue_free()
 
 func walk() -> Array:
 	var cardinal_directions = ["N", "S", "E", "W"]
