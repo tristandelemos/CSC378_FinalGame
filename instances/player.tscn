@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://ba2y6exjmtk6h"]
+[gd_scene load_steps=38 format=3 uid="uid://ba2y6exjmtk6h"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_fk4hn"]
 [ext_resource type="Texture2D" uid="uid://bfhth7hh8ph2d" path="res://sprites/main character/t_walking_left1.png" id="2_0lbdv"]
@@ -24,6 +24,9 @@
 [ext_resource type="AudioStream" uid="uid://dou47rregmq1o" path="res://sounds/416838__tonsil5__grunt2-death-pain.wav" id="22_24ebg"]
 [ext_resource type="AudioStream" uid="uid://6hq5m47jvv7t" path="res://sounds/416839__tonsil5__grunt1-death-pain.wav" id="23_likfl"]
 [ext_resource type="AudioStream" uid="uid://c8scnudtqyd6" path="res://sounds/493743__crimsonimaging__oof.wav" id="24_sxcrj"]
+[ext_resource type="AudioStream" uid="uid://dlfpoclmvyh5c" path="res://sounds/328459__alexmurphy53__walking-on-a-concrete-floor.mp3" id="25_o4vht"]
+[ext_resource type="AudioStream" uid="uid://qw1g5vhh8wf7" path="res://sounds/woosh.mp3" id="26_8vw7q"]
+[ext_resource type="AudioStream" uid="uid://bpucwvc6yseds" path="res://sounds/465405__nataliedmc__gulping.wav" id="27_5qtw2"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ug6sg"]
 animations = [{
@@ -101,8 +104,8 @@ radius = 13.0
 height = 44.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_y2swr"]
-radius = 8.0
-height = 28.0
+radius = 5.0
+height = 20.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6mo4g"]
 bg_color = Color(0, 0, 0.980392, 1)
@@ -185,7 +188,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("AudioStreamPlayer:playing")
+tracks/2/path = NodePath("HurtSound:playing")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -193,21 +196,6 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
-}
-
-[sub_resource type="Animation" id="Animation_npat2"]
-resource_name = "fight_start"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Camera2D:zoom")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(1.3, 1.3), Vector2(1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_dymuw"]
@@ -225,6 +213,21 @@ tracks/0/keys = {
 "values": [Vector2(1, 1), Vector2(1.3, 1.3)]
 }
 
+[sub_resource type="Animation" id="Animation_npat2"]
+resource_name = "fight_start"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:zoom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1.3, 1.3), Vector2(1, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6k3mn"]
 _data = {
 "RESET": SubResource("Animation_p5wvh"),
@@ -237,7 +240,6 @@ _data = {
 z_index = 1
 collision_mask = 2
 script = ExtResource("1_fk4hn")
-speed = 200
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(2, 2)
@@ -276,6 +278,7 @@ collision_layer = 32
 collision_mask = 64
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(1, 1)
 shape = SubResource("CapsuleShape2D_y2swr")
 
 [node name="HealthBar" type="ProgressBar" parent="."]
@@ -298,8 +301,18 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_6mo4g")
 value = 100.0
 show_percentage = false
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="HurtSound" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_cwa24")
+
+[node name="WalkSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("25_o4vht")
+pitch_scale = 2.5
+
+[node name="WooshSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("26_8vw7q")
+
+[node name="DrinkSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("27_5qtw2")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -315,7 +328,7 @@ wait_time = 0.1
 one_shot = true
 
 [node name="NudgeTimer" type="Timer" parent="."]
-wait_time = 0.1
+wait_time = 0.05
 
 [connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]
 [connection signal="timeout" from="KnockbackTimer" to="." method="_on_knockback_timer_timeout"]

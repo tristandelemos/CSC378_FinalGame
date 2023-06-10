@@ -1,12 +1,63 @@
-[gd_scene load_steps=8 format=3 uid="uid://2m4yiwq4yiuh"]
+[gd_scene load_steps=9 format=3 uid="uid://2m4yiwq4yiuh"]
 
 [ext_resource type="Texture2D" uid="uid://c887bwrn07h38" path="res://sprites/heart.png" id="1_p383d"]
 [ext_resource type="Script" path="res://scripts/heart.gd" id="1_wequm"]
-[ext_resource type="AudioStream" uid="uid://cqwenw5mmml56" path="res://sounds/162387__zandernoriega__health_1.wav" id="3_kx7os"]
+[ext_resource type="AudioStream" uid="uid://cqwenw5mmml56" path="res://sounds/162387__zandernoriega__health_1.wav" id="3_pprql"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ox0xk"]
 radius = 14.0
 height = 28.0
+
+[sub_resource type="Animation" id="Animation_qhvoq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AudioStreamPlayer:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_lm7lv"]
 resource_name = "pickup"
@@ -62,52 +113,45 @@ tracks/3/keys = {
 }]
 }
 
-[sub_resource type="Animation" id="Animation_qhvoq"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_4fq4e"]
+resource_name = "disappear"
+length = 2.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:visible")
+tracks/0/path = NodePath("Sprite2D:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6, 1.8, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [true]
+"values": [true, false, true, false, true, false, true, false, true, false, true]
 }
-tracks/1/type = "value"
+tracks/1/type = "method"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("CollisionShape2D:disabled")
+tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
+"times": PackedFloat32Array(2),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("AudioStreamPlayer:playing")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_nsobo"]
 _data = {
 "RESET": SubResource("Animation_qhvoq"),
+"disappear": SubResource("Animation_4fq4e"),
 "pickup": SubResource("Animation_lm7lv")
 }
 
 [node name="Heart" type="Area2D"]
+scale = Vector2(0.6, 0.6)
 collision_layer = 0
 script = ExtResource("1_wequm")
 
@@ -124,6 +168,11 @@ libraries = {
 }
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_kx7os")
+stream = ExtResource("3_pprql")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

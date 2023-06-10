@@ -1,11 +1,61 @@
-[gd_scene load_steps=8 format=3 uid="uid://da75xa5w5cdmo"]
+[gd_scene load_steps=12 format=3 uid="uid://da75xa5w5cdmo"]
 
-[ext_resource type="Texture2D" uid="uid://cu53dqgxg65n6" path="res://sprites/souls.png" id="1_nbg8r"]
 [ext_resource type="Script" path="res://scripts/soul.gd" id="1_yxkps"]
+[ext_resource type="Texture2D" uid="uid://d2y3ljhmlh20k" path="res://sprites/souls1.png" id="2_17rru"]
+[ext_resource type="Texture2D" uid="uid://d3qhtyiu34wgu" path="res://sprites/souls2.png" id="3_d6kek"]
 [ext_resource type="AudioStream" uid="uid://cexy10pugkvrd" path="res://sounds/377998__13gpanska_gorbusinova_anna__igniting-a-match.mp3" id="3_r1oj5"]
+[ext_resource type="Texture2D" uid="uid://4sixlmuhiafk" path="res://sprites/souls3.png" id="4_31qo5"]
+[ext_resource type="Texture2D" uid="uid://dal0f15ixtqvv" path="res://sprites/souls4.png" id="5_yql10"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0ch4v"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_17rru")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_d6kek")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_31qo5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_yql10")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bucs7"]
 radius = 12.0416
+
+[sub_resource type="Animation" id="Animation_8niy8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape2D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(-0.6),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_i8wu8"]
 resource_name = "pickup"
@@ -54,7 +104,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Sprite2D:visible")
+tracks/3/path = NodePath("AnimatedSprite2D:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -62,33 +112,6 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
-}
-
-[sub_resource type="Animation" id="Animation_8niy8"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CollisionShape2D:disabled")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ph625"]
@@ -101,9 +124,12 @@ _data = {
 collision_layer = 128
 script = ExtResource("1_yxkps")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(1.5, 1.5)
-texture = ExtResource("1_nbg8r")
+sprite_frames = SubResource("SpriteFrames_0ch4v")
+autoplay = "default"
+frame = 2
+frame_progress = 0.0316967
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_bucs7")

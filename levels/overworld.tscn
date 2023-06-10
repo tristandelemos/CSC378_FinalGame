@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dp8c2dcm50e3h"]
+[gd_scene load_steps=16 format=3 uid="uid://dp8c2dcm50e3h"]
 
 [ext_resource type="TileSet" uid="uid://4wilkcph121u" path="res://resources/main_tileset.tres" id="1_uwuy8"]
 [ext_resource type="PackedScene" uid="uid://ba2y6exjmtk6h" path="res://instances/player.tscn" id="2_e5pwf"]
@@ -9,6 +9,7 @@
 [ext_resource type="Resource" uid="uid://dnv3r0putf0i5" path="res://dialogue/intro_lady_luck.dialogue" id="6_8a1gi"]
 [ext_resource type="Script" path="res://scripts/LadyLuckShop.gd" id="8_c0vml"]
 [ext_resource type="Texture2D" uid="uid://cu53dqgxg65n6" path="res://sprites/souls.png" id="9_jjt1p"]
+[ext_resource type="AudioStream" uid="uid://cxit0tuhsj0sc" path="res://sounds/dungeon_ambiance.mp3" id="10_2io4g"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n1rt3"]
 size = Vector2(64, 72)
@@ -188,6 +189,56 @@ vertical_alignment = 1
 position = Vector2(144, 80)
 texture = ExtResource("9_jjt1p")
 
+[node name="IncreasePotionButton" type="Button" parent="LadyLuck/LadyLuckShop/ColorRect"]
+layout_mode = 0
+offset_left = 544.0
+offset_top = 256.0
+offset_right = 800.0
+offset_bottom = 320.0
+theme = ExtResource("5_lp083")
+text = "+1 health potion"
+
+[node name="Cost" type="Node2D" parent="LadyLuck/LadyLuckShop/ColorRect/IncreasePotionButton"]
+
+[node name="Label" type="Label" parent="LadyLuck/LadyLuckShop/ColorRect/IncreasePotionButton/Cost"]
+offset_left = 96.0
+offset_top = 64.0
+offset_right = 136.0
+offset_bottom = 93.0
+theme = ExtResource("5_lp083")
+text = "10"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="LadyLuck/LadyLuckShop/ColorRect/IncreasePotionButton/Cost"]
+position = Vector2(144, 80)
+texture = ExtResource("9_jjt1p")
+
+[node name="IncreaseDashButton" type="Button" parent="LadyLuck/LadyLuckShop/ColorRect"]
+layout_mode = 0
+offset_left = 544.0
+offset_top = 384.0
+offset_right = 800.0
+offset_bottom = 448.0
+theme = ExtResource("5_lp083")
+text = "+1 dash"
+
+[node name="Cost" type="Node2D" parent="LadyLuck/LadyLuckShop/ColorRect/IncreaseDashButton"]
+
+[node name="Label" type="Label" parent="LadyLuck/LadyLuckShop/ColorRect/IncreaseDashButton/Cost"]
+offset_left = 96.0
+offset_top = 64.0
+offset_right = 136.0
+offset_bottom = 93.0
+theme = ExtResource("5_lp083")
+text = "10"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="LadyLuck/LadyLuckShop/ColorRect/IncreaseDashButton/Cost"]
+position = Vector2(144, 80)
+texture = ExtResource("9_jjt1p")
+
 [node name="InceaseSoulDropButton" type="Button" parent="LadyLuck/LadyLuckShop/ColorRect"]
 layout_mode = 0
 offset_left = 896.0
@@ -238,10 +289,16 @@ vertical_alignment = 1
 position = Vector2(144, 80)
 texture = ExtResource("9_jjt1p")
 
+[node name="Ambiance" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_2io4g")
+autoplay = true
+
 [connection signal="body_entered" from="LadyLuck/PlayerDetector" to="LadyLuck" method="_on_player_detector_body_entered"]
 [connection signal="body_exited" from="LadyLuck/PlayerDetector" to="LadyLuck" method="_on_player_detector_body_exited"]
 [connection signal="pressed" from="LadyLuck/LadyLuckShop/ColorRect/UnlockWeaponLootRoomButton" to="LadyLuck/LadyLuckShop" method="_on_unlock_weapon_loot_room_button_pressed"]
 [connection signal="pressed" from="LadyLuck/LadyLuckShop/ColorRect/UnlockShopkeeperRoomButton" to="LadyLuck/LadyLuckShop" method="_on_unlock_shopkeeper_room_button_pressed"]
 [connection signal="pressed" from="LadyLuck/LadyLuckShop/ColorRect/IncreaseStartingCoinsButton" to="LadyLuck/LadyLuckShop" method="_on_increase_starting_coins_button_pressed"]
+[connection signal="pressed" from="LadyLuck/LadyLuckShop/ColorRect/IncreasePotionButton" to="LadyLuck/LadyLuckShop" method="_on_increase_potion_button_pressed"]
+[connection signal="pressed" from="LadyLuck/LadyLuckShop/ColorRect/IncreaseDashButton" to="LadyLuck/LadyLuckShop" method="_on_increase_dash_button_pressed"]
 [connection signal="pressed" from="LadyLuck/LadyLuckShop/ColorRect/InceaseSoulDropButton" to="LadyLuck/LadyLuckShop" method="_on_incease_soul_drop_button_pressed"]
 [connection signal="pressed" from="LadyLuck/LadyLuckShop/ColorRect/IncreaseStartingHealthButton" to="LadyLuck/LadyLuckShop" method="_on_increase_starting_health_button_pressed"]

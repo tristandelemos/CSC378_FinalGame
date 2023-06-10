@@ -6,7 +6,7 @@ class_name Breakable
 
 func _on_hurtbox_area_entered(area: Area2D) -> void:
 	var roll = RngUtils.int_range(0, 100)
-	if roll < 10:
+	if roll < 5:
 		var heart_instance = heart.instantiate()
 		heart_instance.global_position = global_position
 		get_tree().current_scene.call_deferred("add_child", heart_instance)

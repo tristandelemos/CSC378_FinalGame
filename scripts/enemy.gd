@@ -15,7 +15,7 @@ var health
 
 var damage
 var is_knocked_back = false
-var knockback_multiplier = 15
+var knockback_multiplier = 5
 var direction: Vector2
 
 func _ready() -> void:

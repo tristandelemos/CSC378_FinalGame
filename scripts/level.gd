@@ -1,5 +1,6 @@
 extends Node2D
 
+@onready var rooms = GameData.rooms.duplicate(true)
 @onready var exit_room = preload("res://instances/rooms/exit_room.tscn")
 @onready var mini_room := preload("res://instances/mini_room.tscn")
 @onready var start_room := $Rooms/StartRoom
@@ -14,12 +15,14 @@ extends Node2D
 var curr_num_rooms = 0
 
 func _ready() -> void:
+	if GameData.level == 0:
+		GameData.reset()
 	SignalBus.fight_start.connect(_on_fight_start)
 	SignalBus.fight_end.connect(_on_fight_end)
 	generate()
 	for breakable in get_tree().get_nodes_in_group("Breakable"):
 		var roll = RngUtils.int_range(0, 100)
-		if roll > 50:
+		if roll < 75:
 			breakable.queue_free()
 
 func walk() -> Array:
@@ -39,13 +42,16 @@ func place_rooms(path) -> void:
 	var prev_mini_room = minirooms.get_node("SafeMiniRoom")
 	prev_mini_room.room = start_room.get_instance_id()    
 	var occupied
+	var room_order = RngUtils.array(rooms, 8, true)
+	var room_index = 0
 	for direction in path:
 		occupied = position_occupied(direction, prev_room_pos, prev_room)
 		if len(occupied) <= 0:
-			prev_room = add_new_room(direction, prev_room, prev_room_pos)
+			prev_room = add_new_room(direction, prev_room, prev_room_pos, room_order[room_index])
 			prev_mini_room = update_minimap(direction, prev_mini_room, prev_room.get_instance_id())
 			prev_room_pos = prev_room.global_position
 			curr_num_rooms += 1
+			room_index += 1
 			if curr_num_rooms >= max_rooms:
 				break
 		else:
@@ -65,21 +71,29 @@ func add_exit_room():
 		"north":
 			exit_room_instance.global_position = \
 				Vector2(farthest_room.global_position.x, farthest_room.global_position.y - farthest_room.get_size().y)
+			farthest_room.exits.append("north")
+			exit_room_instance.exits.append("south")
 			farthest_room.unused_connections.pop_at(farthest_room.unused_connections.find("north"))
 			exit_room_instance.unused_connections.pop_at(exit_room_instance.unused_connections.find("south"))
 		"south":
 			exit_room_instance.global_position = \
 				Vector2(farthest_room.global_position.x, farthest_room.global_position.y + farthest_room.get_size().y)
+			farthest_room.exits.append("south")
+			exit_room_instance.exits.append("north")
 			farthest_room.unused_connections.pop_at(farthest_room.unused_connections.find("south"))
 			exit_room_instance.unused_connections.pop_at(exit_room_instance.unused_connections.find("north"))
 		"east":
 			exit_room_instance.global_position = \
 				Vector2(farthest_room.global_position.x + farthest_room.get_size().x, farthest_room.global_position.y)
+			farthest_room.exits.append("east")
+			exit_room_instance.exits.append("west")
 			farthest_room.unused_connections.pop_at(farthest_room.unused_connections.find("east"))
 			exit_room_instance.unused_connections.pop_at(exit_room_instance.unused_connections.find("west"))
 		"west":
 			exit_room_instance.global_position = \
 				Vector2(farthest_room.global_position.x - farthest_room.get_size().x, farthest_room.global_position.y)
+			farthest_room.exits.append("west")
+			exit_room_instance.exits.append("east")
 			farthest_room.unused_connections.pop_at(farthest_room.unused_connections.find("west"))
 			exit_room_instance.unused_connections.pop_at(exit_room_instance.unused_connections.find("east"))
 	$Rooms.add_child(exit_room_instance)
@@ -97,8 +111,7 @@ func get_farthest_room() -> Room:
 			farthest_distance = curr_dist
 	return farthest_room
 
-func add_new_room(direction, prev_room, prev_room_pos):
-	var chosen_room = RngUtils.array(GameData.rooms)[0]
+func add_new_room(direction, prev_room, prev_room_pos, chosen_room):
 	if chosen_room["type"] != "enemy":
 		GameData.rooms.pop_at(GameData.rooms.find(chosen_room))
 	var room_instance: Room = chosen_room["resource"].instantiate()
@@ -200,7 +213,7 @@ func position_occupied_helper(pos: Vector2) -> Array:
 	return []
 
 func _on_fight_start():
-	$AnimationPlayer.play("main_music_fade")
+	$AnimationPlayer.play("fade_in")
 
 func _on_fight_end():
-	$AnimationPlayer.play("fight_music_fade")
+	$AnimationPlayer.play("fade_out")

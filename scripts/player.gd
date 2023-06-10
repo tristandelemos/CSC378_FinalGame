@@ -9,9 +9,9 @@ class_name Player
 @onready var anim_player = $AnimationPlayer
 @onready var knockback_timer = $KnockbackTimer
 
-@export var speed := 300
+@export var speed := 150
 
-var curr_stamina := 100
+var curr_stamina := GameData.base_stamina
 var lock_swipe_rotation: bool = false
 var knockback: bool = false
 var knockback_dir: Vector2
@@ -21,6 +21,8 @@ var nudge_power = 0
 var nudge_direction = Vector2.ZERO
 
 func _ready() -> void:
+	staminabar.max_value = GameData.base_stamina
+	staminabar.value = curr_stamina
 	healthbar.max_value = GameData.base_player_health
 	healthbar.value = GameData.curr_player_health
 	SignalBus.health_pickup.connect(_on_health_pickup)
@@ -30,28 +32,42 @@ func _ready() -> void:
 	$PointLight2D.visible = true
 
 func _physics_process(delta) -> void:
-	if not GameData.freeze_player:
-		if curr_stamina < 100:
-			curr_stamina += 2
-			staminabar.value = curr_stamina
-		if knockback:
-			velocity = knockback_dir * 500
-		elif nudging:
-			velocity += nudge_direction * nudge_power
-		elif not dashing:
-			handle_movement()
-			handle_animation()
-		move_and_slide()
+	if curr_stamina < GameData.base_stamina:
+		curr_stamina += 2
+		staminabar.value = curr_stamina
+	if nudging and velocity == Vector2.ZERO:
+		velocity += nudge_direction * nudge_power
+	elif GameData.freeze_player:
+		velocity = Vector2.ZERO
+	elif not dashing:
+		handle_movement()
+		handle_animation()
+	move_and_slide()
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("dash"):
 		dash()
+	if event.is_action_pressed("health_potion"):
+		use_health_potion()
 
+func _on_base_stamina_update():
+	staminabar.max_value = GameData.base_stamina
+
+func use_health_potion():
+	if GameData.curr_health_potions > 0 and GameData.curr_player_health < GameData.base_player_health:
+		$DrinkSound.play()
+		GameData.curr_player_health += 50
+		if GameData.curr_player_health > GameData.base_player_health:
+			GameData.curr_player_health = GameData.base_player_health
+		healthbar.value = GameData.curr_player_health
+		GameData.curr_health_potions -= 1
+		SignalBus.update_health_potion_hud.emit()
+	
 func _on_fight_start():
-	anim_player.play("fight_start")
+	anim_player.queue("fight_start")
 
 func _on_fight_end():
-	anim_player.play("fight_end")
+	anim_player.queue("fight_end")
 
 func _on_drop_current_weapon():
 	var dropped_weapon: Loot = loot.instantiate()
@@ -73,10 +89,11 @@ func handle_movement() -> void:
 		velocity.x = 0
 
 func dash():
-	if curr_stamina >= 100:
+	if curr_stamina >= 100 and not dashing:
+		$WooshSound.play()
 		curr_stamina -= 100
 		staminabar.value = curr_stamina
-		velocity *= 5
+		velocity *= 7
 		dashing = true
 		$DashTimer.start()
 
@@ -98,6 +115,22 @@ func handle_animation():
 			player_sprite.play("walk_left")
 	if velocity == Vector2.ZERO:
 		player_sprite.frame = 0
+		$WalkSound.stop()
+	else:
+		if not $WalkSound.playing:
+			$WalkSound.play()
+
+func look_at_mouse(direction: Vector2):
+	if direction.y > 0 and abs(direction.y) > abs(direction.x):
+		player_sprite.play("walk_front")
+	elif direction.y < 0 and abs(direction.y) > abs(direction.x):
+		player_sprite.play("walk_back")
+	elif direction.x > 0 and abs(direction.y) < abs(direction.x):
+		player_sprite.play("walk_right")
+	elif direction.x < 0 and abs(direction.y) < abs(direction.x):
+		player_sprite.play("walk_left")
+	player_sprite.stop()
+	player_sprite.frame = 0
 
 func take_damage(damage: int):
 	GameData.curr_player_health -= damage
@@ -112,6 +145,7 @@ func _on_health_pickup():
 
 func _on_hurtbox_body_entered(body: Node2D) -> void:
 	if not dashing:
+		SignalBus.player_damaged.emit()
 		take_damage(body.damage)
 		knockback_timer.start()
 		knockback = true
@@ -122,7 +156,6 @@ func _on_knockback_timer_timeout() -> void:
 
 func _on_dash_timer_timeout() -> void:
 	dashing = false
-
 
 func _on_nudge_timer_timeout() -> void:
 	nudging = false

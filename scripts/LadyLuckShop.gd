@@ -5,6 +5,8 @@ extends CanvasLayer
 @onready var increase_starting_coins_cost_label = $ColorRect/IncreaseStartingCoinsButton/Cost/Label
 @onready var increase_soul_drop_cost_label = $ColorRect/InceaseSoulDropButton/Cost/Label
 @onready var increase_starting_health_cost_label = $ColorRect/IncreaseStartingHealthButton/Cost/Label
+@onready var incrase_potion_cost_label = $ColorRect/IncreasePotionButton/Cost/Label
+@onready var increase_dash_cost_label = $ColorRect/IncreaseDashButton/Cost/Label
 
 func _ready() -> void:
 	visible = false
@@ -68,3 +70,29 @@ func _on_increase_starting_health_button_pressed() -> void:
 		GameData.increase_starting_health_cost += 10
 		increase_starting_health_cost_label.text = "%d" % GameData.increase_starting_health_cost
 		SignalBus.soul_collected.emit()
+
+
+func _on_increase_potion_button_pressed() -> void:
+	if GameData.curr_souls >= GameData.increase_potion_cost:
+		GameData.curr_souls -= GameData.increase_potion_cost
+		GameData.increase_potion_cost += 15
+		incrase_potion_cost_label.text = "%d" % GameData.increase_potion_cost
+		SignalBus.soul_collected.emit()
+		
+		GameData.base_health_potions += 1
+		GameData.curr_health_potions += 1
+		SignalBus.update_health_potion_hud.emit()
+		if GameData.base_health_potions >= 3:
+			$ColorRect/IncreasePotionButton.queue_free()
+
+
+func _on_increase_dash_button_pressed() -> void:
+	if GameData.curr_souls >= GameData.increase_dash_cost:
+		GameData.curr_souls -= GameData.increase_dash_cost
+		GameData.increase_dash_cost += 30
+		increase_dash_cost_label.text = "%d" % GameData.increase_dash_cost
+		SignalBus.soul_collected.emit()
+		
+		GameData.base_stamina += 100
+		if GameData.base_stamina >= 300:
+			$ColorRect/IncreaseDashButton.queue_free()

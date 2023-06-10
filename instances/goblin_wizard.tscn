@@ -1,12 +1,12 @@
-[gd_scene load_steps=15 format=3 uid="uid://cibsnl6u0h5e6"]
+[gd_scene load_steps=16 format=3 uid="uid://cibsnl6u0h5e6"]
 
 [ext_resource type="Script" path="res://scripts/goblin_wizard.gd" id="1_ad57f"]
 [ext_resource type="Texture2D" uid="uid://ou8y6b23xkcu" path="res://sprites/enemies/goblin_wizard1.png" id="2_j3np7"]
 [ext_resource type="Texture2D" uid="uid://d28v16gkul0jx" path="res://sprites/enemies/goblin_wizard2.png" id="3_12ocm"]
 [ext_resource type="Theme" uid="uid://c6kvh2v5r71lh" path="res://default_theme.tres" id="4_kix7q"]
-[ext_resource type="AudioStream" uid="uid://5u31dju1fq6o" path="res://sounds/331621__hykenfreak__flame-ignition.wav" id="5_pluvy"]
-[ext_resource type="AudioStream" uid="uid://dddk54pq8x10u" path="res://sounds/178347__andromadax24__s_teleport_03.wav" id="6_rlukv"]
-[ext_resource type="AudioStream" uid="uid://cf70r2nerjrno" path="res://sounds/178347__andromadax24__s_teleport_03_reverse.wav" id="7_t8aqv"]
+[ext_resource type="AudioStream" uid="uid://5u31dju1fq6o" path="res://sounds/331621__hykenfreak__flame-ignition.wav" id="5_81f7f"]
+[ext_resource type="AudioStream" uid="uid://dddk54pq8x10u" path="res://sounds/178347__andromadax24__s_teleport_03.wav" id="6_4qy2a"]
+[ext_resource type="AudioStream" uid="uid://cf70r2nerjrno" path="res://sounds/178347__andromadax24__s_teleport_03_reverse.wav" id="7_40xug"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_58dvv"]
 animations = [{
@@ -26,8 +26,9 @@ animations = [{
 radius = 12.0
 height = 42.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_njhut"]
-size = Vector2(25.5, 38)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ojfbq"]
+radius = 4.5
+height = 16.0
 
 [sub_resource type="Animation" id="Animation_ucf7j"]
 length = 0.001
@@ -154,7 +155,7 @@ tracks/5/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": ExtResource("6_rlukv")
+"stream": ExtResource("6_4qy2a")
 }],
 "times": PackedFloat32Array(0)
 }
@@ -162,7 +163,7 @@ tracks/5/use_blend = true
 
 [sub_resource type="Animation" id="Animation_5sm72"]
 resource_name = "attack"
-length = 6.0
+length = 6.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -170,7 +171,7 @@ tracks/0/path = NodePath("AnimatedSprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 4),
+"times": PackedFloat32Array(0, 2.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [1, 0]
@@ -182,7 +183,7 @@ tracks/1/path = NodePath(".:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(5, 6),
+"times": PackedFloat32Array(5.5, 6.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(1, 1), Vector2(1e-05, 1)]
@@ -194,7 +195,7 @@ tracks/2/path = NodePath("CollisionShape2D:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(6),
+"times": PackedFloat32Array(6.5),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
@@ -206,7 +207,7 @@ tracks/3/path = NodePath("Hitbox/CollisionShape2D:disabled")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(6),
+"times": PackedFloat32Array(6.5),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
@@ -218,7 +219,7 @@ tracks/4/path = NodePath("TeleportTimer")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(6),
+"times": PackedFloat32Array(6.5),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [-1],
@@ -232,7 +233,7 @@ tracks/5/path = NodePath("OrbCooldownTimer")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0, 4),
+"times": PackedFloat32Array(0, 2.5),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [-1],
@@ -249,7 +250,7 @@ tracks/6/path = NodePath(".")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(6),
+"times": PackedFloat32Array(6.5),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
@@ -266,17 +267,100 @@ tracks/7/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": ExtResource("7_t8aqv")
+"stream": ExtResource("7_40xug")
 }],
-"times": PackedFloat32Array(5)
+"times": PackedFloat32Array(5.5)
 }
 tracks/7/use_blend = true
+
+[sub_resource type="Animation" id="Animation_ts1qo"]
+resource_name = "disappear"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hitbox/CollisionShape2D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TeleportTimer")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [-1],
+"method": &"start"
+}]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"change_position"
+}]
+}
+tracks/4/type = "audio"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("TeleportAudio")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("7_40xug")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/4/use_blend = true
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1e-05, 1)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_r8q6k"]
 _data = {
 "RESET": SubResource("Animation_ucf7j"),
 "appear": SubResource("Animation_j54o7"),
-"attack": SubResource("Animation_5sm72")
+"attack": SubResource("Animation_5sm72"),
+"disappear": SubResource("Animation_ts1qo")
 }
 
 [node name="GoblinWizard" type="CharacterBody2D" groups=["Enemy"]]
@@ -298,7 +382,7 @@ collision_mask = 32
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2(0.5, 2)
-shape = SubResource("RectangleShape2D_njhut")
+shape = SubResource("CapsuleShape2D_ojfbq")
 
 [node name="Healthbar" type="ProgressBar" parent="."]
 offset_left = -13.0
@@ -310,7 +394,7 @@ max_value = 15.0
 show_percentage = false
 
 [node name="AttackAudio" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("5_pluvy")
+stream = ExtResource("5_81f7f")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -327,6 +411,10 @@ one_shot = true
 one_shot = true
 
 [node name="OrbCooldownTimer" type="Timer" parent="."]
+wait_time = 0.6
+
+[node name="StunTimer" type="Timer" parent="."]
+one_shot = true
 
 [node name="TeleportAudio" type="AudioStreamPlayer2D" parent="."]
 volume_db = 5.0
@@ -335,3 +423,4 @@ volume_db = 5.0
 [connection signal="timeout" from="AttackCooldown" to="." method="_on_attack_cooldown_timeout"]
 [connection signal="timeout" from="TeleportTimer" to="." method="_on_teleport_timer_timeout"]
 [connection signal="timeout" from="OrbCooldownTimer" to="." method="_on_orb_cooldown_timer_timeout"]
+[connection signal="timeout" from="StunTimer" to="." method="_on_stun_timer_timeout"]

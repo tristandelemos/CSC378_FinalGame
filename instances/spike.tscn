@@ -25,10 +25,10 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_daq4f"]
-size = Vector2(32, 32)
+size = Vector2(25.5, 26)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jpens"]
-size = Vector2(32, 32)
+size = Vector2(25.5, 26)
 
 [sub_resource type="Animation" id="Animation_obv2d"]
 length = 0.001
@@ -122,6 +122,7 @@ collision_layer = 0
 collision_mask = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0.25, 0)
 shape = SubResource("RectangleShape2D_daq4f")
 disabled = true
 
@@ -129,6 +130,7 @@ disabled = true
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detector"]
+position = Vector2(0.25, 0)
 shape = SubResource("RectangleShape2D_jpens")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

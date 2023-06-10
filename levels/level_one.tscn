@@ -5,12 +5,12 @@
 [ext_resource type="PackedScene" uid="uid://7sdv6fbfhxgg" path="res://instances/rooms/start_room.tscn" id="2_la0t7"]
 [ext_resource type="Script" path="res://scripts/room.gd" id="3_emq4c"]
 [ext_resource type="PackedScene" uid="uid://ba2y6exjmtk6h" path="res://instances/player.tscn" id="3_rlo56"]
-[ext_resource type="AudioStream" uid="uid://dpvx8k45kgejn" path="res://sounds/spotifydown.com - 8 Bit Adventure.mp3" id="5_wq40m"]
 [ext_resource type="AudioStream" uid="uid://cqvp58f5xvr6v" path="res://sounds/spotifydown.com - Funky Sundays.mp3" id="6_04h0s"]
 [ext_resource type="AudioStream" uid="uid://djdk6eyxitosc" path="res://sounds/spotifydown.com - Anthem.mp3" id="7_0syfr"]
 [ext_resource type="AudioStream" uid="uid://bgpwl5guyfw56" path="res://sounds/spotifydown.com - Chodge Darger.mp3" id="8_j7etl"]
 [ext_resource type="AudioStream" uid="uid://fcp76w5wopht" path="res://sounds/spotifydown.com - Downforce.mp3" id="9_h441r"]
 [ext_resource type="AudioStream" uid="uid://smydvyfcx5f4" path="res://sounds/spotifydown.com - Haters Gonna Hate.mp3" id="10_oqhmc"]
+[ext_resource type="AudioStream" uid="uid://cxit0tuhsj0sc" path="res://sounds/dungeon_ambiance.mp3" id="11_btts6"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_wsibm"]
 streams_count = 5
@@ -26,24 +26,24 @@ stream_3/weight = 1.0
 stream_4/stream = ExtResource("10_oqhmc")
 stream_4/weight = 1.0
 
-[sub_resource type="Animation" id="Animation_gi1o7"]
+[sub_resource type="Animation" id="Animation_i0bfr"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:volume_db")
+tracks/0/path = NodePath("Music:volume_db")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.0]
+"values": [-50.0]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".:playing")
+tracks/1/path = NodePath("Music:playing")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -52,139 +52,66 @@ tracks/1/keys = {
 "update": 1,
 "values": [false]
 }
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("../FightMusic:playing")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("../FightMusic:volume_db")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
 
-[sub_resource type="Animation" id="Animation_bpg8d"]
-resource_name = "fight_music_fade"
-length = 2.0
+[sub_resource type="Animation" id="Animation_nnaic"]
+resource_name = "fade_in"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../FightMusic:volume_db")
+tracks/0/path = NodePath("Music:volume_db")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, -50.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../FightMusic:playing")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(1),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:playing")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(1),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath(".:volume_db")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(1, 2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [-50.0, 1.66533e-15]
 }
-
-[sub_resource type="Animation" id="Animation_iftx6"]
-resource_name = "main_music_fade"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:volume_db")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, -50.0]
-}
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".:playing")
+tracks/1/path = NodePath("Music:playing")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(1),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("../FightMusic:playing")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(1),
+"times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
 }
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("../FightMusic:volume_db")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
+
+[sub_resource type="Animation" id="Animation_o6t6o"]
+resource_name = "fade_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Music:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
 "times": PackedFloat32Array(1),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.0]
+"values": [-50.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Music:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_3faob"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gnqfd"]
 _data = {
-"RESET": SubResource("Animation_gi1o7"),
-"fight_music_fade": SubResource("Animation_bpg8d"),
-"main_music_fade": SubResource("Animation_iftx6")
+"RESET": SubResource("Animation_i0bfr"),
+"fade_in": SubResource("Animation_nnaic"),
+"fade_out": SubResource("Animation_o6t6o")
 }
 
 [node name="LevelOne" type="Node2D"]
@@ -210,17 +137,16 @@ color = Color(0.239216, 0.239216, 0.239216, 1)
 [node name="Player" parent="." instance=ExtResource("3_rlo56")]
 position = Vector2(0, -8)
 
-[node name="MainMusic" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("5_wq40m")
-autoplay = true
-bus = &"Music"
-
-[node name="FightMusic" type="AudioStreamPlayer" parent="."]
+[node name="Music" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_wsibm")
+volume_db = -50.0
 bus = &"Music"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-root_node = NodePath("../MainMusic")
 libraries = {
-"": SubResource("AnimationLibrary_3faob")
+"": SubResource("AnimationLibrary_gnqfd")
 }
+
+[node name="Ambiance" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_btts6")
+autoplay = true

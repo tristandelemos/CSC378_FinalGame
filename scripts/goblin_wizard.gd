@@ -3,7 +3,7 @@ extends Enemy
 @onready var anim_player = $AnimationPlayer
 @onready var orb = preload("res://instances/goblin_wizard_orb.tscn")
 
-var knocback_val = 500
+var knocback_val = 200
 var spawn_points
 
 func _ready() -> void:
@@ -18,6 +18,16 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity = Vector2(0, 0)
 	move_and_slide()
+
+func take_damage(damage: int):
+	super.take_damage(damage)
+	$AnimationPlayer.pause()
+	$AnimationPlayer.seek(0.0)
+	scale = Vector2(1, 1)
+	$AnimatedSprite2D.frame = 0
+	$AttackCooldown.stop()
+	$OrbCooldownTimer.stop()
+	$StunTimer.start()
 
 func change_position():
 	var chosen_pos = RngUtils.array(spawn_points)[0]
@@ -34,3 +44,7 @@ func _on_orb_cooldown_timer_timeout() -> void:
 	var orb_instance = orb.instantiate()
 	orb_instance.global_position = global_position
 	get_tree().current_scene.call_deferred("add_child", orb_instance)
+
+
+func _on_stun_timer_timeout() -> void:
+	$AnimationPlayer.play("disappear")

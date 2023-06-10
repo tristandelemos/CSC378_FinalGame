@@ -27,7 +27,13 @@ func melee_attack():
 				anim_player.play("big_swipe")
 
 func nudge():
-	player.nudge(global_position.direction_to(get_global_mouse_position()), 50)
+	player.nudge(global_position.direction_to(get_global_mouse_position()), 500)
+
+func update_player_sprite():
+	player.look_at_mouse(global_position.direction_to(get_global_mouse_position()))
+
+func toggle_player_movement():
+	GameData.freeze_player = not GameData.freeze_player
 
 func ranged_attack():
 	match(GameData.curr_player_weapon):

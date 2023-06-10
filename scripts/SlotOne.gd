@@ -4,7 +4,7 @@ class_name ShopSlot
 @onready var loot = preload("res://instances/loot.tscn")
 @onready var label = $Label
 
-@export var cost: int = 100
+@export var cost: int = 300
 
 func green_text():
 	label.add_theme_color_override("font_color", Color(0, 255, 0, 255))

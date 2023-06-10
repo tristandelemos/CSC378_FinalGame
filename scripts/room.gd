@@ -9,7 +9,12 @@ var unused_connections: Array[String]= ["north", "east", "south", "west"]
 var is_active := false
 
 const wall_tile_coords := Vector2i(0, 0)
-const floor_tile_coords := Vector2i(1, 0)
+const north_wall_tile_coords := Vector2i(1, 2)
+const south_wall_tile_coords := Vector2i(1, 0)
+const west_wall_tile_coords := Vector2i(2, 1)
+const east_wall_tile_coords := Vector2i(0, 1)
+
+const floor_tile_coords := Vector2i(4, 0)
 
 func _ready():
 	$ColorRect.visible = true
@@ -37,26 +42,30 @@ func close_unused_connections():
 					$NorthExit.position,
 					Vector2i(0, 0),
 					Vector2i(-1, 0),
-					wall_tile_coords)
+					2,
+					north_wall_tile_coords)
 			"south":
 				set_exit_tile(
 					$SouthExit.position,
 					Vector2i(0, -1),
 					Vector2i(-1, -1),
-					wall_tile_coords)
+					2,
+					south_wall_tile_coords)
 			"east":
 				set_exit_tile(
 					$EastExit.position,
 					Vector2i(-1, -1),
 					Vector2i(-1, 0),
-					wall_tile_coords)
+					2,
+					east_wall_tile_coords)
 			"west":
 				set_exit_tile(
 					$WestExit.position,
 					Vector2i(0, -1),
 					Vector2i(0, 0),
-					wall_tile_coords)
+					2,
+					west_wall_tile_coords)
 
-func set_exit_tile(tile_pos: Vector2, offset1: Vector2i, offset2: Vector2i, tile_coords):
-	tilemap.set_cell(0, tilemap.local_to_map(tile_pos) + offset1, 0, tile_coords)
-	tilemap.set_cell(0, tilemap.local_to_map(tile_pos) + offset2, 0, tile_coords)
+func set_exit_tile(tile_pos: Vector2, offset1: Vector2i, offset2: Vector2i, source_id: int, tile_coords):
+	tilemap.set_cell(0, tilemap.local_to_map(tile_pos) + offset1, source_id, tile_coords)
+	tilemap.set_cell(0, tilemap.local_to_map(tile_pos) + offset2, source_id, tile_coords)

@@ -209,8 +209,9 @@ animations = [{
 radius = 12.0
 height = 42.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_njhut"]
-size = Vector2(25.5, 38)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ttu6k"]
+radius = 6.5
+height = 28.0
 
 [node name="Enemy" type="CharacterBody2D" groups=["Enemy"]]
 z_index = 2
@@ -226,6 +227,7 @@ frame = 1
 frame_progress = 0.019707
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("CapsuleShape2D_l118f")
 
 [node name="Hitbox" type="Area2D" parent="."]
@@ -234,7 +236,7 @@ collision_mask = 32
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2(0.5, 2)
-shape = SubResource("RectangleShape2D_njhut")
+shape = SubResource("CapsuleShape2D_ttu6k")
 
 [node name="KnockbackTimer" type="Timer" parent="."]
 wait_time = 0.1

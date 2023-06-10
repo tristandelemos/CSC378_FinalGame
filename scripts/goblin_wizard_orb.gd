@@ -9,7 +9,7 @@ func _ready() -> void:
 			.current_scene.get_node("Player")
 			.global_position)
 
-func _on_body_entered(body: Node2D) -> void:
-	if body.is_in_group("Player"):
-		body.take_damage(damage)
+
+func _on_area_entered(area: Area2D) -> void:
+	area.get_parent().take_damage(damage)
 	queue_free()
