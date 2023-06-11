@@ -1,6 +1,7 @@
 extends CanvasLayer
 class_name HUD
 
+@onready var encyclopedia = $Encyclopedia
 @onready var minimap = $Minimap
 @onready var minirooms = $Minimap/MiniRooms
 @onready var coin_count: Label = $Coin/Count
@@ -11,6 +12,7 @@ class_name HUD
 @onready var health_bottle_texture = preload("res://sprites/health_potion.png")
 
 var current_potion_index = 0
+var e_toggle = false
 
 func _ready() -> void:
 	$DeathScreen.visible = false
@@ -38,6 +40,8 @@ func _input(event: InputEvent) -> void:
 		minimap.visible = true
 	if event.is_action_released("minimap"):
 		minimap.visible = false
+	if event.is_action_pressed("encyclopedia"):
+		toggle_encyclopedia(!e_toggle)
 
 func _on_update_health_potion_hud():
 	for i in range(GameData.base_health_potions):
@@ -89,3 +93,46 @@ func _on_button_pressed() -> void:
 	get_tree().paused = false
 	GameData.reset()
 	get_tree().change_scene_to_file("res://levels/overworld.tscn")
+	
+### ENCYCLOPEDIA FUNCTIONS ###encyclopedia
+func toggle_encyclopedia(toggle: bool):
+	encyclopedia.visible = toggle
+	get_tree().paused = toggle
+	update_enemies($Encyclopedia/VBoxContainer/Characters/HBoxContainer/Goblin/Goblin/Goblin, "goblin")
+	update_enemies($"Encyclopedia/VBoxContainer/Characters/HBoxContainer/Goblin Wizard/Goblin Wizard/Goblin Wizard", "goblinWizard")
+	update_people($"Encyclopedia/VBoxContainer/Characters/HBoxContainer/Lady Luck/Lady Luck/Lady Luck", "ladyLuck")
+	update_people($Encyclopedia/VBoxContainer/Characters/HBoxContainer/Shopkeeper/Shopkeeper/Shopkeeper, "shopkeeper")
+	update_stats($Encyclopedia/VBoxContainer/TopRow/HBoxContainer/Stats/Stats/VBoxContainer)
+	e_toggle = toggle
+	
+func update_enemies(node_path : Node, enemy_name : String):
+	if Encyclopedia.characters[enemy_name].amount_killed > 0:
+		node_path.get_child(0).texture = load(Encyclopedia.characters[enemy_name].image_path)
+		node_path.get_child(1).text = Encyclopedia.characters[enemy_name].name
+		node_path.get_child(2).text = "Type: " + Encyclopedia.characters[enemy_name].type
+		node_path.get_child(3).text = Encyclopedia.characters[enemy_name].description
+		node_path.get_child(4).text = "Total Killed: " + str(Encyclopedia.characters[enemy_name].amount_killed)
+
+func update_people(node_path : Node, character : String):
+	if character == "ladyLuck":
+		if GameData.lady_luck_intro:
+			node_path.get_child(0).texture = load(Encyclopedia.characters[character].image_path)
+			node_path.get_child(1).text = Encyclopedia.characters[character].name
+			node_path.get_child(2).text = "Type: " + Encyclopedia.characters[character].type
+			node_path.get_child(3).text = Encyclopedia.characters[character].description
+			node_path.get_child(4).text = Encyclopedia.characters[character].amount_killed
+	if character == "shopkeeper":
+		if GameData.shopkeeper_room_unlocked:
+			node_path.get_child(0).texture = load(Encyclopedia.characters[character].image_path)
+			node_path.get_child(1).text = Encyclopedia.characters[character].name
+			node_path.get_child(2).text = "Type: " + Encyclopedia.characters[character].type
+			node_path.get_child(3).text = Encyclopedia.characters[character].description
+			node_path.get_child(4).text = Encyclopedia.characters[character].amount_killed
+
+func update_stats(node_path : Node):
+	node_path.get_child(1).text = "Total deaths: " + str(GameData.deaths)
+	node_path.get_child(2).text = "Total # of kills: " + str(Encyclopedia.total_kills)
+	node_path.get_child(3).text = "Most # of kills in a run: " + str(Encyclopedia.most_monsters_killed)
+	node_path.get_child(4).text = "Current run kill count: " + str(Encyclopedia.current_kills)
+	node_path.get_child(5).text = "Total coins collected: " + str(Encyclopedia.total_coins_collected)
+	node_path.get_child(6).text = "Total rooms entered: " + str(Encyclopedia.rooms_entered)

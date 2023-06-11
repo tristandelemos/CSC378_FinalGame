@@ -20,6 +20,8 @@ func interact() -> void:
 	SignalBus.update_weapon_slot.emit(weapon)
 	SignalBus.drop_current_weapon.emit()
 	GameData.curr_player_weapon = weapon
+	if weapon not in Encyclopedia.weapons_collected:
+		Encyclopedia.weapons_collected.append(weapon)
 	queue_free()
 
 func set_loot_sprite(sprite):

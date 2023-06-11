@@ -368,6 +368,7 @@ z_index = 2
 collision_layer = 68
 collision_mask = 34
 script = ExtResource("1_ad57f")
+enemy_type = "goblinWizard"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(1.3, 1.3)

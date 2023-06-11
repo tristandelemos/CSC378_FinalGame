@@ -1,0 +1,395 @@
+[gd_scene load_steps=7 format=3 uid="uid://4ovbrst75a56"]
+
+[ext_resource type="Theme" uid="uid://c6kvh2v5r71lh" path="res://default_theme.tres" id="1_uw187"]
+[ext_resource type="Texture2D" uid="uid://bq80reny3n6np" path="res://sprites/main character/t_front_facing3.png" id="2_phykc"]
+[ext_resource type="Texture2D" uid="uid://cnxl8ib5bjfvn" path="res://sprites/enemies/unknown_goblin.png" id="3_xsn1k"]
+[ext_resource type="Texture2D" uid="uid://b02k8yjmpvrix" path="res://sprites/enemies/unknown_goblin_wizard.png" id="4_py0u6"]
+[ext_resource type="Texture2D" uid="uid://dhepbeitiiwb1" path="res://sprites/unknown_lady_luck.png" id="5_hci5h"]
+[ext_resource type="Texture2D" uid="uid://mgiwun0nn4ah" path="res://sprites/shopkeeper/unknown_shopkeeper.png" id="6_jpy6a"]
+
+[node name="Encyclopedia" type="ColorRect"]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = -720.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0.207843, 0.207843, 0.207843, 0.682353)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_uw187")
+theme_override_font_sizes/font_size = 50
+text = "GAME PAUSED / INFO SCREEN"
+horizontal_alignment = 1
+
+[node name="TopRow" type="ColorRect" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+color = Color(1, 1, 1, 0)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/TopRow"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer/TopRow/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ColorRect2" type="ColorRect" parent="VBoxContainer/TopRow/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ColorRect3" type="ColorRect" parent="VBoxContainer/TopRow/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Characters" type="ColorRect" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+color = Color(1, 1, 1, 0)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Characters"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Telonia" type="ColorRect" parent="VBoxContainer/Characters/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(1, 0.211765, 1, 0)
+
+[node name="Telonia" type="ColorRect" parent="VBoxContainer/Characters/HBoxContainer/Telonia"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.02
+anchor_top = 0.1
+anchor_right = 0.98
+anchor_bottom = 0.95
+color = Color(0, 0, 0, 1)
+
+[node name="Telonia" type="VBoxContainer" parent="VBoxContainer/Characters/HBoxContainer/Telonia/Telonia"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Image" type="TextureRect" parent="VBoxContainer/Characters/HBoxContainer/Telonia/Telonia/Telonia"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("2_phykc")
+stretch_mode = 5
+
+[node name="Title" type="Label" parent="VBoxContainer/Characters/HBoxContainer/Telonia/Telonia/Telonia"]
+layout_mode = 2
+theme = ExtResource("1_uw187")
+theme_override_font_sizes/font_size = 35
+text = "Telonia"
+autowrap_mode = 3
+
+[node name="Type" type="Label" parent="VBoxContainer/Characters/HBoxContainer/Telonia/Telonia/Telonia"]
+layout_mode = 2
+theme = ExtResource("1_uw187")
+text = "Type: Protagonist"
+autowrap_mode = 3
+
+[node name="Description" type="Label" parent="VBoxContainer/Characters/HBoxContainer/Telonia/Telonia/Telonia"]
+layout_mode = 2
+theme = ExtResource("1_uw187")
+text = "You are the main character"
+autowrap_mode = 3
+
+[node name="Amount Killed" type="Label" parent="VBoxContainer/Characters/HBoxContainer/Telonia/Telonia/Telonia"]
+layout_mode = 2
+theme = ExtResource("1_uw187")
+text = "Deaths: 0"
+
+[node name="Goblin" type="ColorRect" parent="VBoxContainer/Characters/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(1, 0.211765, 1, 0)
+
+[node name="Goblin" type="ColorRect" parent="VBoxContainer/Characters/HBoxContainer/Goblin"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.02
+anchor_top = 0.1
+anchor_right = 0.98
+anchor_bottom = 0.95
+color = Color(0, 0, 0, 1)
+
+[node name="Goblin" type="VBoxContainer" parent="VBoxContainer/Characters/HBoxContainer/Goblin/Goblin"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Image" type="TextureRect" parent="VBoxContainer/Characters/HBoxContainer/Goblin/Goblin/Goblin"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("3_xsn1k")
+stretch_mode = 5
+
+[node name="Title" type="Label" parent="VBoxContainer/Characters/HBoxContainer/Goblin/Goblin/Goblin"]
+layout_mode = 2
+theme = ExtResource("1_uw187")
+theme_override_font_sizes/font_size = 35
+text = "????"
+autowrap_mode = 3
+
+[node name="Type" type="Label" parent="VBoxContainer/Characters/HBoxContainer/Goblin/Goblin/Goblin"]
+layout_mode = 2
+theme = ExtResource("1_uw187")
+text = "????"
+autowrap_mode = 3
+
+[node name="Description" type="Label" parent="VBoxContainer/Characters/HBoxContainer/Goblin/Goblin/Goblin"]
+layout_mode = 2
+theme = ExtResource("1_uw187")
+text = "????
+????"
+autowrap_mode = 3
+
+[node name="Amount Killed" type="Label" parent="VBoxContainer/Characters/HBoxContainer/Goblin/Goblin/Goblin"]
+layout_mode = 2
+theme = ExtResource("1_uw187")
+text = "Killed: 0"
+
+[node name="Goblin Wizard" type="ColorRect" parent="VBoxContainer/Characters/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(0.290196, 0.290196, 1, 0)
+
+[node name="Goblin Wizard" type="ColorRect" parent="VBoxContainer/Characters/HBoxContainer/Goblin Wizard"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.02
+anchor_top = 0.1
+anchor_right = 0.98
+anchor_bottom = 0.95
+color = Color(0, 0, 0, 1)
+
+[node name="Goblin Wizard" type="VBoxContainer" parent="VBoxContainer/Characters/HBoxContainer/Goblin Wizard/Goblin Wizard"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Image" type="TextureRect" parent="VBoxContainer/Characters/HBoxContainer/Goblin Wizard/Goblin Wizard/Goblin Wizard"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("4_py0u6")
+stretch_mode = 5
+
+[node name="Title" type="Label" parent="VBoxContainer/Characters/HBoxContainer/Goblin Wizard/Goblin Wizard/Goblin Wizard"]
+layout_mode = 2
+theme = ExtResource("1_uw187")
+theme_override_font_sizes/font_size = 35
+text = "????"
+autowrap_mode = 3
+
+[node name="Type" type="Label" parent="VBoxContainer/Characters/HBoxContainer/Goblin Wizard/Goblin Wizard/Goblin Wizard"]
+layout_mode = 2
+theme = ExtResource("1_uw187")
+text = "????"
+autowrap_mode = 3
+
+[node name="Description" type="Label" parent="VBoxContainer/Characters/HBoxContainer/Goblin Wizard/Goblin Wizard/Goblin Wizard"]
+layout_mode = 2
+theme = ExtResource("1_uw187")
+text = "????
+????"
+autowrap_mode = 3
+
+[node name="Amount Killed" type="Label" parent="VBoxContainer/Characters/HBoxContainer/Goblin Wizard/Goblin Wizard/Goblin Wizard"]
+layout_mode = 2
+theme = ExtResource("1_uw187")
+text = "Killed: 0"
+
+[node name="Lady Luck" type="ColorRect" parent="VBoxContainer/Characters/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(0.290196, 0.290196, 1, 0)
+
+[node name="Lady Luck" type="ColorRect" parent="VBoxContainer/Characters/HBoxContainer/Lady Luck"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.02
+anchor_top = 0.1
+anchor_right = 0.98
+anchor_bottom = 0.95
+color = Color(0, 0, 0, 1)
+
+[node name="Lady Luck" type="VBoxContainer" parent="VBoxContainer/Characters/HBoxContainer/Lady Luck/Lady Luck"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Image" type="TextureRect" parent="VBoxContainer/Characters/HBoxContainer/Lady Luck/Lady Luck/Lady Luck"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("5_hci5h")
+stretch_mode = 5
+
+[node name="Title" type="Label" parent="VBoxContainer/Characters/HBoxContainer/Lady Luck/Lady Luck/Lady Luck"]
+layout_mode = 2
+theme = ExtResource("1_uw187")
+theme_override_font_sizes/font_size = 35
+text = "????"
+autowrap_mode = 3
+
+[node name="Type" type="Label" parent="VBoxContainer/Characters/HBoxContainer/Lady Luck/Lady Luck/Lady Luck"]
+layout_mode = 2
+theme = ExtResource("1_uw187")
+text = "????"
+autowrap_mode = 3
+
+[node name="Description" type="Label" parent="VBoxContainer/Characters/HBoxContainer/Lady Luck/Lady Luck/Lady Luck"]
+layout_mode = 2
+theme = ExtResource("1_uw187")
+text = "????
+????"
+autowrap_mode = 3
+
+[node name="Amount Killed" type="Label" parent="VBoxContainer/Characters/HBoxContainer/Lady Luck/Lady Luck/Lady Luck"]
+layout_mode = 2
+theme = ExtResource("1_uw187")
+text = "????"
+
+[node name="Shopkeeper" type="ColorRect" parent="VBoxContainer/Characters/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(0.290196, 0.290196, 1, 0)
+
+[node name="Shopkeeper" type="ColorRect" parent="VBoxContainer/Characters/HBoxContainer/Shopkeeper"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.02
+anchor_top = 0.1
+anchor_right = 0.96
+anchor_bottom = 0.95
+color = Color(0, 0, 0, 1)
+
+[node name="Shopkeeper" type="VBoxContainer" parent="VBoxContainer/Characters/HBoxContainer/Shopkeeper/Shopkeeper"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Image" type="TextureRect" parent="VBoxContainer/Characters/HBoxContainer/Shopkeeper/Shopkeeper/Shopkeeper"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("6_jpy6a")
+stretch_mode = 5
+
+[node name="Title" type="Label" parent="VBoxContainer/Characters/HBoxContainer/Shopkeeper/Shopkeeper/Shopkeeper"]
+layout_mode = 2
+theme = ExtResource("1_uw187")
+theme_override_font_sizes/font_size = 35
+text = "????"
+autowrap_mode = 3
+
+[node name="Type" type="Label" parent="VBoxContainer/Characters/HBoxContainer/Shopkeeper/Shopkeeper/Shopkeeper"]
+layout_mode = 2
+theme = ExtResource("1_uw187")
+text = "????"
+autowrap_mode = 3
+
+[node name="Description" type="Label" parent="VBoxContainer/Characters/HBoxContainer/Shopkeeper/Shopkeeper/Shopkeeper"]
+layout_mode = 2
+theme = ExtResource("1_uw187")
+text = "????
+????"
+autowrap_mode = 3
+
+[node name="Amount Killed" type="Label" parent="VBoxContainer/Characters/HBoxContainer/Shopkeeper/Shopkeeper/Shopkeeper"]
+layout_mode = 2
+theme = ExtResource("1_uw187")
+text = "????"
+
+[node name="Morgath" type="ColorRect" parent="VBoxContainer/Characters/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(0.290196, 0.290196, 1, 0)
+
+[node name="Morgath" type="ColorRect" parent="VBoxContainer/Characters/HBoxContainer/Morgath"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.02
+anchor_top = 0.1
+anchor_right = 0.98
+anchor_bottom = 0.95
+color = Color(0, 0, 0, 1)
+
+[node name="Morgath" type="VBoxContainer" parent="VBoxContainer/Characters/HBoxContainer/Morgath/Morgath"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Image" type="TextureRect" parent="VBoxContainer/Characters/HBoxContainer/Morgath/Morgath/Morgath"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("3_xsn1k")
+stretch_mode = 5
+
+[node name="Title" type="Label" parent="VBoxContainer/Characters/HBoxContainer/Morgath/Morgath/Morgath"]
+layout_mode = 2
+theme = ExtResource("1_uw187")
+theme_override_font_sizes/font_size = 27
+text = "????"
+autowrap_mode = 3
+
+[node name="Type" type="Label" parent="VBoxContainer/Characters/HBoxContainer/Morgath/Morgath/Morgath"]
+layout_mode = 2
+theme = ExtResource("1_uw187")
+text = "????"
+autowrap_mode = 3
+
+[node name="Description" type="Label" parent="VBoxContainer/Characters/HBoxContainer/Morgath/Morgath/Morgath"]
+layout_mode = 2
+theme = ExtResource("1_uw187")
+text = "????
+????"
+autowrap_mode = 3
+
+[node name="Amount Killed" type="Label" parent="VBoxContainer/Characters/HBoxContainer/Morgath/Morgath/Morgath"]
+layout_mode = 2
+theme = ExtResource("1_uw187")
+text = "????"

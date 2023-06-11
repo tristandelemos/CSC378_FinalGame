@@ -25,6 +25,7 @@ func _ready():
 func _on_playable_area_entered(body):
 	super._on_playable_area_entered(body)
 	if unexplored:
+		Encyclopedia.rooms_entered += 1
 		SignalBus.fight_start.emit()
 		spawn_enemies()
 		lock_room()

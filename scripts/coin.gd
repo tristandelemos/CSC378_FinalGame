@@ -9,6 +9,7 @@ func _process(delta: float) -> void:
 		global_position += 2 * direction
 
 func _on_body_entered(body: Node2D) -> void:
+	Encyclopedia.total_coins_collected += 1
 	GameData.curr_coins += 1
 	SignalBus.coin_collected.emit()
 	anim_player.play("pickup")

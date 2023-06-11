@@ -12,6 +12,7 @@ class_name Enemy
 var health
 @export var min_coin := 1
 @export var max_coin := 5
+@export var enemy_type : String
 
 var damage
 var is_knocked_back = false
@@ -40,6 +41,11 @@ func take_damage(damage: int):
 			var coin_instance = coin.instantiate()
 			coin_instance.global_position = global_position
 			curr_scene.call_deferred("add_child", coin_instance)
+		Encyclopedia.current_kills += 1
+		Encyclopedia.total_kills += 1
+		if Encyclopedia.current_kills >= Encyclopedia.most_monsters_killed:
+			Encyclopedia.most_monsters_killed = Encyclopedia.current_kills
+		Encyclopedia.killed_enemy(enemy_type)
 		SignalBus.enemy_dead.emit()
 		queue_free()
 

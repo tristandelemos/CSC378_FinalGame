@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://gbp8n355q25b"]
+[gd_scene load_steps=19 format=3 uid="uid://gbp8n355q25b"]
 
 [ext_resource type="PackedScene" uid="uid://fe3dgrfgsn7t" path="res://instances/mini_room.tscn" id="1_7qgxg"]
 [ext_resource type="Script" path="res://scripts/hud.gd" id="1_y0bpq"]
@@ -8,6 +8,27 @@
 [ext_resource type="Texture2D" uid="uid://cu53dqgxg65n6" path="res://sprites/souls.png" id="6_lh7rm"]
 [ext_resource type="Texture2D" uid="uid://ckhyaankbch6v" path="res://sprites/hud_hit.png" id="7_ao2q4"]
 [ext_resource type="Texture2D" uid="uid://c06vfx76k8w3c" path="res://sprites/health_potion_empty.png" id="7_yecgp"]
+[ext_resource type="Texture2D" uid="uid://die0tiqbee8ey" path="res://sprites/mouse.png" id="9_w8adr"]
+[ext_resource type="Texture2D" uid="uid://77qsxvxwbo3d" path="res://sprites/main character/t_front_facing.png" id="10_cdb8n"]
+[ext_resource type="Texture2D" uid="uid://cnxl8ib5bjfvn" path="res://sprites/enemies/unknown_goblin.png" id="10_j4283"]
+[ext_resource type="Texture2D" uid="uid://b02k8yjmpvrix" path="res://sprites/enemies/unknown_goblin_wizard.png" id="11_jve6l"]
+[ext_resource type="Texture2D" uid="uid://dhepbeitiiwb1" path="res://sprites/unknown_lady_luck.png" id="12_k7rbk"]
+[ext_resource type="Texture2D" uid="uid://mgiwun0nn4ah" path="res://sprites/shopkeeper/unknown_shopkeeper.png" id="13_y7q8m"]
+
+[sub_resource type="Animation" id="Animation_ssp0e"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_ip1wo"]
 resource_name = "hit"
@@ -23,21 +44,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_ssp0e"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jp1q1"]
@@ -181,5 +187,528 @@ theme = ExtResource("5_htgiv")
 theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxFlat_nyfev")
 text = "Respawn"
+
+[node name="Encyclopedia" type="ColorRect" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0588235, 0.0588235, 0.0588235, 0.207843)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Encyclopedia"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Encyclopedia/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("5_htgiv")
+theme_override_font_sizes/font_size = 50
+text = "GAME PAUSED / INFO SCREEN"
+horizontal_alignment = 1
+
+[node name="TopRow" type="ColorRect" parent="Encyclopedia/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+color = Color(1, 1, 1, 0)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Encyclopedia/VBoxContainer/TopRow"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Controls" type="ColorRect" parent="Encyclopedia/VBoxContainer/TopRow/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(0, 0, 0, 0)
+
+[node name="Controls" type="ColorRect" parent="Encyclopedia/VBoxContainer/TopRow/HBoxContainer/Controls"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.03
+anchor_top = 0.02
+anchor_right = 0.98
+anchor_bottom = 0.98
+color = Color(0, 0, 0, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Encyclopedia/VBoxContainer/TopRow/HBoxContainer/Controls/Controls"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Encyclopedia/VBoxContainer/TopRow/HBoxContainer/Controls/Controls/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("5_htgiv")
+theme_override_font_sizes/font_size = 70
+text = "Controls"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Encyclopedia/VBoxContainer/TopRow/HBoxContainer/Controls/Controls/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Encyclopedia/VBoxContainer/TopRow/HBoxContainer/Controls/Controls/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("9_w8adr")
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="Encyclopedia/VBoxContainer/TopRow/HBoxContainer/Controls/Controls/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("5_htgiv")
+theme_override_font_sizes/font_size = 35
+text = " Right click to attack       "
+horizontal_alignment = 1
+
+[node name="Movement" type="Label" parent="Encyclopedia/VBoxContainer/TopRow/HBoxContainer/Controls/Controls/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("5_htgiv")
+theme_override_font_sizes/font_size = 35
+text = "W: Up, A: Left, S: Down, D: Right"
+horizontal_alignment = 1
+
+[node name="Pause" type="Label" parent="Encyclopedia/VBoxContainer/TopRow/HBoxContainer/Controls/Controls/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("5_htgiv")
+theme_override_font_sizes/font_size = 35
+text = "Esc to Pause/Unpause"
+horizontal_alignment = 1
+
+[node name="Minimap" type="Label" parent="Encyclopedia/VBoxContainer/TopRow/HBoxContainer/Controls/Controls/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("5_htgiv")
+theme_override_font_sizes/font_size = 35
+text = "Hold Tab to Show Minimap"
+horizontal_alignment = 1
+
+[node name="Dash" type="Label" parent="Encyclopedia/VBoxContainer/TopRow/HBoxContainer/Controls/Controls/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("5_htgiv")
+theme_override_font_sizes/font_size = 35
+text = "Shift to Dash"
+horizontal_alignment = 1
+
+[node name="Escape" type="Label" parent="Encyclopedia/VBoxContainer/TopRow/HBoxContainer/Controls/Controls/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("5_htgiv")
+theme_override_font_sizes/font_size = 35
+text = "V to Use Potion"
+horizontal_alignment = 1
+
+[node name="Interact" type="Label" parent="Encyclopedia/VBoxContainer/TopRow/HBoxContainer/Controls/Controls/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("5_htgiv")
+theme_override_font_sizes/font_size = 35
+text = "E to Interact"
+horizontal_alignment = 1
+
+[node name="StoryInfo" type="ColorRect" parent="Encyclopedia/VBoxContainer/TopRow/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(1, 1, 1, 0)
+
+[node name="StoryInfo" type="ColorRect" parent="Encyclopedia/VBoxContainer/TopRow/HBoxContainer/StoryInfo"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.01
+anchor_top = 0.02
+anchor_right = 0.98
+anchor_bottom = 0.98
+color = Color(0, 0, 0, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Encyclopedia/VBoxContainer/TopRow/HBoxContainer/StoryInfo/StoryInfo"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Encyclopedia/VBoxContainer/TopRow/HBoxContainer/StoryInfo/StoryInfo/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("5_htgiv")
+theme_override_font_sizes/font_size = 65
+text = "The Story So Far"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Encyclopedia/VBoxContainer/TopRow/HBoxContainer/StoryInfo/StoryInfo/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="Encyclopedia/VBoxContainer/TopRow/HBoxContainer/StoryInfo/StoryInfo/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.37
+texture = ExtResource("10_cdb8n")
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="Encyclopedia/VBoxContainer/TopRow/HBoxContainer/StoryInfo/StoryInfo/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("5_htgiv")
+theme_override_font_sizes/font_size = 33
+text = "You, Telonia, have entered this dungeon to find Morgath, the soul stealer. He stole your soul and now you can't die. You're on a mission to kill him so you can finally rest."
+autowrap_mode = 3
+
+[node name="Stats" type="ColorRect" parent="Encyclopedia/VBoxContainer/TopRow/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(1, 1, 1, 0)
+
+[node name="Stats" type="ColorRect" parent="Encyclopedia/VBoxContainer/TopRow/HBoxContainer/Stats"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.01
+anchor_top = 0.02
+anchor_right = 0.98
+anchor_bottom = 0.98
+color = Color(0, 0, 0, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Encyclopedia/VBoxContainer/TopRow/HBoxContainer/Stats/Stats"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Stats" type="Label" parent="Encyclopedia/VBoxContainer/TopRow/HBoxContainer/Stats/Stats/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("5_htgiv")
+theme_override_font_sizes/font_size = 65
+text = "Stats"
+horizontal_alignment = 1
+
+[node name="TotalDeaths" type="Label" parent="Encyclopedia/VBoxContainer/TopRow/HBoxContainer/Stats/Stats/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("5_htgiv")
+theme_override_font_sizes/font_size = 38
+text = "Total deaths: 0"
+
+[node name="TotalKills" type="Label" parent="Encyclopedia/VBoxContainer/TopRow/HBoxContainer/Stats/Stats/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("5_htgiv")
+theme_override_font_sizes/font_size = 38
+text = "Total # of kills: 0"
+autowrap_mode = 3
+
+[node name="MostKills" type="Label" parent="Encyclopedia/VBoxContainer/TopRow/HBoxContainer/Stats/Stats/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("5_htgiv")
+theme_override_font_sizes/font_size = 35
+text = "Most # of kills in a run: 0"
+autowrap_mode = 3
+
+[node name="CurrKills" type="Label" parent="Encyclopedia/VBoxContainer/TopRow/HBoxContainer/Stats/Stats/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("5_htgiv")
+theme_override_font_sizes/font_size = 35
+text = "Current run kill count: 0"
+autowrap_mode = 3
+
+[node name="TotalCoins" type="Label" parent="Encyclopedia/VBoxContainer/TopRow/HBoxContainer/Stats/Stats/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("5_htgiv")
+theme_override_font_sizes/font_size = 38
+text = "Total coins collected: 0"
+
+[node name="RoomsEnter" type="Label" parent="Encyclopedia/VBoxContainer/TopRow/HBoxContainer/Stats/Stats/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("5_htgiv")
+theme_override_font_sizes/font_size = 38
+text = "Total rooms entered: 0"
+
+[node name="Characters" type="ColorRect" parent="Encyclopedia/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+color = Color(1, 1, 1, 0)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Encyclopedia/VBoxContainer/Characters"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Goblin" type="ColorRect" parent="Encyclopedia/VBoxContainer/Characters/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(1, 0.211765, 1, 0)
+
+[node name="Goblin" type="ColorRect" parent="Encyclopedia/VBoxContainer/Characters/HBoxContainer/Goblin"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.02
+anchor_top = 0.05
+anchor_right = 0.98
+anchor_bottom = 0.95
+color = Color(0, 0, 0, 1)
+
+[node name="Goblin" type="VBoxContainer" parent="Encyclopedia/VBoxContainer/Characters/HBoxContainer/Goblin/Goblin"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Image" type="TextureRect" parent="Encyclopedia/VBoxContainer/Characters/HBoxContainer/Goblin/Goblin/Goblin"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("10_j4283")
+stretch_mode = 5
+
+[node name="Title" type="Label" parent="Encyclopedia/VBoxContainer/Characters/HBoxContainer/Goblin/Goblin/Goblin"]
+layout_mode = 2
+theme = ExtResource("5_htgiv")
+theme_override_font_sizes/font_size = 35
+text = "????"
+autowrap_mode = 3
+
+[node name="Type" type="Label" parent="Encyclopedia/VBoxContainer/Characters/HBoxContainer/Goblin/Goblin/Goblin"]
+layout_mode = 2
+theme = ExtResource("5_htgiv")
+text = "????"
+autowrap_mode = 3
+
+[node name="Description" type="Label" parent="Encyclopedia/VBoxContainer/Characters/HBoxContainer/Goblin/Goblin/Goblin"]
+layout_mode = 2
+theme = ExtResource("5_htgiv")
+text = "????
+????"
+autowrap_mode = 3
+
+[node name="Amount Killed" type="Label" parent="Encyclopedia/VBoxContainer/Characters/HBoxContainer/Goblin/Goblin/Goblin"]
+layout_mode = 2
+theme = ExtResource("5_htgiv")
+text = "????"
+
+[node name="Goblin Wizard" type="ColorRect" parent="Encyclopedia/VBoxContainer/Characters/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(0.290196, 0.290196, 1, 0)
+
+[node name="Goblin Wizard" type="ColorRect" parent="Encyclopedia/VBoxContainer/Characters/HBoxContainer/Goblin Wizard"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.02
+anchor_top = 0.05
+anchor_right = 0.98
+anchor_bottom = 0.95
+color = Color(0, 0, 0, 1)
+
+[node name="Goblin Wizard" type="VBoxContainer" parent="Encyclopedia/VBoxContainer/Characters/HBoxContainer/Goblin Wizard/Goblin Wizard"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Image" type="TextureRect" parent="Encyclopedia/VBoxContainer/Characters/HBoxContainer/Goblin Wizard/Goblin Wizard/Goblin Wizard"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("11_jve6l")
+stretch_mode = 5
+
+[node name="Title" type="Label" parent="Encyclopedia/VBoxContainer/Characters/HBoxContainer/Goblin Wizard/Goblin Wizard/Goblin Wizard"]
+layout_mode = 2
+theme = ExtResource("5_htgiv")
+theme_override_font_sizes/font_size = 35
+text = "????"
+autowrap_mode = 3
+
+[node name="Type" type="Label" parent="Encyclopedia/VBoxContainer/Characters/HBoxContainer/Goblin Wizard/Goblin Wizard/Goblin Wizard"]
+layout_mode = 2
+theme = ExtResource("5_htgiv")
+text = "????"
+autowrap_mode = 3
+
+[node name="Description" type="Label" parent="Encyclopedia/VBoxContainer/Characters/HBoxContainer/Goblin Wizard/Goblin Wizard/Goblin Wizard"]
+layout_mode = 2
+theme = ExtResource("5_htgiv")
+text = "????
+????"
+autowrap_mode = 3
+
+[node name="Amount Killed" type="Label" parent="Encyclopedia/VBoxContainer/Characters/HBoxContainer/Goblin Wizard/Goblin Wizard/Goblin Wizard"]
+layout_mode = 2
+theme = ExtResource("5_htgiv")
+text = "????"
+
+[node name="Lady Luck" type="ColorRect" parent="Encyclopedia/VBoxContainer/Characters/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(0.290196, 0.290196, 1, 0)
+
+[node name="Lady Luck" type="ColorRect" parent="Encyclopedia/VBoxContainer/Characters/HBoxContainer/Lady Luck"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.02
+anchor_top = 0.05
+anchor_right = 0.98
+anchor_bottom = 0.95
+color = Color(0, 0, 0, 1)
+
+[node name="Lady Luck" type="VBoxContainer" parent="Encyclopedia/VBoxContainer/Characters/HBoxContainer/Lady Luck/Lady Luck"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Image" type="TextureRect" parent="Encyclopedia/VBoxContainer/Characters/HBoxContainer/Lady Luck/Lady Luck/Lady Luck"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("12_k7rbk")
+stretch_mode = 5
+
+[node name="Title" type="Label" parent="Encyclopedia/VBoxContainer/Characters/HBoxContainer/Lady Luck/Lady Luck/Lady Luck"]
+layout_mode = 2
+theme = ExtResource("5_htgiv")
+theme_override_font_sizes/font_size = 35
+text = "????"
+autowrap_mode = 3
+
+[node name="Type" type="Label" parent="Encyclopedia/VBoxContainer/Characters/HBoxContainer/Lady Luck/Lady Luck/Lady Luck"]
+layout_mode = 2
+theme = ExtResource("5_htgiv")
+text = "????"
+autowrap_mode = 3
+
+[node name="Description" type="Label" parent="Encyclopedia/VBoxContainer/Characters/HBoxContainer/Lady Luck/Lady Luck/Lady Luck"]
+layout_mode = 2
+theme = ExtResource("5_htgiv")
+text = "????
+????"
+autowrap_mode = 3
+
+[node name="Amount Killed" type="Label" parent="Encyclopedia/VBoxContainer/Characters/HBoxContainer/Lady Luck/Lady Luck/Lady Luck"]
+layout_mode = 2
+theme = ExtResource("5_htgiv")
+text = "????"
+
+[node name="Shopkeeper" type="ColorRect" parent="Encyclopedia/VBoxContainer/Characters/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(0.290196, 0.290196, 1, 0)
+
+[node name="Shopkeeper" type="ColorRect" parent="Encyclopedia/VBoxContainer/Characters/HBoxContainer/Shopkeeper"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.02
+anchor_top = 0.05
+anchor_right = 0.96
+anchor_bottom = 0.95
+color = Color(0, 0, 0, 1)
+
+[node name="Shopkeeper" type="VBoxContainer" parent="Encyclopedia/VBoxContainer/Characters/HBoxContainer/Shopkeeper/Shopkeeper"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Image" type="TextureRect" parent="Encyclopedia/VBoxContainer/Characters/HBoxContainer/Shopkeeper/Shopkeeper/Shopkeeper"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("13_y7q8m")
+stretch_mode = 5
+
+[node name="Title" type="Label" parent="Encyclopedia/VBoxContainer/Characters/HBoxContainer/Shopkeeper/Shopkeeper/Shopkeeper"]
+layout_mode = 2
+theme = ExtResource("5_htgiv")
+theme_override_font_sizes/font_size = 35
+text = "????"
+autowrap_mode = 3
+
+[node name="Type" type="Label" parent="Encyclopedia/VBoxContainer/Characters/HBoxContainer/Shopkeeper/Shopkeeper/Shopkeeper"]
+layout_mode = 2
+theme = ExtResource("5_htgiv")
+text = "????"
+autowrap_mode = 3
+
+[node name="Description" type="Label" parent="Encyclopedia/VBoxContainer/Characters/HBoxContainer/Shopkeeper/Shopkeeper/Shopkeeper"]
+layout_mode = 2
+theme = ExtResource("5_htgiv")
+text = "????
+????"
+autowrap_mode = 3
+
+[node name="Amount Killed" type="Label" parent="Encyclopedia/VBoxContainer/Characters/HBoxContainer/Shopkeeper/Shopkeeper/Shopkeeper"]
+layout_mode = 2
+theme = ExtResource("5_htgiv")
+text = "????"
+
+[node name="Morgath" type="ColorRect" parent="Encyclopedia/VBoxContainer/Characters/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(0.290196, 0.290196, 1, 0)
+
+[node name="Morgath" type="ColorRect" parent="Encyclopedia/VBoxContainer/Characters/HBoxContainer/Morgath"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.02
+anchor_top = 0.05
+anchor_right = 0.98
+anchor_bottom = 0.95
+color = Color(0, 0, 0, 1)
+
+[node name="Morgath" type="VBoxContainer" parent="Encyclopedia/VBoxContainer/Characters/HBoxContainer/Morgath/Morgath"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Image" type="TextureRect" parent="Encyclopedia/VBoxContainer/Characters/HBoxContainer/Morgath/Morgath/Morgath"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("10_j4283")
+stretch_mode = 5
+
+[node name="Title" type="Label" parent="Encyclopedia/VBoxContainer/Characters/HBoxContainer/Morgath/Morgath/Morgath"]
+layout_mode = 2
+theme = ExtResource("5_htgiv")
+theme_override_font_sizes/font_size = 27
+text = "????"
+autowrap_mode = 3
+
+[node name="Type" type="Label" parent="Encyclopedia/VBoxContainer/Characters/HBoxContainer/Morgath/Morgath/Morgath"]
+layout_mode = 2
+theme = ExtResource("5_htgiv")
+text = "????"
+autowrap_mode = 3
+
+[node name="Description" type="Label" parent="Encyclopedia/VBoxContainer/Characters/HBoxContainer/Morgath/Morgath/Morgath"]
+layout_mode = 2
+theme = ExtResource("5_htgiv")
+text = "????
+????"
+autowrap_mode = 3
+
+[node name="Amount Killed" type="Label" parent="Encyclopedia/VBoxContainer/Characters/HBoxContainer/Morgath/Morgath/Morgath"]
+layout_mode = 2
+theme = ExtResource("5_htgiv")
+text = "????"
 
 [connection signal="pressed" from="DeathScreen/Button" to="." method="_on_button_pressed"]
