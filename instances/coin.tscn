@@ -1,18 +1,20 @@
-[gd_scene load_steps=10 format=3 uid="uid://dksblxfpx7gsl"]
+[gd_scene load_steps=11 format=3 uid="uid://dksblxfpx7gsl"]
 
 [ext_resource type="Script" path="res://scripts/coin.gd" id="1_tswo3"]
-[ext_resource type="Texture2D" uid="uid://c43164o4sn8im" path="res://sprites/coin1.png" id="2_e11ro"]
-[ext_resource type="Texture2D" uid="uid://ckeq2sgjtbwdl" path="res://sprites/coin2.png" id="3_mxlok"]
+[ext_resource type="Texture2D" uid="uid://c43164o4sn8im" path="res://sprites/coin1.png" id="2_hhriq"]
+[ext_resource type="Texture2D" uid="uid://ckeq2sgjtbwdl" path="res://sprites/coin2.png" id="3_gyum0"]
 [ext_resource type="AudioStream" uid="uid://dbtpw1rakwk6w" path="res://sounds/515738__matrixxx__retro_coin_07.wav" id="3_wj35v"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rvhw7"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_w7h32"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_e11ro")
+"texture": ExtResource("2_hhriq")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_mxlok")
+"texture": ExtResource("3_gyum0")
 }],
 "loop": true,
 "name": &"default",
@@ -117,12 +119,18 @@ z_index = 1
 collision_layer = 128
 script = ExtResource("1_tswo3")
 
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("CircleShape2D_rvhw7")
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_w7h32")
 autoplay = "default"
-frame = 1
-frame_progress = 0.647776
+frame_progress = 0.822023
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_fobv6")

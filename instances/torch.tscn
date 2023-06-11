@@ -1,0 +1,39 @@
+[gd_scene load_steps=7 format=3 uid="uid://baqdp7t7hsas8"]
+
+[ext_resource type="Texture2D" uid="uid://bcx3ptcajkrnh" path="res://sprites/torch1.png" id="1_eppn7"]
+[ext_resource type="Texture2D" uid="uid://ciq51xvtghrip" path="res://sprites/torch2.png" id="2_oijty"]
+[ext_resource type="Texture2D" uid="uid://b7b6oilqwdopi" path="res://sprites/torch3.png" id="3_2gsec"]
+[ext_resource type="Texture2D" uid="uid://c5e750ou8orh3" path="res://sprites/torch4.png" id="4_1xvxu"]
+[ext_resource type="Texture2D" uid="uid://buen3qdevlnxf" path="res://sprites/light.png" id="5_gorn2"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_n68h8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_eppn7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_oijty")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_2gsec")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_1xvxu")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="Torch" type="AnimatedSprite2D"]
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_n68h8")
+autoplay = "default"
+frame_progress = 0.140564
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+energy = 0.7
+shadow_enabled = true
+texture = ExtResource("5_gorn2")
+texture_scale = 0.7

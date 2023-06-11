@@ -53,7 +53,7 @@ func set_lock_swipe_rotation(val: bool):
 	lock_swipe_rotation = val
 
 func _on_hitbox_body_entered(body: Node2D) -> void:
-	body.take_damage(5)
+	body.take_damage(50)
 
 func _on_big_hitbox_body_entered(body: Node2D) -> void:
 	body.take_damage(10)

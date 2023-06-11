@@ -19,22 +19,22 @@ var base_soul_drop_chance: float = 0.0
 var base_health_potions: int = 0
 var base_coins: int = 0
 var base_stamina: int = 100
-var deaths: int = 0
+var deaths: int = 1
 
 var shopkeeper_room_unlocked = false
 var weapon_loot_room_unlocked = false
 var unlock_weapon_loot_room_cost := 30
-var unlock_shopkeeper_room_cost := 5
+var unlock_shopkeeper_room_cost := 0
 var increase_starting_coins_cost := 5
 var increase_soul_drop_cost := 5
 var increase_starting_health_cost := 10
-var increase_potion_cost := 10
+var increase_potion_cost := 0
 var increase_dash_cost := 30
 
 # Enemy Data
 var base_waves = 2
-var base_min_enemy_spawn = 9
-var base_max_enemy_spawn = 11
+var base_min_enemy_spawn = 4
+var base_max_enemy_spawn = 6
 var base_enemy_speed = 70.0
 var base_enemy_health = 15
 var base_enemy_damage = 10
@@ -92,6 +92,19 @@ var curr_enemy_damage = base_enemy_damage
 		"type": "enemy",
 		"resource": preload("res://instances/rooms/enemy_room_eight.tscn")
 	}
+]
+
+@onready var enemies: Array[Dictionary] = [
+	{
+		"value": preload("res://instances/enemy.tscn"),
+		"type": "goblin",
+		"weight": 80.0
+	},
+	{
+		"value": preload("res://instances/goblin_wizard.tscn"),
+		"type": "goblin_wizard",
+		"weight": 20.0
+	},
 ]
 
 func _ready() -> void:

@@ -1,8 +1,34 @@
-[gd_scene load_steps=7 format=3 uid="uid://cbdy0n67dxh7e"]
+[gd_scene load_steps=6 format=3 uid="uid://cbdy0n67dxh7e"]
 
-[ext_resource type="Texture2D" uid="uid://d1f2tslgtg0jt" path="res://sprites/spawn_circle.png" id="1_3ykvl"]
 [ext_resource type="Script" path="res://scripts/spawn_point.gd" id="1_ejnej"]
-[ext_resource type="AudioStream" uid="uid://c4g6ugqreah1m" path="res://sounds/683096__florianreichelt__woosh.mp3" id="3_b1u6f"]
+[ext_resource type="Texture2D" uid="uid://d1f2tslgtg0jt" path="res://sprites/spawn_circle.png" id="2_p4dl8"]
+
+[sub_resource type="Animation" id="Animation_5hc67"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_bm42d"]
 resource_name = "spawn"
@@ -55,38 +81,11 @@ tracks/3/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": ExtResource("3_b1u6f")
+"stream": null
 }],
 "times": PackedFloat32Array(0)
 }
 tracks/3/use_blend = true
-
-[sub_resource type="Animation" id="Animation_5hc67"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1e-05, 1e-05)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_56u76"]
 _data = {
@@ -99,7 +98,7 @@ script = ExtResource("1_ejnej")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(1e-05, 1e-05)
-texture = ExtResource("1_3ykvl")
+texture = ExtResource("2_p4dl8")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

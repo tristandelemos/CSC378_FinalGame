@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://b7mv0fbf2p06a"
+path="res://.godot/imported/spotifydown.com - Cube.mp3-f23db3855be0cf864c3d907a820cc2b2.mp3str"
+
+[deps]
+
+source_file="res://sounds/spotifydown.com - Cube.mp3"
+dest_files=["res://.godot/imported/spotifydown.com - Cube.mp3-f23db3855be0cf864c3d907a820cc2b2.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
