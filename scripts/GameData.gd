@@ -4,7 +4,9 @@ enum Weapon {
 	DAGGER,
 	CLEAVER,
 	STAFF,
-	BOW
+	BOW,
+	CLUB,
+	SCYTHE
 }
 
 # Base Data
@@ -18,7 +20,7 @@ var base_player_health: int = 100
 var base_player_weapon: Weapon = Weapon.DAGGER
 var base_soul_drop_chance: float = 0.0
 var base_health_potions: int = 0
-var base_coins: int = 0
+var base_coins: int = 1000
 var base_stamina: int = 100
 var deaths: int = 1
 
@@ -146,6 +148,10 @@ func get_weapon_sprite(weapon: Weapon):
 			return load("res://sprites/staff.png")
 		Weapon.BOW:
 			return load("res://sprites/bow_arrow.png")
+		Weapon.CLUB:
+			return load("res://sprites/vlub.png")
+		Weapon.SCYTHE:
+			return load("res://sprites/scythe.png")
 
 func get_player_in_scene():
 	return get_tree().current_scene.get_node("Player")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://b4fx0wgytglml"]
+[gd_scene load_steps=36 format=3 uid="uid://b4fx0wgytglml"]
 
 [ext_resource type="Script" path="res://scripts/attack.gd" id="1_7a2c6"]
 [ext_resource type="Texture2D" uid="uid://brbkihnfui7j1" path="res://sprites/swipe1.png" id="1_wuf7s"]
@@ -6,9 +6,49 @@
 [ext_resource type="Texture2D" uid="uid://bmn6q26daeuoy" path="res://sprites/swipe3.png" id="3_3ugjg"]
 [ext_resource type="Texture2D" uid="uid://b2shdy12vy4hs" path="res://sprites/swipe4.png" id="4_yr7gp"]
 [ext_resource type="Texture2D" uid="uid://dywylsc2v8t5m" path="res://sprites/swipe5.png" id="5_decvr"]
+[ext_resource type="Texture2D" uid="uid://sl614rw287ou" path="res://sprites/scythe_swipe.png" id="7_4h5nv"]
 [ext_resource type="AudioStream" uid="uid://kjcljqe5le5a" path="res://sounds/30243__streety__skewer2.mp3" id="7_tyxq7"]
 [ext_resource type="AudioStream" uid="uid://cbu8dliet5av5" path="res://sounds/398713__inspectorj__water-swirl-small-9.mp3" id="8_bclul"]
+[ext_resource type="Texture2D" uid="uid://cajppiqjcgavr" path="res://sprites/smasher.png" id="8_m1i0c"]
 [ext_resource type="AudioStream" uid="uid://dyfcelbinp58u" path="res://sounds/arrow_whoosh.mp3" id="9_vms8h"]
+[ext_resource type="AudioStream" uid="uid://dl1opnowmn3ye" path="res://sounds/punch.mp3" id="11_rbl3f"]
+[ext_resource type="AudioStream" uid="uid://bjpheawwvfx6u" path="res://sounds/slash.mp3" id="12_5ro6t"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xjyf2"]
+atlas = ExtResource("7_4h5nv")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qjs5u"]
+atlas = ExtResource("7_4h5nv")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pn3ln"]
+atlas = ExtResource("7_4h5nv")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uwll5"]
+atlas = ExtResource("7_4h5nv")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6t4yn"]
+atlas = ExtResource("7_4h5nv")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skppl"]
+atlas = ExtResource("8_m1i0c")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dyq26"]
+atlas = ExtResource("8_m1i0c")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_31m3f"]
+atlas = ExtResource("8_m1i0c")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nsxbx"]
+atlas = ExtResource("8_m1i0c")
+region = Rect2(384, 0, 128, 128)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_jc7qp"]
 animations = [{
@@ -28,9 +68,52 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("5_decvr")
 }],
-"loop": false,
+"loop": true,
 "name": &"default",
-"speed": 15.0
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xjyf2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qjs5u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pn3ln")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uwll5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6t4yn")
+}],
+"loop": true,
+"name": &"scythe",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xjyf2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skppl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dyq26")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_31m3f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nsxbx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xjyf2")
+}],
+"loop": true,
+"name": &"smash",
+"speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n0kc2"]
@@ -339,14 +422,232 @@ tracks/6/keys = {
 }]
 }
 
+[sub_resource type="Animation" id="Animation_u2hew"]
+resource_name = "smahs"
+length = 0.55
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Smash/SmashAnimation:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [true],
+"method": &"set_lock_swipe_rotation"
+}, {
+"args": [false],
+"method": &"set_lock_swipe_rotation"
+}]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"nudge"
+}]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"update_player_sprite"
+}]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"toggle_player_movement"
+}, {
+"args": [],
+"method": &"toggle_player_movement"
+}]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Smash/SmashHitbox/CollisionShape2D:disabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.23),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+tracks/6/type = "audio"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("AudioStreamPlayer")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("11_rbl3f")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/6/use_blend = true
+
+[sub_resource type="Animation" id="Animation_rbumj"]
+resource_name = "scythe"
+length = 0.95
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Scythe/ScytheAnimation:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Scythe/ScytheHitbox/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.23),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.9),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [true],
+"method": &"set_lock_swipe_rotation"
+}, {
+"args": [false],
+"method": &"set_lock_swipe_rotation"
+}]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"nudge"
+}]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"update_player_sprite"
+}]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.9),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"toggle_player_movement"
+}, {
+"args": [],
+"method": &"toggle_player_movement"
+}]
+}
+tracks/6/type = "audio"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("AudioStreamPlayer")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("12_5ro6t")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/6/use_blend = true
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fjk0x"]
 _data = {
 "RESET": SubResource("Animation_untbb"),
 "big_swipe": SubResource("Animation_tqg1h"),
 "bow": SubResource("Animation_qug7s"),
+"scythe": SubResource("Animation_rbumj"),
+"smash": SubResource("Animation_u2hew"),
 "staff": SubResource("Animation_3g1hj"),
 "swipe": SubResource("Animation_kl3rj")
 }
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qdqxs"]
+radius = 50.477
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_u0bl4"]
+radius = 53.166
 
 [node name="Attack" type="Node2D"]
 script = ExtResource("1_7a2c6")
@@ -395,24 +696,71 @@ wait_time = 0.7
 one_shot = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
 [node name="Bow" type="Node2D" parent="."]
 
 [node name="BowCooldown" type="Timer" parent="Bow"]
-wait_time = 3.0
 one_shot = true
-
-[node name="Drawback" type="Timer" parent="Bow"]
-wait_time = 3.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_fjk0x")
 }
 
+[node name="Smash" type="Node2D" parent="."]
+scale = Vector2(1.3, 1.3)
+
+[node name="SmashAnimation" type="AnimatedSprite2D" parent="Smash"]
+z_index = -1
+position = Vector2(-13.8462, 3.07692)
+rotation = 1.5708
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_jc7qp")
+animation = &"smash"
+frame = 5
+
+[node name="SmashHitbox" type="Area2D" parent="Smash"]
+collision_layer = 16
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Smash/SmashHitbox"]
+shape = SubResource("CircleShape2D_qdqxs")
+disabled = true
+
+[node name="Timer" type="Timer" parent="Smash"]
+wait_time = 1.5
+
+[node name="Scythe" type="Node2D" parent="."]
+scale = Vector2(1.3, 1.3)
+
+[node name="ScytheAnimation" type="AnimatedSprite2D" parent="Scythe"]
+z_index = -1
+position = Vector2(19.2308, -8.46154)
+sprite_frames = SubResource("SpriteFrames_jc7qp")
+animation = &"scythe"
+frame = 4
+
+[node name="ScytheHitbox" type="Area2D" parent="Scythe"]
+collision_layer = 16
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Scythe/ScytheHitbox"]
+shape = SubResource("CircleShape2D_u0bl4")
+disabled = true
+
+[node name="Timer" type="Timer" parent="Scythe"]
+wait_time = 1.75
+
 [connection signal="animation_finished" from="Swipe/SwipeAnimation" to="." method="_on_swipe_animation_animation_finished"]
 [connection signal="body_entered" from="Swipe/Hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="animation_finished" from="BigSwipe/BigSwipeAnimation" to="." method="_on_big_swipe_animation_animation_finished"]
-[connection signal="body_entered" from="BigSwipe/BigHitbox" to="." method="_on_big_hitbox_body_entered"]
-[connection signal="timeout" from="Staff/StaffCooldown" to="." method="_on_staff_cooldown_timeout"]
-[connection signal="timeout" from="Bow/BowCooldown" to="." method="_on_bow_cooldown_timeout"]
-[connection signal="timeout" from="Bow/Drawback" to="." method="_on_drawback_timeout"]
+[connection signal="body_entered" from="BigSwipe/BigHitbox" to="." method="_on_hitbox_body_entered"]
+[connection signal="timeout" from="BigSwipe/SwipeCooldown" to="." method="_on_melee_cooldown_timeout"]
+[connection signal="timeout" from="Staff/StaffCooldown" to="." method="_on_projectile_cooldown_timeout"]
+[connection signal="timeout" from="Bow/BowCooldown" to="." method="_on_projectile_cooldown_timeout"]
+[connection signal="animation_finished" from="Smash/SmashAnimation" to="." method="_on_smash_animation_animation_finished"]
+[connection signal="body_entered" from="Smash/SmashHitbox" to="." method="_on_hitbox_body_entered"]
+[connection signal="timeout" from="Smash/Timer" to="." method="_on_melee_cooldown_timeout"]
+[connection signal="animation_finished" from="Scythe/ScytheAnimation" to="." method="_on_scythe_animation_animation_finished"]
+[connection signal="body_entered" from="Scythe/ScytheHitbox" to="." method="_on_hitbox_body_entered"]
+[connection signal="timeout" from="Scythe/Timer" to="." method="_on_melee_cooldown_timeout"]
