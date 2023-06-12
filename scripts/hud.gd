@@ -105,6 +105,7 @@ func toggle_encyclopedia(toggle: bool):
 	update_people($"Encyclopedia/VBoxContainer/Characters/HBoxContainer/Lady Luck/Lady Luck/Lady Luck", "ladyLuck")
 	update_people($Encyclopedia/VBoxContainer/Characters/HBoxContainer/Shopkeeper/Shopkeeper/Shopkeeper, "shopkeeper")
 	update_stats($Encyclopedia/VBoxContainer/TopRow/HBoxContainer/Stats/Stats/VBoxContainer)
+	update_death($Encyclopedia/VBoxContainer/Characters/HBoxContainer/Death/Death/Death, "death")
 	e_toggle = toggle
 	
 func update_enemies(node_path : Node, enemy_name : String):
@@ -114,6 +115,14 @@ func update_enemies(node_path : Node, enemy_name : String):
 		node_path.get_child(2).text = "Type: " + Encyclopedia.characters[enemy_name].type
 		node_path.get_child(3).text = Encyclopedia.characters[enemy_name].description
 		node_path.get_child(4).text = "Total Killed: " + str(Encyclopedia.characters[enemy_name].amount_killed)
+
+func update_death(node_path : Node, enemy_name : String):
+	if Encyclopedia.characters[enemy_name].amount_killed > 0:
+		node_path.get_child(0).texture = load(Encyclopedia.characters[enemy_name].image_path)
+		node_path.get_child(1).text = Encyclopedia.characters[enemy_name].name
+		node_path.get_child(2).text = "Type: " + Encyclopedia.characters[enemy_name].type
+		node_path.get_child(3).text = Encyclopedia.characters[enemy_name].description
+		node_path.get_child(4).text = "Hits Taken: " + str(Encyclopedia.characters[enemy_name].amount_killed)
 
 func update_people(node_path : Node, character : String):
 	if character == "ladyLuck":

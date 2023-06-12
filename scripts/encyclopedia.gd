@@ -34,8 +34,8 @@ var characters = {
 		"description": "The personification of death",
 		"amount_killed": 0,
 		#CHANGE
-		"image_path": "res://sprites/character_updown.png"
-	},
+		"image_path": "res://sprites/boss/known_death.png"
+	},	
 	"ladyLuck": {
 		"name": "Lady Luck",
 		"type": "Unknown",

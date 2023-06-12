@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://gbp8n355q25b"]
+[gd_scene load_steps=20 format=3 uid="uid://gbp8n355q25b"]
 
 [ext_resource type="PackedScene" uid="uid://fe3dgrfgsn7t" path="res://instances/mini_room.tscn" id="1_7qgxg"]
 [ext_resource type="Script" path="res://scripts/hud.gd" id="1_y0bpq"]
@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://b02k8yjmpvrix" path="res://sprites/enemies/unknown_goblin_wizard.png" id="11_jve6l"]
 [ext_resource type="Texture2D" uid="uid://dhepbeitiiwb1" path="res://sprites/unknown_lady_luck.png" id="12_k7rbk"]
 [ext_resource type="Texture2D" uid="uid://mgiwun0nn4ah" path="res://sprites/shopkeeper/unknown_shopkeeper.png" id="13_y7q8m"]
+[ext_resource type="Texture2D" uid="uid://bhnffytdb83pm" path="res://sprites/boss/unknown_death.png" id="15_rpyqq"]
 
 [sub_resource type="Animation" id="Animation_ssp0e"]
 length = 0.001
@@ -237,7 +238,7 @@ anchor_left = 0.03
 anchor_top = 0.02
 anchor_right = 0.98
 anchor_bottom = 0.98
-color = Color(0, 0, 0, 1)
+color = Color(0.113725, 0.113725, 0.113725, 1)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Encyclopedia/VBoxContainer/TopRow/HBoxContainer/Controls/Controls"]
 layout_mode = 1
@@ -267,7 +268,7 @@ stretch_mode = 5
 layout_mode = 2
 theme = ExtResource("5_htgiv")
 theme_override_font_sizes/font_size = 35
-text = " Right click to attack       "
+text = " Right click to attack                  "
 horizontal_alignment = 1
 
 [node name="Movement" type="Label" parent="Encyclopedia/VBoxContainer/TopRow/HBoxContainer/Controls/Controls/VBoxContainer"]
@@ -325,7 +326,7 @@ anchor_left = 0.01
 anchor_top = 0.02
 anchor_right = 0.98
 anchor_bottom = 0.98
-color = Color(0, 0, 0, 1)
+color = Color(0.113725, 0.113725, 0.113725, 1)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Encyclopedia/VBoxContainer/TopRow/HBoxContainer/StoryInfo/StoryInfo"]
 layout_mode = 1
@@ -373,7 +374,7 @@ anchor_left = 0.01
 anchor_top = 0.02
 anchor_right = 0.98
 anchor_bottom = 0.98
-color = Color(0, 0, 0, 1)
+color = Color(0.113725, 0.113725, 0.113725, 1)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Encyclopedia/VBoxContainer/TopRow/HBoxContainer/Stats/Stats"]
 layout_mode = 1
@@ -454,7 +455,7 @@ anchor_left = 0.02
 anchor_top = 0.05
 anchor_right = 0.98
 anchor_bottom = 0.95
-color = Color(0, 0, 0, 1)
+color = Color(0.113725, 0.113725, 0.113725, 1)
 
 [node name="Goblin" type="VBoxContainer" parent="Encyclopedia/VBoxContainer/Characters/HBoxContainer/Goblin/Goblin"]
 layout_mode = 1
@@ -508,7 +509,7 @@ anchor_left = 0.02
 anchor_top = 0.05
 anchor_right = 0.98
 anchor_bottom = 0.95
-color = Color(0, 0, 0, 1)
+color = Color(0.113725, 0.113725, 0.113725, 1)
 
 [node name="Goblin Wizard" type="VBoxContainer" parent="Encyclopedia/VBoxContainer/Characters/HBoxContainer/Goblin Wizard/Goblin Wizard"]
 layout_mode = 1
@@ -562,7 +563,7 @@ anchor_left = 0.02
 anchor_top = 0.05
 anchor_right = 0.98
 anchor_bottom = 0.95
-color = Color(0, 0, 0, 1)
+color = Color(0.113725, 0.113725, 0.113725, 1)
 
 [node name="Lady Luck" type="VBoxContainer" parent="Encyclopedia/VBoxContainer/Characters/HBoxContainer/Lady Luck/Lady Luck"]
 layout_mode = 1
@@ -616,7 +617,7 @@ anchor_left = 0.02
 anchor_top = 0.05
 anchor_right = 0.96
 anchor_bottom = 0.95
-color = Color(0, 0, 0, 1)
+color = Color(0.113725, 0.113725, 0.113725, 1)
 
 [node name="Shopkeeper" type="VBoxContainer" parent="Encyclopedia/VBoxContainer/Characters/HBoxContainer/Shopkeeper/Shopkeeper"]
 layout_mode = 1
@@ -670,7 +671,7 @@ anchor_left = 0.02
 anchor_top = 0.05
 anchor_right = 0.98
 anchor_bottom = 0.95
-color = Color(0, 0, 0, 1)
+color = Color(0.113725, 0.113725, 0.113725, 1)
 
 [node name="Death" type="VBoxContainer" parent="Encyclopedia/VBoxContainer/Characters/HBoxContainer/Death/Death"]
 layout_mode = 1
@@ -684,7 +685,7 @@ alignment = 1
 [node name="Image" type="TextureRect" parent="Encyclopedia/VBoxContainer/Characters/HBoxContainer/Death/Death/Death"]
 layout_mode = 2
 size_flags_vertical = 3
-texture = ExtResource("10_j4283")
+texture = ExtResource("15_rpyqq")
 stretch_mode = 5
 
 [node name="Title" type="Label" parent="Encyclopedia/VBoxContainer/Characters/HBoxContainer/Death/Death/Death"]

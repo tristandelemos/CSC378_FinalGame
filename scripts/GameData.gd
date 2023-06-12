@@ -20,7 +20,7 @@ var base_soul_drop_chance: float = 0.0
 var base_health_potions: int = 0
 var base_coins: int = 0
 var base_stamina: int = 100
-var deaths: int = 1
+var deaths: int = 0
 
 var shopkeeper_room_unlocked = false
 var weapon_loot_room_unlocked = false
