@@ -1,8 +1,35 @@
-[gd_scene load_steps=4 format=3 uid="uid://d3c17w1w4u3fq"]
+[gd_scene load_steps=9 format=3 uid="uid://d3c17w1w4u3fq"]
 
 [ext_resource type="Script" path="res://instances/title_screen.gd" id="1_1ecqf"]
-[ext_resource type="Texture2D" uid="uid://clax25wgy1a6r" path="res://sprites/dying4.png" id="1_6d30r"]
 [ext_resource type="PackedScene" uid="uid://q6cc5js0fijn" path="res://instances/fade_in.tscn" id="2_fvd1i"]
+[ext_resource type="Texture2D" uid="uid://do2amnrxn0p51" path="res://sprites/main character/dying1.png" id="3_whjd2"]
+[ext_resource type="Texture2D" uid="uid://bqjavd78ruoyu" path="res://sprites/main character/dying2.png" id="4_tkbpp"]
+[ext_resource type="Texture2D" uid="uid://c3v2j4v7v0mp2" path="res://sprites/main character/dying3.png" id="5_nhonh"]
+[ext_resource type="Texture2D" uid="uid://caigmikiulx71" path="res://sprites/main character/dying4.png" id="6_e1fc2"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_demih"]
+resource_local_to_scene = true
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_whjd2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_tkbpp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_nhonh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_e1fc2")
+}],
+"loop": true,
+"name": &"real_death",
+"speed": 5.0
+}]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iq0w6"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [node name="TitleScreen" type="Control"]
 layout_mode = 3
@@ -12,6 +39,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_1ecqf")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(918, 437)
+scale = Vector2(11, 9.6875)
+sprite_frames = SubResource("SpriteFrames_demih")
+animation = &"real_death"
 
 [node name="Menu" type="VBoxContainer" parent="."]
 layout_mode = 0
@@ -52,10 +85,10 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 35
 text = "Credits"
 
-[node name="Logo" type="TextureRect" parent="Menu/CenterRow"]
+[node name="PanelContainer" type="PanelContainer" parent="Menu/CenterRow"]
 layout_mode = 2
 size_flags_horizontal = 3
-texture = ExtResource("1_6d30r")
+theme_override_styles/panel = SubResource("StyleBoxFlat_iq0w6")
 
 [node name="FadeIn" parent="." instance=ExtResource("2_fvd1i")]
 layout_mode = 0
@@ -65,6 +98,7 @@ anchor_bottom = 0.0
 grow_horizontal = 1
 grow_vertical = 1
 
+[connection signal="ready" from="." to="." method="_on_ready"]
 [connection signal="pressed" from="Menu/CenterRow/Buttons/Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="Menu/CenterRow/Buttons/Controls" to="." method="_on_controls_pressed"]
 [connection signal="pressed" from="Menu/CenterRow/Buttons/Credits" to="." method="_on_credits_pressed"]
