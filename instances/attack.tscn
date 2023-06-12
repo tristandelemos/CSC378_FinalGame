@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://b4fx0wgytglml"]
+[gd_scene load_steps=19 format=3 uid="uid://b4fx0wgytglml"]
 
 [ext_resource type="Script" path="res://scripts/attack.gd" id="1_7a2c6"]
 [ext_resource type="Texture2D" uid="uid://brbkihnfui7j1" path="res://sprites/swipe1.png" id="1_wuf7s"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://dywylsc2v8t5m" path="res://sprites/swipe5.png" id="5_decvr"]
 [ext_resource type="AudioStream" uid="uid://kjcljqe5le5a" path="res://sounds/30243__streety__skewer2.mp3" id="7_tyxq7"]
 [ext_resource type="AudioStream" uid="uid://cbu8dliet5av5" path="res://sounds/398713__inspectorj__water-swirl-small-9.mp3" id="8_bclul"]
+[ext_resource type="AudioStream" uid="uid://dyfcelbinp58u" path="res://sounds/arrow_whoosh.mp3" id="9_vms8h"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_jc7qp"]
 animations = [{
@@ -195,6 +196,24 @@ tracks/6/keys = {
 }]
 }
 
+[sub_resource type="Animation" id="Animation_qug7s"]
+resource_name = "bow"
+tracks/0/type = "audio"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AudioStreamPlayer")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("9_vms8h")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/0/use_blend = true
+
 [sub_resource type="Animation" id="Animation_3g1hj"]
 resource_name = "staff"
 length = 0.5
@@ -324,6 +343,7 @@ tracks/6/keys = {
 _data = {
 "RESET": SubResource("Animation_untbb"),
 "big_swipe": SubResource("Animation_tqg1h"),
+"bow": SubResource("Animation_qug7s"),
 "staff": SubResource("Animation_3g1hj"),
 "swipe": SubResource("Animation_kl3rj")
 }
@@ -375,6 +395,14 @@ wait_time = 0.7
 one_shot = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="Bow" type="Node2D" parent="."]
+
+[node name="BowCooldown" type="Timer" parent="Bow"]
+wait_time = 3.0
+one_shot = true
+
+[node name="Drawback" type="Timer" parent="Bow"]
+wait_time = 3.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -386,3 +414,5 @@ libraries = {
 [connection signal="animation_finished" from="BigSwipe/BigSwipeAnimation" to="." method="_on_big_swipe_animation_animation_finished"]
 [connection signal="body_entered" from="BigSwipe/BigHitbox" to="." method="_on_big_hitbox_body_entered"]
 [connection signal="timeout" from="Staff/StaffCooldown" to="." method="_on_staff_cooldown_timeout"]
+[connection signal="timeout" from="Bow/BowCooldown" to="." method="_on_bow_cooldown_timeout"]
+[connection signal="timeout" from="Bow/Drawback" to="." method="_on_drawback_timeout"]

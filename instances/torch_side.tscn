@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://c6kamud5s80jk"]
+
+[ext_resource type="PackedScene" uid="uid://baqdp7t7hsas8" path="res://instances/torch.tscn" id="1_lewdo"]
+[ext_resource type="Texture2D" uid="uid://bauib22hixcp3" path="res://sprites/torch_side1.png" id="2_ia0ev"]
+[ext_resource type="Texture2D" uid="uid://21n1ixfxkoul" path="res://sprites/torch_side2.png" id="3_idd6s"]
+[ext_resource type="Texture2D" uid="uid://srei7texgu0w" path="res://sprites/torch_side3.png" id="4_lqknu"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1cx1r"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ia0ev")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_idd6s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_lqknu")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="TorchSide" instance=ExtResource("1_lewdo")]
+sprite_frames = SubResource("SpriteFrames_1cx1r")
+frame_progress = 0.0
+
+[node name="PointLight2D" parent="." index="0"]
+position = Vector2(-1.33333, -1.33333)
+energy = 0.5
+texture_scale = 0.5

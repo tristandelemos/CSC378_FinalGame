@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://d12kfj1u6o723"]
+
+[ext_resource type="Script" path="res://scripts/boss_orb.gd" id="1_2jrxi"]
+[ext_resource type="Texture2D" uid="uid://da42kpxhdb0xd" path="res://sprites/boss_attacks/boss_orb.png" id="1_7ot1p"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lkl65"]
+radius = 12.0
+
+[node name="BossOrb" type="Area2D"]
+collision_layer = 64
+collision_mask = 34
+script = ExtResource("1_2jrxi")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+texture = ExtResource("1_7ot1p")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_lkl65")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,0 +1,407 @@
+[gd_scene load_steps=20 format=3 uid="uid://gj05kiagyppw"]
+
+[ext_resource type="Texture2D" uid="uid://rpt8bu55mafh" path="res://sprites/bg.png" id="1_ajjgg"]
+[ext_resource type="Script" path="res://scripts/boss_room.gd" id="1_lvvuo"]
+[ext_resource type="TileSet" uid="uid://4wilkcph121u" path="res://resources/main_tileset.tres" id="2_5fgb3"]
+[ext_resource type="PackedScene" uid="uid://ba2y6exjmtk6h" path="res://instances/player.tscn" id="3_d0jid"]
+[ext_resource type="AudioStream" uid="uid://cxit0tuhsj0sc" path="res://sounds/dungeon_ambiance.mp3" id="9_41484"]
+[ext_resource type="PackedScene" uid="uid://bade5vdae4xo0" path="res://instances/boss.tscn" id="10_eyng4"]
+[ext_resource type="PackedScene" uid="uid://cbdy0n67dxh7e" path="res://instances/spawn_point.tscn" id="11_u5ti7"]
+[ext_resource type="AudioStream" uid="uid://ds1ygobrx46bo" path="res://sounds/spotifydown.com - Overdrive.mp3" id="12_w4aq1"]
+[ext_resource type="AudioStream" uid="uid://b7mv0fbf2p06a" path="res://sounds/spotifydown.com - Cube.mp3" id="13_7syhp"]
+[ext_resource type="Theme" uid="uid://c6kvh2v5r71lh" path="res://default_theme.tres" id="13_n8p1d"]
+[ext_resource type="AudioStream" uid="uid://b1o44duinjeu" path="res://sounds/spotifydown.com - Ball Point.mp3" id="14_jtisg"]
+[ext_resource type="PackedScene" uid="uid://baqdp7t7hsas8" path="res://instances/torch.tscn" id="14_p6r1e"]
+[ext_resource type="PackedScene" uid="uid://cfdft2tdonxks" path="res://instances/torch_back.tscn" id="15_ukkl3"]
+[ext_resource type="PackedScene" uid="uid://c6kamud5s80jk" path="res://instances/torch_side.tscn" id="16_hel43"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h3fgs"]
+size = Vector2(608, 432)
+
+[sub_resource type="Animation" id="Animation_av63n"]
+resource_name = "phase_0_1"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Phase0Music:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -50.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Phase0Music:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Phase1Music:volume_db")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-50.0, 0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Phase1Music:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_flp6f"]
+resource_name = "phase_1_2"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Phase1Music:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -50.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Phase1Music:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:volume_db")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-50.0, 0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_64gjr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Phase0Music:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Phase0Music:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Phase1Music:volume_db")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-50.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Phase1Music:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:volume_db")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-50.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_80wed"]
+_data = {
+"RESET": SubResource("Animation_64gjr"),
+"phase_0_1": SubResource("Animation_av63n"),
+"phase_1_2": SubResource("Animation_flp6f")
+}
+
+[node name="BossRoom" type="Node2D"]
+script = ExtResource("1_lvvuo")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -99
+position = Vector2(-52.0005, 55.9998)
+scale = Vector2(1016.75, 1049.5)
+texture = ExtResource("1_ajjgg")
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource("2_5fgb3")
+format = 2
+layer_0/tile_data = PackedInt32Array(-327692, 131074, 1, -262156, 131074, 1, -196620, 131074, 1, -131084, 131074, 1, -65548, 131074, 1, -12, 131074, 1, 65524, 131074, 1, 131060, 131074, 1, 196596, 131074, 1, 262132, 131074, 1, 327668, 131074, 1, 393204, 131074, 1, 458740, 131074, 1, 524276, 131074, 1, 589812, 262146, 1, -327691, 262145, 0, -262155, 262145, 0, -196619, 262145, 0, -131083, 262145, 0, -65547, 262145, 0, -11, 262145, 0, 65525, 262145, 0, 131061, 262145, 0, 196597, 262145, 0, 262133, 262145, 0, 327669, 262145, 0, 393205, 262145, 0, 458741, 262145, 0, 524277, 262145, 0, 589813, 65538, 0, -327690, 262145, 0, -262154, 262145, 0, -196618, 262145, 0, -131082, 262145, 0, -65546, 262145, 0, -10, 262145, 0, 65526, 262145, 0, 131062, 262145, 0, 196598, 262145, 0, 262134, 262145, 0, 327670, 262145, 0, 393206, 262145, 0, 458742, 262145, 0, 524278, 262145, 0, 589814, 65538, 0, -327689, 262145, 0, -262153, 262145, 0, -196617, 262145, 0, -131081, 262145, 0, -65545, 262145, 0, -9, 262145, 0, 65527, 262145, 0, 131063, 262145, 0, 196599, 262145, 0, 262135, 262145, 0, 327671, 262145, 0, 393207, 262145, 0, 458743, 262145, 0, 524279, 262145, 0, 589815, 65538, 0, -327688, 262145, 0, -262152, 262145, 0, -196616, 262145, 0, -131080, 262145, 0, -65544, 262145, 0, -8, 262145, 0, 65528, 262145, 0, 131064, 262145, 0, 196600, 262145, 0, 262136, 262145, 0, 327672, 262145, 0, 393208, 262145, 0, 458744, 262145, 0, 524280, 262145, 0, 589816, 65538, 0, -327687, 262145, 0, -262151, 262145, 0, -196615, 262145, 0, -131079, 262145, 0, -65543, 262145, 0, -7, 262145, 0, 65529, 262145, 0, 131065, 262145, 0, 196601, 262145, 0, 262137, 262145, 0, 327673, 262145, 0, 393209, 262145, 0, 458745, 262145, 0, 524281, 262145, 0, 589817, 65538, 0, -327686, 262145, 0, -262150, 262145, 0, -196614, 2, 0, -131078, 2, 1, -65542, 2, 2, -6, 262145, 0, 65530, 262145, 0, 131066, 262145, 0, 196602, 262145, 0, 262138, 262145, 0, 327674, 262145, 0, 393210, 262145, 0, 458746, 262145, 0, 524282, 262145, 0, 589818, 65538, 0, -327685, 262145, 0, -262149, 262145, 0, -196613, 65538, 0, -131077, 65538, 1, -65541, 65538, 2, -5, 262145, 0, 65531, 262145, 0, 131067, 262145, 0, 196603, 262145, 0, 262139, 2, 0, 327675, 2, 2, 393211, 262145, 0, 458747, 262145, 0, 524283, 262145, 0, 589819, 65538, 0, -327684, 262145, 0, -262148, 262145, 0, -196612, 131074, 0, -131076, 131074, 1, -65540, 131074, 2, -4, 262145, 0, 65532, 262145, 0, 131068, 262145, 0, 196604, 262145, 0, 262140, 131074, 0, 327676, 131074, 2, 393212, 262145, 0, 458748, 262145, 0, 524284, 262145, 0, 589820, 65538, 0, -327683, 262145, 0, -262147, 262145, 0, -196611, 262145, 0, -131075, 262145, 0, -65539, 262145, 0, -3, 262145, 0, 65533, 262145, 0, 131069, 262145, 0, 196605, 262145, 0, 262141, 262145, 0, 327677, 262145, 0, 393213, 262145, 0, 458749, 262145, 0, 524285, 262145, 0, 589821, 65538, 0, -327682, 262145, 0, -262146, 262145, 0, -196610, 262145, 0, -131074, 262145, 0, -65538, 262145, 0, -2, 262145, 0, 65534, 262145, 0, 131070, 262145, 0, 196606, 262145, 0, 262142, 262145, 0, 327678, 262145, 0, 393214, 262145, 0, 458750, 262145, 0, 524286, 262145, 0, 589822, 65538, 0, -327681, 262145, 0, -262145, 262145, 0, -196609, 262145, 0, -131073, 262145, 0, -65537, 262145, 0, -1, 262145, 0, 65535, 262145, 0, 131071, 262145, 0, 196607, 262145, 0, 262143, 262145, 0, 327679, 262145, 0, 393215, 262145, 0, 458751, 262145, 0, 524287, 262145, 0, 589823, 65538, 0, -393216, 262145, 0, -327680, 262145, 0, -262144, 262145, 0, -196608, 262145, 0, -131072, 262145, 0, -65536, 262145, 0, 0, 262145, 0, 65536, 262145, 0, 131072, 262145, 0, 196608, 262145, 0, 262144, 262145, 0, 327680, 262145, 0, 393216, 262145, 0, 458752, 262145, 0, 524288, 65538, 0, -393215, 262145, 0, -327679, 262145, 0, -262143, 262145, 0, -196607, 262145, 0, -131071, 262145, 0, -65535, 262145, 0, 1, 262145, 0, 65537, 262145, 0, 131073, 262145, 0, 196609, 262145, 0, 262145, 262145, 0, 327681, 262145, 0, 393217, 262145, 0, 458753, 262145, 0, 524289, 65538, 0, -393214, 262145, 0, -327678, 262145, 0, -262142, 262145, 0, -196606, 262145, 0, -131070, 262145, 0, -65534, 262145, 0, 2, 262145, 0, 65538, 262145, 0, 131074, 262145, 0, 196610, 262145, 0, 262146, 262145, 0, 327682, 262145, 0, 393218, 262145, 0, 458754, 262145, 0, 524290, 65538, 0, -393213, 262145, 0, -327677, 262145, 0, -262141, 2, 0, -196605, 2, 1, -131069, 2, 2, -65533, 262145, 0, 3, 262145, 0, 65539, 262145, 0, 131075, 262145, 0, 196611, 262145, 0, 262147, 262145, 0, 327683, 262145, 0, 393219, 262145, 0, 458755, 262145, 0, 524291, 65538, 0, -393212, 262145, 0, -327676, 262145, 0, -262140, 65538, 0, -196604, 65538, 1, -131068, 65538, 2, -65532, 262145, 0, 4, 262145, 0, 65540, 262145, 0, 131076, 262145, 0, 196612, 2, 0, 262148, 2, 1, 327684, 2, 2, 393220, 262145, 0, 458756, 262145, 0, 524292, 65538, 0, -393211, 262145, 0, -327675, 262145, 0, -262139, 131074, 0, -196603, 131074, 1, -131067, 131074, 2, -65531, 262145, 0, 5, 262145, 0, 65541, 262145, 0, 131077, 262145, 0, 196613, 131074, 0, 262149, 131074, 1, 327685, 131074, 2, 393221, 262145, 0, 458757, 262145, 0, 524293, 65538, 0, -393210, 262145, 0, -327674, 262145, 0, -262138, 262145, 0, -196602, 262145, 0, -131066, 262145, 0, -65530, 262145, 0, 6, 262145, 0, 65542, 262145, 0, 131078, 262145, 0, 196614, 262145, 0, 262150, 262145, 0, 327686, 262145, 0, 393222, 262145, 0, 458758, 262145, 0, 524294, 65538, 0, -393209, 262145, 0, -327673, 262145, 0, -262137, 262145, 0, -196601, 262145, 0, -131065, 262145, 0, -65529, 262145, 0, 7, 262145, 0, 65543, 262145, 0, 131079, 262145, 0, 196615, 262145, 0, 262151, 262145, 0, 327687, 262145, 0, 393223, 262145, 0, 458759, 262145, 0, 524295, 65538, 0, -393208, 262145, 0, -327672, 262145, 0, -262136, 262145, 0, -196600, 262145, 0, -131064, 262145, 0, -65528, 262145, 0, 8, 262145, 0, 65544, 262145, 0, 131080, 262145, 0, 196616, 262145, 0, 262152, 262145, 0, 327688, 262145, 0, 393224, 262145, 0, 458760, 262145, 0, 524296, 65538, 0, -393207, 262145, 0, -327671, 262145, 0, -262135, 262145, 0, -196599, 262145, 0, -131063, 262145, 0, -65527, 262145, 0, 9, 262145, 0, 65545, 262145, 0, 131081, 262145, 0, 196617, 262145, 0, 262153, 262145, 0, 327689, 262145, 0, 393225, 262145, 0, 458761, 262145, 0, 524297, 65538, 0, -393206, 2, 1, -327670, 2, 1, -262134, 2, 1, -196598, 2, 1, -131062, 2, 1, -65526, 2, 1, 10, 2, 1, 65546, 2, 1, 131082, 2, 1, 196618, 2, 1, 262154, 2, 1, 327690, 2, 1, 393226, 2, 1, 458762, 2, 1, -458764, 131074, 1, -458763, 65538, 2, -458762, 65538, 2, -458761, 65538, 2, -458760, 65538, 2, -393228, 131074, 1, -393227, 262145, 0, -393226, 262145, 0, -393225, 262145, 0, -393224, 262145, 0, -458759, 65538, 2, -393223, 262145, 0, -458758, 65538, 2, -393222, 262145, 0, -458757, 65538, 2, -393221, 262145, 0, -458756, 65538, 2, -393220, 262145, 0, -458755, 65538, 2, -393219, 262145, 0, -458754, 65538, 2, -393218, 262145, 0, -458753, 65538, 2, -393217, 262145, 0, -524288, 65538, 2, -458752, 262145, 0, -524287, 65538, 2, -458751, 262145, 0, -524286, 65538, 2, -458750, 262145, 0, -524285, 65538, 2, -458749, 262145, 0, -524284, 65538, 2, -458748, 262145, 0, -524283, 65538, 2, -458747, 262145, 0, -524282, 65538, 2, -458746, 262145, 0, -524281, 65538, 2, -458745, 262145, 0, -524280, 65538, 2, -458744, 262145, 0, -524279, 65538, 2, -458743, 262145, 0, -524278, 2, 1, -458742, 2, 1, 524298, 327682, 1)
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+position = Vector2(0, -8)
+color = Color(0.254902, 0.254902, 0.254902, 1)
+
+[node name="Player" parent="." instance=ExtResource("3_d0jid")]
+position = Vector2(0, -8)
+
+[node name="Ambiance" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_41484")
+autoplay = true
+
+[node name="Anchors" type="Node2D" parent="."]
+
+[node name="Anchor" type="Node2D" parent="Anchors"]
+position = Vector2(256, 192)
+
+[node name="Anchor2" type="Node2D" parent="Anchors"]
+position = Vector2(0, 192)
+
+[node name="Anchor3" type="Node2D" parent="Anchors"]
+position = Vector2(-256, 192)
+
+[node name="Anchor4" type="Node2D" parent="Anchors"]
+position = Vector2(-256, 0)
+
+[node name="Anchor5" type="Node2D" parent="Anchors"]
+position = Vector2(-256, -128)
+
+[node name="Anchor6" type="Node2D" parent="Anchors"]
+
+[node name="Anchor7" type="Node2D" parent="Anchors"]
+position = Vector2(256, -128)
+
+[node name="Anchor8" type="Node2D" parent="Anchors"]
+position = Vector2(256, 0)
+
+[node name="Anchor9" type="Node2D" parent="Anchors"]
+position = Vector2(0, -128)
+
+[node name="Boss" parent="." instance=ExtResource("10_eyng4")]
+position = Vector2(0, -128)
+
+[node name="RoomArea" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RoomArea"]
+position = Vector2(-16, 8)
+shape = SubResource("RectangleShape2D_h3fgs")
+
+[node name="SpawnPoints" type="Node2D" parent="."]
+
+[node name="SpawnPoint" parent="SpawnPoints" instance=ExtResource("11_u5ti7")]
+position = Vector2(-224, 48)
+
+[node name="SpawnPoint2" parent="SpawnPoints" instance=ExtResource("11_u5ti7")]
+position = Vector2(-304, 112)
+
+[node name="SpawnPoint3" parent="SpawnPoints" instance=ExtResource("11_u5ti7")]
+position = Vector2(-208, 192)
+
+[node name="SpawnPoint4" parent="SpawnPoints" instance=ExtResource("11_u5ti7")]
+position = Vector2(-288, 0)
+
+[node name="SpawnPoint5" parent="SpawnPoints" instance=ExtResource("11_u5ti7")]
+position = Vector2(-288, -96)
+
+[node name="SpawnPoint6" parent="SpawnPoints" instance=ExtResource("11_u5ti7")]
+position = Vector2(-208, -160)
+
+[node name="SpawnPoint8" parent="SpawnPoints" instance=ExtResource("11_u5ti7")]
+position = Vector2(96, -160)
+
+[node name="SpawnPoint9" parent="SpawnPoints" instance=ExtResource("11_u5ti7")]
+position = Vector2(-48, -16)
+
+[node name="SpawnPoint10" parent="SpawnPoints" instance=ExtResource("11_u5ti7")]
+position = Vector2(-144, 32)
+
+[node name="SpawnPoint11" parent="SpawnPoints" instance=ExtResource("11_u5ti7")]
+position = Vector2(-64, 96)
+
+[node name="SpawnPoint12" parent="SpawnPoints" instance=ExtResource("11_u5ti7")]
+position = Vector2(-48, 160)
+
+[node name="SpawnPoint13" parent="SpawnPoints" instance=ExtResource("11_u5ti7")]
+position = Vector2(80, 144)
+
+[node name="SpawnPoint14" parent="SpawnPoints" instance=ExtResource("11_u5ti7")]
+position = Vector2(176, 32)
+
+[node name="SpawnPoint15" parent="SpawnPoints" instance=ExtResource("11_u5ti7")]
+position = Vector2(112, 16)
+
+[node name="SpawnPoint16" parent="SpawnPoints" instance=ExtResource("11_u5ti7")]
+position = Vector2(144, -160)
+
+[node name="SpawnPoint17" parent="SpawnPoints" instance=ExtResource("11_u5ti7")]
+position = Vector2(32, -176)
+
+[node name="SpawnPoint18" parent="SpawnPoints" instance=ExtResource("11_u5ti7")]
+position = Vector2(-80, -128)
+
+[node name="SpawnPoint19" parent="SpawnPoints" instance=ExtResource("11_u5ti7")]
+position = Vector2(-80, 16)
+
+[node name="SpawnPoint20" parent="SpawnPoints" instance=ExtResource("11_u5ti7")]
+position = Vector2(208, 64)
+
+[node name="SpawnPoint21" parent="SpawnPoints" instance=ExtResource("11_u5ti7")]
+position = Vector2(80, 80)
+
+[node name="SpawnPoint22" parent="SpawnPoints" instance=ExtResource("11_u5ti7")]
+position = Vector2(48, 128)
+
+[node name="SpawnPoint7" parent="SpawnPoints" instance=ExtResource("11_u5ti7")]
+position = Vector2(-128, -160)
+
+[node name="SpawnTimer" type="Timer" parent="."]
+wait_time = 7.0
+autostart = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer"]
+offset_right = 1088.0
+offset_bottom = 27.0
+theme = ExtResource("13_n8p1d")
+max_value = 300.0
+value = 300.0
+show_percentage = false
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_left = 464.0
+offset_right = 600.0
+offset_bottom = 29.0
+theme = ExtResource("13_n8p1d")
+text = "Death, Itself"
+
+[node name="Torch" parent="." instance=ExtResource("14_p6r1e")]
+position = Vector2(-144, -240)
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="Torch2" parent="." instance=ExtResource("14_p6r1e")]
+position = Vector2(144, -240)
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="TorchBack" parent="." instance=ExtResource("15_ukkl3")]
+position = Vector2(-144, 259)
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="TorchBack2" parent="." instance=ExtResource("15_ukkl3")]
+position = Vector2(144, 259)
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="TorchSide" parent="." instance=ExtResource("16_hel43")]
+position = Vector2(320, 0)
+
+[node name="TorchSide2" parent="." instance=ExtResource("16_hel43")]
+position = Vector2(-352, 0)
+scale = Vector2(-1.5, 1.5)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Phase2Music")
+libraries = {
+"": SubResource("AnimationLibrary_80wed")
+}
+
+[node name="Phase0Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_w4aq1")
+autoplay = true
+bus = &"Music"
+
+[node name="Phase1Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_7syhp")
+volume_db = -50.0
+bus = &"Music"
+
+[node name="Phase2Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_jtisg")
+volume_db = -50.0
+bus = &"Music"
+
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

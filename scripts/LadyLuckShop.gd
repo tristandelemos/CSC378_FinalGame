@@ -19,6 +19,8 @@ func _ready() -> void:
 	increase_starting_coins_cost_label.text = "%d" % GameData.increase_starting_coins_cost
 	increase_soul_drop_cost_label.text = "%d" % GameData.increase_soul_drop_cost
 	increase_starting_health_cost_label.text = "%d" % GameData.increase_starting_health_cost
+	incrase_potion_cost_label.text = "%d" % GameData.increase_potion_cost
+	increase_dash_cost_label.text = "%d" % GameData.increase_dash_cost
 
 func _on_unlock_weapon_loot_room_button_pressed() -> void:
 	if GameData.curr_souls >= GameData.unlock_weapon_loot_room_cost:

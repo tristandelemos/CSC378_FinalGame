@@ -1,0 +1,45 @@
+[gd_scene load_steps=2 format=3 uid="uid://ubnaq7jskahg"]
+
+[ext_resource type="Script" path="res://Controls.gd" id="1_wysyy"]
+
+[node name="Controls" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wysyy")
+
+[node name="Screen" type="VBoxContainer" parent="."]
+offset_left = 120.0
+offset_top = 40.0
+offset_right = 1140.0
+offset_bottom = 680.0
+
+[node name="Title" type="Label" parent="Screen"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 128
+text = "Controls"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CenterRow" type="HBoxContainer" parent="Screen"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Label" type="Label" parent="Screen/CenterRow"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+text = "WASD: Movement
+Tab: Open Map
+Shift: Sprint
+Mouse Click: Attack in Direction"
+
+[node name="back_again" type="Button" parent="Screen"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+text = "Back"
+
+[connection signal="pressed" from="Screen/back_again" to="." method="_on_back_again_pressed"]

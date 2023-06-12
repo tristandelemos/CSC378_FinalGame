@@ -3,7 +3,10 @@ extends Node2D
 @onready var anim_player = $AnimationPlayer
 @onready var orb = preload("res://instances/staff_orb.tscn")
 @onready var player = get_parent()
+@onready var arrow = preload("res://instances/bow_arrow.tscn")
+
 var can_fire := true
+var drawback := true
 var lock_swipe_rotation := false
 
 func _process(delta: float) -> void:
@@ -41,6 +44,11 @@ func ranged_attack():
 			if can_fire:
 				anim_player.play("staff")
 				fire_orb()
+		# Add in bow and arrow animation
+		GameData.Weapon.BOW:
+			if can_fire:
+				anim_player.play("bow")
+				shoot_arrow()
 			
 func fire_orb():
 	can_fire = false
@@ -48,15 +56,27 @@ func fire_orb():
 	orb_instance.global_position = get_parent().global_position
 	get_tree().current_scene.call_deferred("add_child", orb_instance)
 	$Staff/StaffCooldown.start()
+	
+func shoot_arrow():
+	can_fire = false
+	var arrow_instance = arrow.instantiate()
+	arrow_instance.global_position = get_parent().global_position
+	get_tree().current_scene.call_deferred("add_child", arrow_instance)
+	$Bow/BowCooldown.start()
 
 func set_lock_swipe_rotation(val: bool):
 	lock_swipe_rotation = val
 
 func _on_hitbox_body_entered(body: Node2D) -> void:
-	body.take_damage(5)
+	body.take_damage(50)
 
 func _on_big_hitbox_body_entered(body: Node2D) -> void:
 	body.take_damage(10)
 
 func _on_staff_cooldown_timeout() -> void:
 	can_fire = true
+
+func _on_bow_cooldown_timeout() -> void:
+	can_fire = true
+	
+
