@@ -14,12 +14,12 @@
 [ext_resource type="Script" path="res://scripts/SlotFour.gd" id="12_q6t37"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_slnng"]
-radius = 64.0
+radius = 21.3333
 
 [node name="Shopkeeper" type="Sprite2D"]
+scale = Vector2(1.5, 1.5)
 texture = ExtResource("1_c606a")
 hframes = 8
-frame = 1
 script = ExtResource("1_2cutu")
 
 [node name="Label" type="Label" parent="."]

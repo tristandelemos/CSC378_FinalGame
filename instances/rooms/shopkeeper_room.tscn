@@ -11,7 +11,9 @@
 position = Vector2(48, 0)
 
 [node name="Player" parent="." index="9" instance=ExtResource("3_71ern")]
+visible = false
 position = Vector2(-248, -64)
 
 [node name="Enemy" parent="." index="28" instance=ExtResource("4_313px")]
+visible = false
 position = Vector2(-324, 66)

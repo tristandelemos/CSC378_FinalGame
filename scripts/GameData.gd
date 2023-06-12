@@ -20,7 +20,7 @@ var base_player_health: int = 100
 var base_player_weapon: Weapon = Weapon.DAGGER
 var base_soul_drop_chance: float = 0.0
 var base_health_potions: int = 0
-var base_coins: int = 1000
+var base_coins: int = 0
 var base_stamina: int = 100
 var deaths: int = 1
 
