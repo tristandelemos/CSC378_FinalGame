@@ -40,6 +40,8 @@ func update_weapon_slot(weapon: GameData.Weapon):
 			$WeaponSlot/Sprite2D.texture = load("res://sprites/dagger.png")
 		GameData.Weapon.STAFF:
 			$WeaponSlot/Sprite2D.texture = load("res://sprites/staff.png")
+		GameData.Weapon.BOW:
+			$WeaponSlot/Sprite2D.texture = load("res://sprites/bow_arrow.png")
 
 func _on_player_enter(instance_id: int):
 	for miniroom in minirooms.get_children():

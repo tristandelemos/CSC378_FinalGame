@@ -3,7 +3,8 @@ extends Node
 enum Weapon {
 	DAGGER,
 	CLEAVER,
-	STAFF
+	STAFF,
+	BOW
 }
 
 # Base Data
@@ -16,7 +17,8 @@ var freeze_player: bool = false
 var base_player_health: int = 100
 var base_player_weapon: Weapon = Weapon.DAGGER
 var base_soul_drop_chance: float = 0.0
-var base_coins: int = 0
+# Changing coins for testing purposes
+var base_coins: int = 1000
 var deaths: int = 0
 
 var shopkeeper_room_unlocked = false
@@ -103,6 +105,8 @@ func get_weapon_sprite(weapon: Weapon):
 			return load("res://sprites/cleaver.png")
 		Weapon.STAFF:
 			return load("res://sprites/staff.png")
+		Weapon.BOW:
+			return load("res://sprites/bow_arrow.png")
 
 func get_player_in_scene():
 	return get_tree().current_scene.get_node("Player")
