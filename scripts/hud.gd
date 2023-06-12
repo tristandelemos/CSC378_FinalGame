@@ -66,7 +66,11 @@ func update_weapon_slot(weapon: GameData.Weapon):
 			$WeaponSlot/Sprite2D.texture = load("res://sprites/staff.png")
 		GameData.Weapon.BOW:
 			$WeaponSlot/Sprite2D.texture = load("res://sprites/bow_arrow.png")
-
+		GameData.Weapon.CLUB:
+			$WeaponSlot/Sprite2D.texture = load("res://sprites/vlub.png")
+		GameData.Weapon.SCYTHE:
+			$WeaponSlot/Sprite2D.texture = load("res://sprites/scythe.png")
+			
 func _on_player_damaged():
 	$HudHit/AnimationPlayer.play("hit")
 
