@@ -1,9 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://bx8ieuuvtcmvj"]
+[gd_scene load_steps=4 format=3 uid="uid://bx8ieuuvtcmvj"]
 
 [ext_resource type="PackedScene" uid="uid://7sdv6fbfhxgg" path="res://instances/rooms/start_room.tscn" id="1_8b2ip"]
 [ext_resource type="PackedScene" uid="uid://beeafbx1grunu" path="res://instances/shopkeeper.tscn" id="2_cfcgi"]
+[ext_resource type="PackedScene" uid="uid://ba2y6exjmtk6h" path="res://instances/player.tscn" id="3_71ern"]
 
 [node name="ShopkeeperRoom" instance=ExtResource("1_8b2ip")]
 
 [node name="Shopkeeper" parent="." index="8" instance=ExtResource("2_cfcgi")]
 position = Vector2(48, 0)
+
+[node name="Player" parent="." index="9" instance=ExtResource("3_71ern")]
+visible = false
+position = Vector2(-248, -64)

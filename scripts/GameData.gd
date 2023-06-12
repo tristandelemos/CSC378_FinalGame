@@ -3,7 +3,8 @@ extends Node
 enum Weapon {
 	DAGGER,
 	CLEAVER,
-	STAFF
+	STAFF,
+	BOW
 }
 
 # Base Data
@@ -143,6 +144,8 @@ func get_weapon_sprite(weapon: Weapon):
 			return load("res://sprites/cleaver.png")
 		Weapon.STAFF:
 			return load("res://sprites/staff.png")
+		Weapon.BOW:
+			return load("res://sprites/bow_arrow.png")
 
 func get_player_in_scene():
 	return get_tree().current_scene.get_node("Player")
