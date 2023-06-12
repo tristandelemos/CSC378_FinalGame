@@ -95,6 +95,7 @@ func attack():
 
 func take_damage(damage: int):
 	health -= damage
+	Encyclopedia.killed_enemy("death")
 	if phase == 0 and health <= phase_one_threshold:
 		speed += 100
 		health = phase_one_threshold
@@ -110,6 +111,7 @@ func take_damage(damage: int):
 		SignalBus.boss_phase_change.emit(phase)
 	if health <= 0:
 		queue_free()
+		Encyclopedia.characters.death.description = "You have successfully broke the contract"
 		SignalBus.boss_dead.emit()
 	SignalBus.boss_damaged.emit(health)
 	knockback = true

@@ -1,24 +1,26 @@
-[gd_scene load_steps=7 format=3 uid="uid://4ovbrst75a56"]
+[gd_scene load_steps=9 format=3 uid="uid://4ovbrst75a56"]
 
+[ext_resource type="Script" path="res://scripts/encyclopedia_ctrl.gd" id="1_ke0iw"]
 [ext_resource type="Theme" uid="uid://c6kvh2v5r71lh" path="res://default_theme.tres" id="1_uw187"]
-[ext_resource type="Texture2D" uid="uid://bq80reny3n6np" path="res://sprites/main character/t_front_facing3.png" id="2_phykc"]
+[ext_resource type="Texture2D" uid="uid://die0tiqbee8ey" path="res://sprites/mouse.png" id="3_du6wb"]
 [ext_resource type="Texture2D" uid="uid://cnxl8ib5bjfvn" path="res://sprites/enemies/unknown_goblin.png" id="3_xsn1k"]
+[ext_resource type="Texture2D" uid="uid://77qsxvxwbo3d" path="res://sprites/main character/t_front_facing.png" id="4_jumfy"]
 [ext_resource type="Texture2D" uid="uid://b02k8yjmpvrix" path="res://sprites/enemies/unknown_goblin_wizard.png" id="4_py0u6"]
 [ext_resource type="Texture2D" uid="uid://dhepbeitiiwb1" path="res://sprites/unknown_lady_luck.png" id="5_hci5h"]
 [ext_resource type="Texture2D" uid="uid://mgiwun0nn4ah" path="res://sprites/shopkeeper/unknown_shopkeeper.png" id="6_jpy6a"]
 
-[node name="Encyclopedia" type="ColorRect"]
-anchors_preset = 12
-anchor_top = 1.0
+[node name="Encyclopedia" type="CanvasLayer"]
+script = ExtResource("1_ke0iw")
+
+[node name="Encyclopedia" type="ColorRect" parent="."]
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 4.0
-offset_top = -720.0
 grow_horizontal = 2
-grow_vertical = 0
-color = Color(0.207843, 0.207843, 0.207843, 0.682353)
+grow_vertical = 2
+color = Color(0.0588235, 0.0588235, 0.0588235, 0.207843)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="Encyclopedia"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -26,19 +28,19 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="VBoxContainer"]
+[node name="Label" type="Label" parent="Encyclopedia/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("1_uw187")
 theme_override_font_sizes/font_size = 50
 text = "GAME PAUSED / INFO SCREEN"
 horizontal_alignment = 1
 
-[node name="TopRow" type="ColorRect" parent="VBoxContainer"]
+[node name="TopRow" type="ColorRect" parent="Encyclopedia/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 color = Color(1, 1, 1, 0)
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/TopRow"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Encyclopedia/VBoxContainer/TopRow"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -46,99 +48,238 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ColorRect" type="ColorRect" parent="VBoxContainer/TopRow/HBoxContainer"]
+[node name="Controls" type="ColorRect" parent="Encyclopedia/VBoxContainer/TopRow/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+color = Color(0, 0, 0, 0)
 
-[node name="ColorRect2" type="ColorRect" parent="VBoxContainer/TopRow/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="ColorRect3" type="ColorRect" parent="VBoxContainer/TopRow/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="Characters" type="ColorRect" parent="VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-color = Color(1, 1, 1, 0)
-
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Characters"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Telonia" type="ColorRect" parent="VBoxContainer/Characters/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-color = Color(1, 0.211765, 1, 0)
-
-[node name="Telonia" type="ColorRect" parent="VBoxContainer/Characters/HBoxContainer/Telonia"]
+[node name="Controls" type="ColorRect" parent="Encyclopedia/VBoxContainer/TopRow/HBoxContainer/Controls"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.02
-anchor_top = 0.1
+anchor_left = 0.03
+anchor_top = 0.02
 anchor_right = 0.98
-anchor_bottom = 0.95
+anchor_bottom = 0.98
 color = Color(0, 0, 0, 1)
 
-[node name="Telonia" type="VBoxContainer" parent="VBoxContainer/Characters/HBoxContainer/Telonia/Telonia"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Encyclopedia/VBoxContainer/TopRow/HBoxContainer/Controls/Controls"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-alignment = 1
 
-[node name="Image" type="TextureRect" parent="VBoxContainer/Characters/HBoxContainer/Telonia/Telonia/Telonia"]
+[node name="Label" type="Label" parent="Encyclopedia/VBoxContainer/TopRow/HBoxContainer/Controls/Controls/VBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 3
-texture = ExtResource("2_phykc")
+theme = ExtResource("1_uw187")
+theme_override_font_sizes/font_size = 70
+text = "Controls"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Encyclopedia/VBoxContainer/TopRow/HBoxContainer/Controls/Controls/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Encyclopedia/VBoxContainer/TopRow/HBoxContainer/Controls/Controls/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("3_du6wb")
 stretch_mode = 5
 
-[node name="Title" type="Label" parent="VBoxContainer/Characters/HBoxContainer/Telonia/Telonia/Telonia"]
+[node name="Label" type="Label" parent="Encyclopedia/VBoxContainer/TopRow/HBoxContainer/Controls/Controls/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 theme = ExtResource("1_uw187")
 theme_override_font_sizes/font_size = 35
-text = "Telonia"
-autowrap_mode = 3
+text = " Right click to attack       "
+horizontal_alignment = 1
 
-[node name="Type" type="Label" parent="VBoxContainer/Characters/HBoxContainer/Telonia/Telonia/Telonia"]
+[node name="Movement" type="Label" parent="Encyclopedia/VBoxContainer/TopRow/HBoxContainer/Controls/Controls/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("1_uw187")
-text = "Type: Protagonist"
-autowrap_mode = 3
+theme_override_font_sizes/font_size = 35
+text = "W: Up, A: Left, S: Down, D: Right"
+horizontal_alignment = 1
 
-[node name="Description" type="Label" parent="VBoxContainer/Characters/HBoxContainer/Telonia/Telonia/Telonia"]
+[node name="Pause" type="Label" parent="Encyclopedia/VBoxContainer/TopRow/HBoxContainer/Controls/Controls/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("1_uw187")
-text = "You are the main character"
-autowrap_mode = 3
+theme_override_font_sizes/font_size = 35
+text = "Esc to Pause/Unpause"
+horizontal_alignment = 1
 
-[node name="Amount Killed" type="Label" parent="VBoxContainer/Characters/HBoxContainer/Telonia/Telonia/Telonia"]
+[node name="Minimap" type="Label" parent="Encyclopedia/VBoxContainer/TopRow/HBoxContainer/Controls/Controls/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("1_uw187")
-text = "Deaths: 0"
+theme_override_font_sizes/font_size = 35
+text = "Hold Tab to Show Minimap"
+horizontal_alignment = 1
 
-[node name="Goblin" type="ColorRect" parent="VBoxContainer/Characters/HBoxContainer"]
+[node name="Dash" type="Label" parent="Encyclopedia/VBoxContainer/TopRow/HBoxContainer/Controls/Controls/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_uw187")
+theme_override_font_sizes/font_size = 35
+text = "Shift to Dash"
+horizontal_alignment = 1
+
+[node name="Escape" type="Label" parent="Encyclopedia/VBoxContainer/TopRow/HBoxContainer/Controls/Controls/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_uw187")
+theme_override_font_sizes/font_size = 35
+text = "V to Use Potion"
+horizontal_alignment = 1
+
+[node name="Interact" type="Label" parent="Encyclopedia/VBoxContainer/TopRow/HBoxContainer/Controls/Controls/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_uw187")
+theme_override_font_sizes/font_size = 35
+text = "E to Interact"
+horizontal_alignment = 1
+
+[node name="StoryInfo" type="ColorRect" parent="Encyclopedia/VBoxContainer/TopRow/HBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(1, 1, 1, 0)
+
+[node name="StoryInfo" type="ColorRect" parent="Encyclopedia/VBoxContainer/TopRow/HBoxContainer/StoryInfo"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.01
+anchor_top = 0.02
+anchor_right = 0.98
+anchor_bottom = 0.98
+color = Color(0, 0, 0, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Encyclopedia/VBoxContainer/TopRow/HBoxContainer/StoryInfo/StoryInfo"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Encyclopedia/VBoxContainer/TopRow/HBoxContainer/StoryInfo/StoryInfo/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_uw187")
+theme_override_font_sizes/font_size = 65
+text = "The Story So Far"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Encyclopedia/VBoxContainer/TopRow/HBoxContainer/StoryInfo/StoryInfo/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="Encyclopedia/VBoxContainer/TopRow/HBoxContainer/StoryInfo/StoryInfo/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.37
+texture = ExtResource("4_jumfy")
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="Encyclopedia/VBoxContainer/TopRow/HBoxContainer/StoryInfo/StoryInfo/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_uw187")
+theme_override_font_sizes/font_size = 33
+text = "You, Telonia, have entered the Abyssal Dungeoun to find Death. You made a contract with him, and now you are unable to die. You are on a mission to break your contract to see your loved ones."
+autowrap_mode = 3
+
+[node name="Stats" type="ColorRect" parent="Encyclopedia/VBoxContainer/TopRow/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(1, 1, 1, 0)
+
+[node name="Stats" type="ColorRect" parent="Encyclopedia/VBoxContainer/TopRow/HBoxContainer/Stats"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.01
+anchor_top = 0.02
+anchor_right = 0.98
+anchor_bottom = 0.98
+color = Color(0, 0, 0, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Encyclopedia/VBoxContainer/TopRow/HBoxContainer/Stats/Stats"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Stats" type="Label" parent="Encyclopedia/VBoxContainer/TopRow/HBoxContainer/Stats/Stats/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_uw187")
+theme_override_font_sizes/font_size = 65
+text = "Stats"
+horizontal_alignment = 1
+
+[node name="TotalDeaths" type="Label" parent="Encyclopedia/VBoxContainer/TopRow/HBoxContainer/Stats/Stats/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_uw187")
+theme_override_font_sizes/font_size = 38
+text = "Total deaths: 0"
+
+[node name="TotalKills" type="Label" parent="Encyclopedia/VBoxContainer/TopRow/HBoxContainer/Stats/Stats/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_uw187")
+theme_override_font_sizes/font_size = 38
+text = "Total # of kills: 0"
+autowrap_mode = 3
+
+[node name="MostKills" type="Label" parent="Encyclopedia/VBoxContainer/TopRow/HBoxContainer/Stats/Stats/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_uw187")
+theme_override_font_sizes/font_size = 35
+text = "Most # of kills in a run: 0"
+autowrap_mode = 3
+
+[node name="CurrKills" type="Label" parent="Encyclopedia/VBoxContainer/TopRow/HBoxContainer/Stats/Stats/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_uw187")
+theme_override_font_sizes/font_size = 35
+text = "Current run kill count: 0"
+autowrap_mode = 3
+
+[node name="TotalCoins" type="Label" parent="Encyclopedia/VBoxContainer/TopRow/HBoxContainer/Stats/Stats/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_uw187")
+theme_override_font_sizes/font_size = 38
+text = "Types of weapons encountered: 1/7"
+
+[node name="RoomsEnter" type="Label" parent="Encyclopedia/VBoxContainer/TopRow/HBoxContainer/Stats/Stats/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_uw187")
+theme_override_font_sizes/font_size = 38
+text = "Total rooms entered: 0"
+
+[node name="Characters" type="ColorRect" parent="Encyclopedia/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+color = Color(1, 1, 1, 0)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Encyclopedia/VBoxContainer/Characters"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Goblin" type="ColorRect" parent="Encyclopedia/VBoxContainer/Characters/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 color = Color(1, 0.211765, 1, 0)
 
-[node name="Goblin" type="ColorRect" parent="VBoxContainer/Characters/HBoxContainer/Goblin"]
+[node name="Goblin" type="ColorRect" parent="Encyclopedia/VBoxContainer/Characters/HBoxContainer/Goblin"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.02
-anchor_top = 0.1
+anchor_top = 0.05
 anchor_right = 0.98
 anchor_bottom = 0.95
 color = Color(0, 0, 0, 1)
 
-[node name="Goblin" type="VBoxContainer" parent="VBoxContainer/Characters/HBoxContainer/Goblin/Goblin"]
+[node name="Goblin" type="VBoxContainer" parent="Encyclopedia/VBoxContainer/Characters/HBoxContainer/Goblin/Goblin"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -147,52 +288,52 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="Image" type="TextureRect" parent="VBoxContainer/Characters/HBoxContainer/Goblin/Goblin/Goblin"]
+[node name="Image" type="TextureRect" parent="Encyclopedia/VBoxContainer/Characters/HBoxContainer/Goblin/Goblin/Goblin"]
 layout_mode = 2
 size_flags_vertical = 3
 texture = ExtResource("3_xsn1k")
 stretch_mode = 5
 
-[node name="Title" type="Label" parent="VBoxContainer/Characters/HBoxContainer/Goblin/Goblin/Goblin"]
+[node name="Title" type="Label" parent="Encyclopedia/VBoxContainer/Characters/HBoxContainer/Goblin/Goblin/Goblin"]
 layout_mode = 2
 theme = ExtResource("1_uw187")
 theme_override_font_sizes/font_size = 35
 text = "????"
 autowrap_mode = 3
 
-[node name="Type" type="Label" parent="VBoxContainer/Characters/HBoxContainer/Goblin/Goblin/Goblin"]
+[node name="Type" type="Label" parent="Encyclopedia/VBoxContainer/Characters/HBoxContainer/Goblin/Goblin/Goblin"]
 layout_mode = 2
 theme = ExtResource("1_uw187")
 text = "????"
 autowrap_mode = 3
 
-[node name="Description" type="Label" parent="VBoxContainer/Characters/HBoxContainer/Goblin/Goblin/Goblin"]
+[node name="Description" type="Label" parent="Encyclopedia/VBoxContainer/Characters/HBoxContainer/Goblin/Goblin/Goblin"]
 layout_mode = 2
 theme = ExtResource("1_uw187")
 text = "????
 ????"
 autowrap_mode = 3
 
-[node name="Amount Killed" type="Label" parent="VBoxContainer/Characters/HBoxContainer/Goblin/Goblin/Goblin"]
+[node name="Amount Killed" type="Label" parent="Encyclopedia/VBoxContainer/Characters/HBoxContainer/Goblin/Goblin/Goblin"]
 layout_mode = 2
 theme = ExtResource("1_uw187")
-text = "Killed: 0"
+text = "????"
 
-[node name="Goblin Wizard" type="ColorRect" parent="VBoxContainer/Characters/HBoxContainer"]
+[node name="Goblin Wizard" type="ColorRect" parent="Encyclopedia/VBoxContainer/Characters/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 color = Color(0.290196, 0.290196, 1, 0)
 
-[node name="Goblin Wizard" type="ColorRect" parent="VBoxContainer/Characters/HBoxContainer/Goblin Wizard"]
+[node name="Goblin Wizard" type="ColorRect" parent="Encyclopedia/VBoxContainer/Characters/HBoxContainer/Goblin Wizard"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.02
-anchor_top = 0.1
+anchor_top = 0.05
 anchor_right = 0.98
 anchor_bottom = 0.95
 color = Color(0, 0, 0, 1)
 
-[node name="Goblin Wizard" type="VBoxContainer" parent="VBoxContainer/Characters/HBoxContainer/Goblin Wizard/Goblin Wizard"]
+[node name="Goblin Wizard" type="VBoxContainer" parent="Encyclopedia/VBoxContainer/Characters/HBoxContainer/Goblin Wizard/Goblin Wizard"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -201,52 +342,52 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="Image" type="TextureRect" parent="VBoxContainer/Characters/HBoxContainer/Goblin Wizard/Goblin Wizard/Goblin Wizard"]
+[node name="Image" type="TextureRect" parent="Encyclopedia/VBoxContainer/Characters/HBoxContainer/Goblin Wizard/Goblin Wizard/Goblin Wizard"]
 layout_mode = 2
 size_flags_vertical = 3
 texture = ExtResource("4_py0u6")
 stretch_mode = 5
 
-[node name="Title" type="Label" parent="VBoxContainer/Characters/HBoxContainer/Goblin Wizard/Goblin Wizard/Goblin Wizard"]
+[node name="Title" type="Label" parent="Encyclopedia/VBoxContainer/Characters/HBoxContainer/Goblin Wizard/Goblin Wizard/Goblin Wizard"]
 layout_mode = 2
 theme = ExtResource("1_uw187")
 theme_override_font_sizes/font_size = 35
 text = "????"
 autowrap_mode = 3
 
-[node name="Type" type="Label" parent="VBoxContainer/Characters/HBoxContainer/Goblin Wizard/Goblin Wizard/Goblin Wizard"]
+[node name="Type" type="Label" parent="Encyclopedia/VBoxContainer/Characters/HBoxContainer/Goblin Wizard/Goblin Wizard/Goblin Wizard"]
 layout_mode = 2
 theme = ExtResource("1_uw187")
 text = "????"
 autowrap_mode = 3
 
-[node name="Description" type="Label" parent="VBoxContainer/Characters/HBoxContainer/Goblin Wizard/Goblin Wizard/Goblin Wizard"]
+[node name="Description" type="Label" parent="Encyclopedia/VBoxContainer/Characters/HBoxContainer/Goblin Wizard/Goblin Wizard/Goblin Wizard"]
 layout_mode = 2
 theme = ExtResource("1_uw187")
 text = "????
 ????"
 autowrap_mode = 3
 
-[node name="Amount Killed" type="Label" parent="VBoxContainer/Characters/HBoxContainer/Goblin Wizard/Goblin Wizard/Goblin Wizard"]
+[node name="Amount Killed" type="Label" parent="Encyclopedia/VBoxContainer/Characters/HBoxContainer/Goblin Wizard/Goblin Wizard/Goblin Wizard"]
 layout_mode = 2
 theme = ExtResource("1_uw187")
-text = "Killed: 0"
+text = "????"
 
-[node name="Lady Luck" type="ColorRect" parent="VBoxContainer/Characters/HBoxContainer"]
+[node name="Lady Luck" type="ColorRect" parent="Encyclopedia/VBoxContainer/Characters/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 color = Color(0.290196, 0.290196, 1, 0)
 
-[node name="Lady Luck" type="ColorRect" parent="VBoxContainer/Characters/HBoxContainer/Lady Luck"]
+[node name="Lady Luck" type="ColorRect" parent="Encyclopedia/VBoxContainer/Characters/HBoxContainer/Lady Luck"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.02
-anchor_top = 0.1
+anchor_top = 0.05
 anchor_right = 0.98
 anchor_bottom = 0.95
 color = Color(0, 0, 0, 1)
 
-[node name="Lady Luck" type="VBoxContainer" parent="VBoxContainer/Characters/HBoxContainer/Lady Luck/Lady Luck"]
+[node name="Lady Luck" type="VBoxContainer" parent="Encyclopedia/VBoxContainer/Characters/HBoxContainer/Lady Luck/Lady Luck"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -255,52 +396,52 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="Image" type="TextureRect" parent="VBoxContainer/Characters/HBoxContainer/Lady Luck/Lady Luck/Lady Luck"]
+[node name="Image" type="TextureRect" parent="Encyclopedia/VBoxContainer/Characters/HBoxContainer/Lady Luck/Lady Luck/Lady Luck"]
 layout_mode = 2
 size_flags_vertical = 3
 texture = ExtResource("5_hci5h")
 stretch_mode = 5
 
-[node name="Title" type="Label" parent="VBoxContainer/Characters/HBoxContainer/Lady Luck/Lady Luck/Lady Luck"]
+[node name="Title" type="Label" parent="Encyclopedia/VBoxContainer/Characters/HBoxContainer/Lady Luck/Lady Luck/Lady Luck"]
 layout_mode = 2
 theme = ExtResource("1_uw187")
 theme_override_font_sizes/font_size = 35
 text = "????"
 autowrap_mode = 3
 
-[node name="Type" type="Label" parent="VBoxContainer/Characters/HBoxContainer/Lady Luck/Lady Luck/Lady Luck"]
+[node name="Type" type="Label" parent="Encyclopedia/VBoxContainer/Characters/HBoxContainer/Lady Luck/Lady Luck/Lady Luck"]
 layout_mode = 2
 theme = ExtResource("1_uw187")
 text = "????"
 autowrap_mode = 3
 
-[node name="Description" type="Label" parent="VBoxContainer/Characters/HBoxContainer/Lady Luck/Lady Luck/Lady Luck"]
+[node name="Description" type="Label" parent="Encyclopedia/VBoxContainer/Characters/HBoxContainer/Lady Luck/Lady Luck/Lady Luck"]
 layout_mode = 2
 theme = ExtResource("1_uw187")
 text = "????
 ????"
 autowrap_mode = 3
 
-[node name="Amount Killed" type="Label" parent="VBoxContainer/Characters/HBoxContainer/Lady Luck/Lady Luck/Lady Luck"]
+[node name="Amount Killed" type="Label" parent="Encyclopedia/VBoxContainer/Characters/HBoxContainer/Lady Luck/Lady Luck/Lady Luck"]
 layout_mode = 2
 theme = ExtResource("1_uw187")
 text = "????"
 
-[node name="Shopkeeper" type="ColorRect" parent="VBoxContainer/Characters/HBoxContainer"]
+[node name="Shopkeeper" type="ColorRect" parent="Encyclopedia/VBoxContainer/Characters/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 color = Color(0.290196, 0.290196, 1, 0)
 
-[node name="Shopkeeper" type="ColorRect" parent="VBoxContainer/Characters/HBoxContainer/Shopkeeper"]
+[node name="Shopkeeper" type="ColorRect" parent="Encyclopedia/VBoxContainer/Characters/HBoxContainer/Shopkeeper"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.02
-anchor_top = 0.1
+anchor_top = 0.05
 anchor_right = 0.96
 anchor_bottom = 0.95
 color = Color(0, 0, 0, 1)
 
-[node name="Shopkeeper" type="VBoxContainer" parent="VBoxContainer/Characters/HBoxContainer/Shopkeeper/Shopkeeper"]
+[node name="Shopkeeper" type="VBoxContainer" parent="Encyclopedia/VBoxContainer/Characters/HBoxContainer/Shopkeeper/Shopkeeper"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -309,52 +450,52 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="Image" type="TextureRect" parent="VBoxContainer/Characters/HBoxContainer/Shopkeeper/Shopkeeper/Shopkeeper"]
+[node name="Image" type="TextureRect" parent="Encyclopedia/VBoxContainer/Characters/HBoxContainer/Shopkeeper/Shopkeeper/Shopkeeper"]
 layout_mode = 2
 size_flags_vertical = 3
 texture = ExtResource("6_jpy6a")
 stretch_mode = 5
 
-[node name="Title" type="Label" parent="VBoxContainer/Characters/HBoxContainer/Shopkeeper/Shopkeeper/Shopkeeper"]
+[node name="Title" type="Label" parent="Encyclopedia/VBoxContainer/Characters/HBoxContainer/Shopkeeper/Shopkeeper/Shopkeeper"]
 layout_mode = 2
 theme = ExtResource("1_uw187")
 theme_override_font_sizes/font_size = 35
 text = "????"
 autowrap_mode = 3
 
-[node name="Type" type="Label" parent="VBoxContainer/Characters/HBoxContainer/Shopkeeper/Shopkeeper/Shopkeeper"]
+[node name="Type" type="Label" parent="Encyclopedia/VBoxContainer/Characters/HBoxContainer/Shopkeeper/Shopkeeper/Shopkeeper"]
 layout_mode = 2
 theme = ExtResource("1_uw187")
 text = "????"
 autowrap_mode = 3
 
-[node name="Description" type="Label" parent="VBoxContainer/Characters/HBoxContainer/Shopkeeper/Shopkeeper/Shopkeeper"]
+[node name="Description" type="Label" parent="Encyclopedia/VBoxContainer/Characters/HBoxContainer/Shopkeeper/Shopkeeper/Shopkeeper"]
 layout_mode = 2
 theme = ExtResource("1_uw187")
 text = "????
 ????"
 autowrap_mode = 3
 
-[node name="Amount Killed" type="Label" parent="VBoxContainer/Characters/HBoxContainer/Shopkeeper/Shopkeeper/Shopkeeper"]
+[node name="Amount Killed" type="Label" parent="Encyclopedia/VBoxContainer/Characters/HBoxContainer/Shopkeeper/Shopkeeper/Shopkeeper"]
 layout_mode = 2
 theme = ExtResource("1_uw187")
 text = "????"
 
-[node name="Morgath" type="ColorRect" parent="VBoxContainer/Characters/HBoxContainer"]
+[node name="Death" type="ColorRect" parent="Encyclopedia/VBoxContainer/Characters/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 color = Color(0.290196, 0.290196, 1, 0)
 
-[node name="Morgath" type="ColorRect" parent="VBoxContainer/Characters/HBoxContainer/Morgath"]
+[node name="Death" type="ColorRect" parent="Encyclopedia/VBoxContainer/Characters/HBoxContainer/Death"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.02
-anchor_top = 0.1
+anchor_top = 0.05
 anchor_right = 0.98
 anchor_bottom = 0.95
 color = Color(0, 0, 0, 1)
 
-[node name="Morgath" type="VBoxContainer" parent="VBoxContainer/Characters/HBoxContainer/Morgath/Morgath"]
+[node name="Death" type="VBoxContainer" parent="Encyclopedia/VBoxContainer/Characters/HBoxContainer/Death/Death"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -363,33 +504,33 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="Image" type="TextureRect" parent="VBoxContainer/Characters/HBoxContainer/Morgath/Morgath/Morgath"]
+[node name="Image" type="TextureRect" parent="Encyclopedia/VBoxContainer/Characters/HBoxContainer/Death/Death/Death"]
 layout_mode = 2
 size_flags_vertical = 3
 texture = ExtResource("3_xsn1k")
 stretch_mode = 5
 
-[node name="Title" type="Label" parent="VBoxContainer/Characters/HBoxContainer/Morgath/Morgath/Morgath"]
+[node name="Title" type="Label" parent="Encyclopedia/VBoxContainer/Characters/HBoxContainer/Death/Death/Death"]
 layout_mode = 2
 theme = ExtResource("1_uw187")
-theme_override_font_sizes/font_size = 27
+theme_override_font_sizes/font_size = 35
 text = "????"
 autowrap_mode = 3
 
-[node name="Type" type="Label" parent="VBoxContainer/Characters/HBoxContainer/Morgath/Morgath/Morgath"]
+[node name="Type" type="Label" parent="Encyclopedia/VBoxContainer/Characters/HBoxContainer/Death/Death/Death"]
 layout_mode = 2
 theme = ExtResource("1_uw187")
 text = "????"
 autowrap_mode = 3
 
-[node name="Description" type="Label" parent="VBoxContainer/Characters/HBoxContainer/Morgath/Morgath/Morgath"]
+[node name="Description" type="Label" parent="Encyclopedia/VBoxContainer/Characters/HBoxContainer/Death/Death/Death"]
 layout_mode = 2
 theme = ExtResource("1_uw187")
 text = "????
 ????"
 autowrap_mode = 3
 
-[node name="Amount Killed" type="Label" parent="VBoxContainer/Characters/HBoxContainer/Morgath/Morgath/Morgath"]
+[node name="Amount Killed" type="Label" parent="Encyclopedia/VBoxContainer/Characters/HBoxContainer/Death/Death/Death"]
 layout_mode = 2
 theme = ExtResource("1_uw187")
 text = "????"

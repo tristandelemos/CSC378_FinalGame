@@ -28,10 +28,10 @@ var characters = {
 		"amount_killed": 0,
 		"image_path": "res://sprites/enemies/known_goblin_wizard.png"
 	},
-	"morgath": {
+	"death": {
 		"name": "Morgath, Soul Stealer",
 		"type": "Final Boss",
-		"description": "You can finally rest",
+		"description": "The personification of death",
 		"amount_killed": 0,
 		#CHANGE
 		"image_path": "res://sprites/character_updown.png"

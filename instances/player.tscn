@@ -12,7 +12,6 @@
 [ext_resource type="Texture2D" uid="uid://c6s8f66uny2ic" path="res://sprites/main character/t_walking_left3.png" id="4_xpobe"]
 [ext_resource type="Texture2D" uid="uid://b2bchrr2cdsij" path="res://sprites/main character/t_walking_left4.png" id="5_cjbjp"]
 [ext_resource type="Texture2D" uid="uid://cgjhet47648sv" path="res://sprites/main character/walking_up4.png" id="5_e2lu6"]
-[ext_resource type="Texture2D" uid="uid://caigmikiulx71" path="res://sprites/main character/dying4.png" id="5_u3pt1"]
 [ext_resource type="Texture2D" uid="uid://bme6vwmneebe6" path="res://sprites/main character/t_front_facing1.png" id="6_tktp2"]
 [ext_resource type="Theme" uid="uid://c6kvh2v5r71lh" path="res://default_theme.tres" id="6_yipyj"]
 [ext_resource type="Texture2D" uid="uid://casf11t1cuc15" path="res://sprites/main character/t_front_facing2.png" id="7_nvxjn"]
@@ -28,17 +27,10 @@
 [ext_resource type="AudioStream" uid="uid://dlfpoclmvyh5c" path="res://sounds/328459__alexmurphy53__walking-on-a-concrete-floor.mp3" id="25_o4vht"]
 [ext_resource type="AudioStream" uid="uid://qw1g5vhh8wf7" path="res://sounds/woosh.mp3" id="26_8vw7q"]
 [ext_resource type="AudioStream" uid="uid://bpucwvc6yseds" path="res://sounds/465405__nataliedmc__gulping.wav" id="27_5qtw2"]
+[ext_resource type="PackedScene" uid="uid://4ovbrst75a56" path="res://instances/Encyclopedia.tscn" id="28_wkd4w"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ug6sg"]
 animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("5_u3pt1")
-}],
-"loop": true,
-"name": &"death",
-"speed": 5.0
-}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("2_d5ecn")
@@ -338,6 +330,8 @@ one_shot = true
 
 [node name="NudgeTimer" type="Timer" parent="."]
 wait_time = 0.05
+
+[node name="Encyclopedia" parent="." instance=ExtResource("28_wkd4w")]
 
 [connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]
 [connection signal="timeout" from="KnockbackTimer" to="." method="_on_knockback_timer_timeout"]

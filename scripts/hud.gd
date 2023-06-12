@@ -40,8 +40,8 @@ func _input(event: InputEvent) -> void:
 		minimap.visible = true
 	if event.is_action_released("minimap"):
 		minimap.visible = false
-	if event.is_action_pressed("encyclopedia"):
-		toggle_encyclopedia(!e_toggle)
+	#if event.is_action_pressed("encyclopedia"):
+	#	toggle_encyclopedia(!e_toggle)
 
 func _on_update_health_potion_hud():
 	for i in range(GameData.base_health_potions):
@@ -136,5 +136,5 @@ func update_stats(node_path : Node):
 	node_path.get_child(2).text = "Total # of kills: " + str(Encyclopedia.total_kills)
 	node_path.get_child(3).text = "Most # of kills in a run: " + str(Encyclopedia.most_monsters_killed)
 	node_path.get_child(4).text = "Current run kill count: " + str(Encyclopedia.current_kills)
-	node_path.get_child(5).text = "Total coins collected: " + str(Encyclopedia.total_coins_collected)
+	node_path.get_child(5).text = "Weapons encountered: " + str(Encyclopedia.weapons_collected.size) + "/7"
 	node_path.get_child(6).text = "Total rooms entered: " + str(Encyclopedia.rooms_entered)
