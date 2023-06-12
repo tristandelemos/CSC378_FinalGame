@@ -29,7 +29,7 @@ var characters = {
 		"image_path": "res://sprites/enemies/known_goblin_wizard.png"
 	},
 	"death": {
-		"name": "Morgath, Soul Stealer",
+		"name": "Death",
 		"type": "Final Boss",
 		"description": "The personification of death",
 		"amount_killed": 0,

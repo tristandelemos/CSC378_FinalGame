@@ -1,15 +1,16 @@
 extends CanvasLayer
 
-var e_toggle = false
 @onready var encyclopedia = $Encyclopedia
+var e_toggle = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	encyclopedia.visible = false
 
 func _input(event):
-	if event.is_action_pressed("encyclopedia"):
-		toggle_encyclopedia(!e_toggle)
+	pass
+	#if event.is_action_pressed("encyclopedia"):
+		#toggle_encyclopedia(!e_toggle)
 
 ### ENCYCLOPEDIA FUNCTIONS ###encyclopedia
 func toggle_encyclopedia(toggle: bool):
