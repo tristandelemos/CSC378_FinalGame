@@ -12,6 +12,7 @@ grow_vertical = 2
 script = ExtResource("1_onedr")
 
 [node name="Screen" type="VBoxContainer" parent="."]
+layout_mode = 0
 offset_left = 120.0
 offset_top = 40.0
 offset_right = 1140.0
@@ -35,7 +36,7 @@ theme_override_font_sizes/font_size = 40
 text = "In Ancient Greece, Telonia is cursed with immortality. 
 To finally rest and end their enternal suffering, 
 they must traverse an ever changing labyrinth 
-to find and defeat Morgath the Soulstealer."
+to find and defeat Death."
 horizontal_alignment = 1
 vertical_alignment = 1
 

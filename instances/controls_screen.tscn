@@ -12,6 +12,7 @@ grow_vertical = 2
 script = ExtResource("1_wysyy")
 
 [node name="Screen" type="VBoxContainer" parent="."]
+layout_mode = 0
 offset_left = 120.0
 offset_top = 40.0
 offset_right = 1140.0
@@ -35,7 +36,8 @@ theme_override_font_sizes/font_size = 35
 text = "WASD: Movement
 Tab: Open Map
 Shift: Sprint
-Mouse Click: Attack in Direction"
+Mouse Click: Attack in Direction
+ESC: Inventory"
 
 [node name="back_again" type="Button" parent="Screen"]
 layout_mode = 2

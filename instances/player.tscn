@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://ba2y6exjmtk6h"]
+[gd_scene load_steps=39 format=3 uid="uid://ba2y6exjmtk6h"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_fk4hn"]
 [ext_resource type="Texture2D" uid="uid://bfhth7hh8ph2d" path="res://sprites/main character/t_walking_left1.png" id="2_0lbdv"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://c6s8f66uny2ic" path="res://sprites/main character/t_walking_left3.png" id="4_xpobe"]
 [ext_resource type="Texture2D" uid="uid://b2bchrr2cdsij" path="res://sprites/main character/t_walking_left4.png" id="5_cjbjp"]
 [ext_resource type="Texture2D" uid="uid://cgjhet47648sv" path="res://sprites/main character/walking_up4.png" id="5_e2lu6"]
+[ext_resource type="Texture2D" uid="uid://caigmikiulx71" path="res://sprites/main character/dying4.png" id="5_u3pt1"]
 [ext_resource type="Texture2D" uid="uid://bme6vwmneebe6" path="res://sprites/main character/t_front_facing1.png" id="6_tktp2"]
 [ext_resource type="Theme" uid="uid://c6kvh2v5r71lh" path="res://default_theme.tres" id="6_yipyj"]
 [ext_resource type="Texture2D" uid="uid://casf11t1cuc15" path="res://sprites/main character/t_front_facing2.png" id="7_nvxjn"]
@@ -30,6 +31,14 @@
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ug6sg"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_u3pt1")
+}],
+"loop": true,
+"name": &"death",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("2_d5ecn")

@@ -136,6 +136,7 @@ func take_damage(damage: int):
 	GameData.curr_player_health -= damage
 	healthbar.value = GameData.curr_player_health
 	if GameData.curr_player_health <= 0:
+		player_sprite.play("death")
 		GameData.deaths += 1
 		Encyclopedia.current_kills = 0
 		SignalBus.player_dead.emit()
