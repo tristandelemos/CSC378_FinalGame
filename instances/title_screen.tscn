@@ -1,11 +1,13 @@
-[gd_scene load_steps=9 format=3 uid="uid://d3c17w1w4u3fq"]
+[gd_scene load_steps=11 format=3 uid="uid://d3c17w1w4u3fq"]
 
 [ext_resource type="Script" path="res://instances/title_screen.gd" id="1_1ecqf"]
 [ext_resource type="PackedScene" uid="uid://q6cc5js0fijn" path="res://instances/fade_in.tscn" id="2_fvd1i"]
+[ext_resource type="Texture2D" uid="uid://d0o42mjjfs7e0" path="res://sprites/floor.png" id="2_mmeeq"]
 [ext_resource type="Texture2D" uid="uid://do2amnrxn0p51" path="res://sprites/main character/dying1.png" id="3_whjd2"]
 [ext_resource type="Texture2D" uid="uid://bqjavd78ruoyu" path="res://sprites/main character/dying2.png" id="4_tkbpp"]
 [ext_resource type="Texture2D" uid="uid://c3v2j4v7v0mp2" path="res://sprites/main character/dying3.png" id="5_nhonh"]
 [ext_resource type="Texture2D" uid="uid://caigmikiulx71" path="res://sprites/main character/dying4.png" id="6_e1fc2"]
+[ext_resource type="TileSet" uid="uid://4wilkcph121u" path="res://resources/main_tileset.tres" id="7_bfprv"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_demih"]
 resource_local_to_scene = true
@@ -39,6 +41,39 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_1ecqf")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1276.0
+offset_bottom = 164.0
+texture = ExtResource("2_mmeeq")
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+offset_left = 2.0
+offset_top = 156.0
+offset_right = 1278.0
+offset_bottom = 320.0
+texture = ExtResource("2_mmeeq")
+
+[node name="TextureRect3" type="TextureRect" parent="."]
+offset_left = 4.0
+offset_top = 312.0
+offset_right = 1280.0
+offset_bottom = 476.0
+texture = ExtResource("2_mmeeq")
+
+[node name="TextureRect5" type="TextureRect" parent="."]
+offset_top = 630.0
+offset_right = 1276.0
+offset_bottom = 794.0
+texture = ExtResource("2_mmeeq")
+
+[node name="TextureRect4" type="TextureRect" parent="."]
+offset_left = 2.0
+offset_top = 472.0
+offset_right = 1278.0
+offset_bottom = 636.0
+texture = ExtResource("2_mmeeq")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(918, 437)
@@ -97,6 +132,12 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 grow_horizontal = 1
 grow_vertical = 1
+
+[node name="TileMap" type="TileMap" parent="."]
+position = Vector2(186, 256)
+scale = Vector2(5.12, 5.08)
+tile_set = ExtResource("7_bfprv")
+format = 2
 
 [connection signal="ready" from="." to="." method="_on_ready"]
 [connection signal="pressed" from="Menu/CenterRow/Buttons/Start" to="." method="_on_start_pressed"]
