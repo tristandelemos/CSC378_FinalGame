@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://beeafbx1grunu"]
+[gd_scene load_steps=14 format=3 uid="uid://beeafbx1grunu"]
 
 [ext_resource type="Script" path="res://scripts/shopkeeper.gd" id="1_2cutu"]
 [ext_resource type="Texture2D" uid="uid://k36rog1tty8b" path="res://sprites/shopkeeper/shopkeeper_outlines.png" id="1_c606a"]
@@ -8,14 +8,18 @@
 [ext_resource type="Script" path="res://scripts/SlotOne.gd" id="5_qu672"]
 [ext_resource type="Texture2D" uid="uid://o2fb00poe0ms" path="res://sprites/bow_arrow.png" id="7_6md77"]
 [ext_resource type="Script" path="res://scripts/SlotTwo.gd" id="8_7tiy2"]
+[ext_resource type="Texture2D" uid="uid://ban58hrotkin5" path="res://sprites/vlub.png" id="9_e4msv"]
+[ext_resource type="Texture2D" uid="uid://dloicu4jgrqen" path="res://sprites/scythe.png" id="10_e16ot"]
+[ext_resource type="Script" path="res://scripts/SlotThree.gd" id="10_u7q2w"]
+[ext_resource type="Script" path="res://scripts/SlotFour.gd" id="12_q6t37"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_slnng"]
-radius = 64.0
+radius = 21.3333
 
 [node name="Shopkeeper" type="Sprite2D"]
+scale = Vector2(1.5, 1.5)
 texture = ExtResource("1_c606a")
 hframes = 8
-frame = 1
 script = ExtResource("1_2cutu")
 
 [node name="Label" type="Label" parent="."]
@@ -101,7 +105,66 @@ horizontal_alignment = 2
 position = Vector2(80, 128)
 texture = ExtResource("5_oymya")
 
+[node name="SlotThree" type="TextureButton" parent="ShopUI/Slots"]
+offset_left = 581.0
+offset_top = 260.0
+offset_right = 709.0
+offset_bottom = 388.0
+texture_normal = ExtResource("9_e4msv")
+texture_pressed = ExtResource("9_e4msv")
+texture_hover = ExtResource("9_e4msv")
+texture_disabled = ExtResource("9_e4msv")
+texture_focused = ExtResource("9_e4msv")
+script = ExtResource("10_u7q2w")
+
+[node name="Label" type="Label" parent="ShopUI/Slots/SlotThree"]
+layout_mode = 0
+offset_top = 112.0
+offset_right = 64.0
+offset_bottom = 141.0
+theme = ExtResource("2_mxdr4")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "200
+
+"
+horizontal_alignment = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="ShopUI/Slots/SlotThree"]
+position = Vector2(80, 128)
+texture = ExtResource("5_oymya")
+
+[node name="SlotFour" type="TextureButton" parent="ShopUI/Slots"]
+offset_left = 744.0
+offset_top = 260.0
+offset_right = 872.0
+offset_bottom = 388.0
+texture_normal = ExtResource("10_e16ot")
+texture_pressed = ExtResource("10_e16ot")
+texture_hover = ExtResource("10_e16ot")
+texture_disabled = ExtResource("10_e16ot")
+texture_focused = ExtResource("10_e16ot")
+script = ExtResource("12_q6t37")
+
+[node name="Label" type="Label" parent="ShopUI/Slots/SlotFour"]
+layout_mode = 0
+offset_top = 112.0
+offset_right = 64.0
+offset_bottom = 141.0
+theme = ExtResource("2_mxdr4")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "250
+"
+horizontal_alignment = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="ShopUI/Slots/SlotFour"]
+position = Vector2(80, 128)
+texture = ExtResource("5_oymya")
+
 [connection signal="body_entered" from="PlayerDetector" to="." method="_on_player_detector_body_entered"]
 [connection signal="body_exited" from="PlayerDetector" to="." method="_on_player_detector_body_exited"]
 [connection signal="pressed" from="ShopUI/Slots/SlotOne" to="ShopUI/Slots/SlotOne" method="_on_pressed"]
 [connection signal="pressed" from="ShopUI/Slots/SlotTwo" to="ShopUI/Slots/SlotTwo" method="_on_pressed"]
+[connection signal="pressed" from="ShopUI/Slots/SlotThree" to="ShopUI/Slots/SlotThree" method="_on_pressed"]
+[connection signal="pressed" from="ShopUI/Slots/SlotFour" to="ShopUI/Slots/SlotFour" method="_on_pressed"]

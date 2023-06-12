@@ -4,7 +4,7 @@
 [ext_resource type="Theme" uid="uid://c6kvh2v5r71lh" path="res://default_theme.tres" id="2_bgl5n"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vvmu0"]
-radius = 104.043
+radius = 56.7186
 
 [sub_resource type="Animation" id="Animation_mk0gt"]
 length = 0.001

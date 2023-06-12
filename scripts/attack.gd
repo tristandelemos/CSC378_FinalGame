@@ -5,6 +5,7 @@ extends Node2D
 @onready var player = get_parent()
 @onready var arrow = preload("res://instances/bow_arrow.tscn")
 
+var can_hit := true
 var can_fire := true
 var drawback := true
 var lock_swipe_rotation := false
@@ -24,10 +25,28 @@ func melee_attack():
 	match(GameData.curr_player_weapon):
 		GameData.Weapon.DAGGER:
 			if not anim_player.is_playing():
-				anim_player.play("swipe")
+					anim_player.play("swipe")
+					
 		GameData.Weapon.CLEAVER:
 			if not anim_player.is_playing():
-				anim_player.play("big_swipe")
+				if can_hit:
+					anim_player.play("big_swipe")
+					can_hit = false
+					$BigSwipe/SwipeCooldown.start()
+					
+		GameData.Weapon.CLUB:
+			if not anim_player.is_playing():
+				if can_hit:
+					anim_player.play("smash")
+					can_hit = false
+					$Smash/Timer.start()
+					
+		GameData.Weapon.SCYTHE:
+			if not anim_player.is_playing():
+				if can_hit:
+					anim_player.play("scythe")
+					can_hit = false
+					$Scythe/Timer.start()
 
 func nudge():
 	player.nudge(global_position.direction_to(get_global_mouse_position()), 500)
@@ -44,7 +63,6 @@ func ranged_attack():
 			if can_fire:
 				anim_player.play("staff")
 				fire_orb()
-		# Add in bow and arrow animation
 		GameData.Weapon.BOW:
 			if can_fire:
 				anim_player.play("bow")
@@ -64,19 +82,23 @@ func shoot_arrow():
 	get_tree().current_scene.call_deferred("add_child", arrow_instance)
 	$Bow/BowCooldown.start()
 
+
 func set_lock_swipe_rotation(val: bool):
 	lock_swipe_rotation = val
 
 func _on_hitbox_body_entered(body: Node2D) -> void:
-	body.take_damage(50)
+	match(GameData.curr_player_weapon):
+		GameData.Weapon.DAGGER:
+			body.take_damage(10)
+		GameData.Weapon.CLEAVER:
+			body.take_damage(10)
+		GameData.Weapon.CLUB:
+			body.take_damage(20)
+		GameData.Weapon.SCYTHE:
+			body.take_damage(25)
 
-func _on_big_hitbox_body_entered(body: Node2D) -> void:
-	body.take_damage(10)
-
-func _on_staff_cooldown_timeout() -> void:
+func _on_projectile_cooldown_timeout() -> void:
 	can_fire = true
 
-func _on_bow_cooldown_timeout() -> void:
-	can_fire = true
-	
-
+func _on_melee_cooldown_timeout() -> void:
+	can_hit = true
