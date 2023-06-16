@@ -42,13 +42,23 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_1ecqf")
 
+[node name="TileMap" type="TileMap" parent="."]
+position = Vector2(186, 256)
+scale = Vector2(5.12, 5.08)
+tile_set = ExtResource("7_bfprv")
+format = 2
+layer_0/tile_data = PackedInt32Array(131073, 1, 0, 131072, 131073, 0, 131074, 1, 0, 131075, 65537, 0, 131076, 65537, 0, 131077, 1, 0, 131078, 131073, 0, 65542, 1, 0, 6, 1, 0, -65530, 1, 0, -131066, 1, 0, -131067, 1, 0, -131068, 1, 0, -131069, 131073, 0, -131070, 1, 0, -131071, 65537, 0, -131072, 65537, 0, -65537, 1, 0, -1, 1, 0, 65535, 1, 0, 131071, 1, 0, 196607, 131073, 0, 65536, 1, 0, 65537, 1, 0, 65538, 1, 0, 65539, 65537, 0, 65540, 65537, 0, 65541, 65537, 0, 5, 65537, 0, 4, 65537, 0, 3, 1, 0, 2, 1, 0, 1, 1, 0, 0, 1, 0, -65536, 65537, 0, -65535, 1, 0, -65534, 131073, 0, -65533, 1, 0, -65532, 1, 0, -65531, 131073, 0, 196606, 131073, 0, 131070, 1, 0, 65534, 1, 0, -2, 65537, 0, -65538, 1, 0)
+
 [node name="TextureRect" type="TextureRect" parent="."]
+visible = false
 layout_mode = 0
 offset_right = 1276.0
 offset_bottom = 164.0
 texture = ExtResource("2_mmeeq")
 
 [node name="TextureRect2" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
 offset_left = 2.0
 offset_top = 156.0
 offset_right = 1278.0
@@ -56,6 +66,8 @@ offset_bottom = 320.0
 texture = ExtResource("2_mmeeq")
 
 [node name="TextureRect3" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
 offset_left = 4.0
 offset_top = 312.0
 offset_right = 1280.0
@@ -63,12 +75,16 @@ offset_bottom = 476.0
 texture = ExtResource("2_mmeeq")
 
 [node name="TextureRect5" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
 offset_top = 630.0
 offset_right = 1276.0
 offset_bottom = 794.0
 texture = ExtResource("2_mmeeq")
 
 [node name="TextureRect4" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
 offset_left = 2.0
 offset_top = 472.0
 offset_right = 1278.0
@@ -132,12 +148,6 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 grow_horizontal = 1
 grow_vertical = 1
-
-[node name="TileMap" type="TileMap" parent="."]
-position = Vector2(186, 256)
-scale = Vector2(5.12, 5.08)
-tile_set = ExtResource("7_bfprv")
-format = 2
 
 [connection signal="ready" from="." to="." method="_on_ready"]
 [connection signal="pressed" from="Menu/CenterRow/Buttons/Start" to="." method="_on_start_pressed"]
